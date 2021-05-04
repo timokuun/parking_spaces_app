@@ -1,0 +1,13 @@
+LOGIN:
+
+// TODO: Remove Buttons row used for DEBUG navigating
+
+
+ACTIVE SPOTS:
+
+// TODO: Conditional-ize the image carousel (if no pictures).
+
+
+SPOTS LIST:
+
+// TODO: Correct the time formating
