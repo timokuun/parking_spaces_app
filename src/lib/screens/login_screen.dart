@@ -95,6 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               Row(
+                //Use for navigation rn...
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OurButton(
                     buttonLabel: "Info Screen",

@@ -23,21 +23,26 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
       backgroundColor: Colors.black,
       body: Column(
         children: [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.fromLTRB(
-                0, deviceHeight * 0.04, 0, deviceHeight * 0.020),
-            child: Text(
-              "My Active Spots",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 35,
-              ),
-            ),
-          ),
+          // Container(
+          //   alignment: Alignment.center,
+          //   padding: EdgeInsets.fromLTRB(
+          //       0, deviceHeight * 0.04, 0, deviceHeight * 0.020),
+          //   child: Text(
+          //     "My Active Spots",
+          //     style: TextStyle(
+          //       color: Theme.of(context).primaryColor,
+          //       fontSize: 35,
+          //     ),
+          //   ),
+          // ),
           Container(
             padding: EdgeInsets.all(10),
-            margin: EdgeInsets.fromLTRB(0, 0, 0, deviceHeight * 0.01),
+            margin: EdgeInsets.fromLTRB(
+              0,
+              deviceHeight * 0.05,
+              0,
+              deviceHeight * 0.01,
+            ), // 0.01
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(30),

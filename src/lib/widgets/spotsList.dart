@@ -93,6 +93,7 @@ class SpotsList extends StatelessWidget {
     double deviceWidth = MediaQuery.of(context).size.width;
     return Expanded(
       child: ListView.builder(
+        padding: EdgeInsets.all(0),
         itemBuilder: (buildContext, index) {
           DateTime timeLeft = calcRentTime(spots[index].startTime);
           final left = DateFormat.Hm().format(timeLeft);
