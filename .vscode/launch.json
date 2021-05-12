@@ -1,0 +1,56 @@
+{
+            // Use IntelliSense to learn about possible attributes.
+            // Hover to view descriptions of existing attributes.
+            // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+            "version": "0.2.0",
+            "configurations": [
+                        {
+                                    "name": "car_park_active_spots",
+                                    "cwd": "car_park_active_spots",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "car_park_login",
+                                    "cwd": "car_park_login",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "car_park_register",
+                                    "cwd": "car_park_register",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "car_park_spot_info_page",
+                                    "cwd": "car_park_spot_info_page",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "src",
+                                    "cwd": "src",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "car_park_active_spots",
+                                    "cwd": "prototype\\car_park_active_spots",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "car_park_register",
+                                    "cwd": "prototype\\car_park_register",
+                                    "request": "launch",
+                                    "type": "dart"
+                        },
+                        {
+                                    "name": "car_park_spot_info_page",
+                                    "cwd": "prototype\\car_park_spot_info_page",
+                                    "request": "launch",
+                                    "type": "dart"
+                        }
+            ]
+}
