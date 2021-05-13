@@ -14,7 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // Google Map
           // Draggable card
-          DraggableSection(),
+          GestureDetector(
+              onPanUpdate: (DragUpdateDetails details) {
+                final pos = details.globalPosition.dy;
+
+                print("pos =");
+              },
+              child: DraggableSection()),
         ],
       ),
     );

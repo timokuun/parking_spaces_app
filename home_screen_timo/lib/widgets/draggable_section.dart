@@ -27,7 +27,7 @@ class _DraggableSectionState extends State<DraggableSection> {
       'numSpots': '50',
     },
     {
-      'groupName': 'Lot AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      'groupName': 'Lot A AA AA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       'distance': '0.6',
       'numSpots': '25',
     }
@@ -37,7 +37,7 @@ class _DraggableSectionState extends State<DraggableSection> {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       initialChildSize: 0.5,
-      minChildSize: 0.1,
+      minChildSize: 0.15,
       maxChildSize: 0.9,
       builder: (context, scrollController) {
         return Container(
@@ -52,43 +52,32 @@ class _DraggableSectionState extends State<DraggableSection> {
             controller: scrollController,
             child: Column(
               children: [
-                Column(
-                  children: [
-                    // Draggable indicator
-                    Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 0,
-                      ),
-                      color: Colors.grey,
-                      width: 40,
-                      height: 3,
-                    ),
-                    // Search Bar
-                    SearchBar(),
-                    SpotsGroup(
-                      groupName: 'Pangea',
-                      distance: 5.5,
-                      numberOfAvailableSpots: 6,
-                    ),
-                    SpotsGroup(
-                      groupName: 'Hopkins',
-                      distance: 222.2,
-                      numberOfAvailableSpots: 200,
-                    ),
-                    SpotsGroup(
-                      groupName:
-                          'Lot AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                      distance: 0.6,
-                      numberOfAvailableSpots: 23,
-                    ),
-                    SpotsGroup(
-                      groupName: 'Glen Mor',
-                      distance: 36.6,
-                      numberOfAvailableSpots: 6,
-                    ),
-                  ],
+                // Draggable indicator
+                Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 0,
+                  ),
+                  color: Colors.grey,
+                  width: 40,
+                  height: 3,
+                ),
+                // Search Bar
+                SearchBar(),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
+                      return SpotsGroup(
+                        groupName: garages[index]['groupName'],
+                        distance: double.parse(garages[index]['distance']),
+                        numberOfAvailableSpots:
+                            int.parse(garages[index]['numSpots']),
+                      );
+                    },
+                    itemCount: garages.length,
+                  ),
                 ),
               ],
             ),

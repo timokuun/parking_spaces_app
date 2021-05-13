@@ -21,9 +21,13 @@ class SpotsGroup extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  "Pangea",
-                  style: Theme.of(context).textTheme.headline1,
+                Container(
+                  width: 200,
+                  child: Text(
+                    "$groupName",
+                    style: Theme.of(context).textTheme.headline1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Text(
                   "${distance} miles • ${numberOfAvailableSpots} spots",
