@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/ourWidgets.dart';
+import '../widgets/animated_text_field.dart';
+import '../widgets/general_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key key, this.title}) : super(key: key);
 
   final String title;
+  static const String id = '/register';
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -62,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
                 width: devWidth * 0.75,
-                child: OurTextField(
+                child: AnimatedTextField(
                   textNode: _phoneNode,
                   fieldController: pNum,
                   fieldLabel: "Phone #",
@@ -72,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
                 width: devWidth * 0.75,
-                child: OurTextField(
+                child: AnimatedTextField(
                   textNode: _emailNode,
                   fieldController: username,
                   fieldLabel: "Email",
@@ -82,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
                 width: devWidth * 0.75,
-                child: OurTextField(
+                child: AnimatedTextField(
                   textNode: _userNode,
                   fieldController: email,
                   fieldLabel: "Username",
@@ -92,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
                 width: devWidth * 0.75,
-                child: OurTextField(
+                child: AnimatedTextField(
                   textNode: _passNode,
                   fieldController: password,
                   fieldLabel: "Password",
@@ -102,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OurButton(
+                  GeneralButton(
                     buttonLabel:
                         "Register", // TODO: Connect with the backend for user creation
                     onTap: () {},

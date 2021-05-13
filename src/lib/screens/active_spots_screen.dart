@@ -1,3 +1,6 @@
+import 'package:car_park_login/screens/home_screen.dart';
+import 'package:car_park_login/screens/login_screen.dart';
+import 'package:car_park_login/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,12 +12,36 @@ class ActiveSpotsScreen extends StatefulWidget {
   ActiveSpotsScreen({Key key, this.title}) : super(key: key);
 
   final String title;
+  static const String id = '/activeSpots';
 
   @override
   _ActiveSpotsScreenState createState() => _ActiveSpotsScreenState();
 }
 
 class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
+  // final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  // int _currIndex = 2;
+
+  // _changePage(int index) {
+  //   switch (index) {
+  //     case 0:
+  //       _navigatorKey.currentState.pushNamed(HomeScreen.id);
+  //       break;
+  //     case 1:
+  //       _navigatorKey.currentState.pushNamed(ActiveSpotsScreen.id);
+  //       break;
+  //     case 2:
+  //       _navigatorKey.currentState.pushNamed(LoginPage.id);
+  //       break;
+  //     case 3:
+  //       _navigatorKey.currentState.pushNamed(RegisterScreen.id);
+  //       break;
+  //   }
+  //   setState(() {
+  //     _currIndex = index;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -23,18 +50,6 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
       backgroundColor: Colors.black,
       body: Column(
         children: [
-          // Container(
-          //   alignment: Alignment.center,
-          //   padding: EdgeInsets.fromLTRB(
-          //       0, deviceHeight * 0.04, 0, deviceHeight * 0.020),
-          //   child: Text(
-          //     "My Active Spots",
-          //     style: TextStyle(
-          //       color: Theme.of(context).primaryColor,
-          //       fontSize: 35,
-          //     ),
-          //   ),
-          // ),
           Container(
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.fromLTRB(
@@ -56,15 +71,12 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        // onTap: _changePage(_currIndex),
         showUnselectedLabels: true,
         selectedItemColor: Colors.cyan,
         items: [
           BottomNavigationBarItem(
             backgroundColor: Colors.black,
-            icon: FaIcon(FontAwesomeIcons.map),
-            label: "Maps",
-          ),
-          BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.search),
             label: "Search",
           ),

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
-import '../widgets/ourWidgets.dart';
 import '../models/Color.dart';
+import '../widgets/spot_amenity_label.dart';
+import '../widgets/spot_carousel.dart';
+import '../widgets/spot_info_box.dart';
+import '../widgets/spot_owner_box.dart';
+import '../widgets/spot_buy_button.dart';
 
 class SpotInfoScreen extends StatefulWidget {
   SpotInfoScreen({Key key, this.title}) : super(key: key);
 
   final String title;
+  static const String id = '/spot_info';
 
   @override
   _SpotInfoScreenState createState() => _SpotInfoScreenState();
@@ -55,8 +59,7 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SpotInfoBox(
-                      devWidth: devWidth,
-                      devHeight: devHeight,
+                      spotTitle: "The Hilton at San Diego L2S4",
                       overallRating: 4.3,
                       totalReviews: 43,
                       spotHeight: 155,
@@ -115,10 +118,3 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
     );
   }
 }
-
-// IconButton(
-//           icon: FaIcon(
-//             FontAwesomeIcons.chevronLeft,
-//             color: Colors.white,
-//           ),
-//         ),

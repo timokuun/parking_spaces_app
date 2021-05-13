@@ -1,10 +1,15 @@
 import 'dart:async';
-import 'package:car_park_login/widgets/ourWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../models/parkingSpot.dart';
+import '../widgets/search_bar.dart';
+import '../widgets/garage_preview.dart';
+import '../widgets/garage_pictures.dart';
+
 class HomeScreen extends StatefulWidget {
+  static const String id = '/home';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -14,10 +19,16 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController _searchController = TextEditingController();
   FocusNode _searchNode = FocusNode();
 
+  List<ParkingGarage> garageResults = [];
+
   @override
   Widget build(BuildContext context) {
     double devHeight = MediaQuery.of(context).size.height;
     double devWidth = MediaQuery.of(context).size.width;
+    double miles = 1.1;
+    int availSpots = 500;
+    int lowPrice = 100;
+    int highPrice = 200;
     // TODO: Look into keyboard making "results" drawer move up
     return Scaffold(
       body: Stack(
@@ -41,97 +52,39 @@ class _HomeScreenState extends State<HomeScreen> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  color: Colors.red,
+                  color: Colors.black,
                   height: devHeight * 0.5,
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  width: devWidth * 0.85,
-                  height: devHeight * 0.06,
-                  margin: EdgeInsets.fromLTRB(0, devHeight * 0.07, 0, 0),
-                  child: TextField(
-                    cursorColor: Colors.white,
-                    textAlign: TextAlign.center,
-                    textAlignVertical: TextAlignVertical.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    onTap: () => _searchNode.requestFocus(),
-                    focusNode: _searchNode,
-                    obscureText: false,
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 40, 10),
-                      // contentPadding: EdgeInsets.all(10),
-                      hintText: "Where are you going?",
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                      ),
-                      filled: true,
-                      fillColor: Theme.of(context).primaryColor,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(40),
-                        borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor,
-                          width: 2.0,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 20),
+                        height: devHeight * 0.06,
+                        width: devWidth * 0.8,
+                        child: SearchBar(
+                          searchNode: _searchNode,
+                          searchController: _searchController,
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(40),
+                      GaragePreview(
+                          miles: miles,
+                          availSpots: availSpots,
+                          lowPrice: lowPrice,
+                          highPrice: highPrice),
+                      GaragePictures(
+                        garage: result[0],
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
-          // Align(
-          //   alignment: Alignment.bottomCenter,
-          //   child: SizedBox.expand(
-          //     child: DraggableScrollableSheet(
-          //       initialChildSize: devHeight * 0.3,
-          //       maxChildSize: devHeight * 0.1,
-          //       builder: (BuildContext ctx, s) {
-          //         return Container(
-          //           padding: EdgeInsets.symmetric(
-          //             horizontal: 15,
-          //             vertical: 10,
-          //           ),
-          //           decoration: BoxDecoration(
-          //             color: Colors.black,
-          //             borderRadius: BorderRadius.only(
-          //               topLeft: Radius.circular(20),
-          //               topRight: Radius.circular(20),
-          //             ),
-          //             boxShadow: [
-          //               BoxShadow(
-          //                 color: Colors.grey,
-          //                 blurRadius: 10,
-          //               )
-          //             ],
-          //           ),
-          //           child: ListView(
-          //             controller: s,
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (newIndex) {
+          setState(() {});
+        },
         showUnselectedLabels: true,
         selectedItemColor: Colors.cyan,
         items: [

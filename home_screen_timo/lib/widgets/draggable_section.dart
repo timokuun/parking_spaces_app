@@ -48,50 +48,20 @@ class _DraggableSectionState extends State<DraggableSection> {
               topRight: Radius.circular(30),
             ),
           ),
-          child: SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    // Draggable indicator
-                    Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 0,
-                      ),
-                      color: Colors.grey,
-                      width: 40,
-                      height: 3,
-                    ),
-                    // Search Bar
-                    SearchBar(),
-                    SpotsGroup(
-                      groupName: 'Pangea',
-                      distance: 5.5,
-                      numberOfAvailableSpots: 6,
-                    ),
-                    SpotsGroup(
-                      groupName: 'Hopkins',
-                      distance: 222.2,
-                      numberOfAvailableSpots: 200,
-                    ),
-                    SpotsGroup(
-                      groupName:
-                          'Lot AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                      distance: 0.6,
-                      numberOfAvailableSpots: 23,
-                    ),
-                    SpotsGroup(
-                      groupName: 'Glen Mor',
-                      distance: 36.6,
-                      numberOfAvailableSpots: 6,
-                    ),
-                  ],
+          child: Column(
+            children: [
+              SearchBar(),
+              SingleChildScrollView(
+                child: ListView.builder(
+                  itemBuilder: (buildContext, index) {
+                    return Text(
+                      "hello",
+                      style: TextStyle(color: Colors.white),
+                    );
+                  },
                 ),
-              ],
-            ),
+              )
+            ],
           ),
         );
       },

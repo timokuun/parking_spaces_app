@@ -1,9 +1,6 @@
 import 'package:car_park_login/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
-/* Widgets */
-import 'widgets/ourWidgets.dart';
-
 /* Screens */
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
@@ -20,13 +17,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login', // TODO: NEED CND FOR AUTH: Sign-in vs home page
+      initialRoute:
+          LoginPage.id, // TODO: NEED CND FOR AUTH: Sign-in vs home page
       routes: {
-        '/login': (context) => LoginPage(),
-        '/register': (context) => RegisterScreen(),
-        '/home': (context) => HomeScreen(),
-        '/activeSpots': (context) => ActiveSpotsScreen(),
-        '/spotInfo': (context) => SpotInfoScreen(),
+        LoginPage.id: (context) => LoginPage(),
+        RegisterScreen.id: (context) => RegisterScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
+        ActiveSpotsScreen.id: (context) => ActiveSpotsScreen(),
+        SpotInfoScreen.id: (context) => SpotInfoScreen(),
       },
       theme: ThemeData(
         iconTheme: IconThemeData(color: Colors.white),

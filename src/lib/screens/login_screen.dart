@@ -1,6 +1,11 @@
+import 'package:car_park_login/screens/active_spots_screen.dart';
+import 'package:car_park_login/screens/home_screen.dart';
+import 'package:car_park_login/screens/register_screen.dart';
+import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/ourWidgets.dart';
+import '../widgets/animated_text_field.dart';
+import '../widgets/general_button.dart';
 
 // TODO: Remove Buttons row used for DEBUG navigating
 
@@ -8,6 +13,7 @@ class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
 
   final String title;
+  static const String id = '/login';
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -60,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.05),
                 width: devWidth * 0.75,
-                child: OurTextField(
+                child: AnimatedTextField(
                   textNode: _userNode,
                   fieldController: username,
                   fieldLabel: "Username/Phone #",
@@ -70,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.05),
                 width: devWidth * 0.75,
-                child: OurTextField(
+                child: AnimatedTextField(
                   textNode: _passNode,
                   fieldController: password,
                   fieldLabel: "Password",
@@ -81,14 +87,16 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OurButton(
+                  GeneralButton(
                     buttonLabel: "Register",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed(RegisterScreen.id);
+                    },
                   ),
                   SizedBox(
                     width: devWidth * 0.05,
                   ),
-                  OurButton(
+                  GeneralButton(
                     buttonLabel: "Login",
                     onTap: () {},
                   ),
@@ -98,22 +106,22 @@ class _LoginPageState extends State<LoginPage> {
                 //Use for navigation rn...
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OurButton(
+                  GeneralButton(
                     buttonLabel: "Info Screen",
                     onTap: () {
-                      Navigator.of(context).pushNamed('/spotInfo');
+                      Navigator.of(context).pushNamed(SpotInfoScreen.id);
                     },
                   ),
-                  OurButton(
+                  GeneralButton(
                     buttonLabel: "Active Spots",
                     onTap: () {
-                      Navigator.of(context).pushNamed('/activeSpots');
+                      Navigator.of(context).pushNamed(ActiveSpotsScreen.id);
                     },
                   ),
-                  OurButton(
+                  GeneralButton(
                     buttonLabel: "Home page",
                     onTap: () {
-                      Navigator.of(context).pushNamed('/home');
+                      Navigator.of(context).pushNamed(HomeScreen.id);
                     },
                   ),
                 ],
