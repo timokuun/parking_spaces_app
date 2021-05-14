@@ -45,39 +45,33 @@ class _HomeScreenState extends State<HomeScreen> {
               _controller.complete(controller);
             },
           ),
-          Stack(
-            children: [
-              // Scrollable Search result list
-              // TODO: Make the "result" widget so they can be children of this widget
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  color: Colors.black,
-                  height: devHeight * 0.5,
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 20),
-                        height: devHeight * 0.06,
-                        width: devWidth * 0.8,
-                        child: SearchBar(
-                          searchNode: _searchNode,
-                          searchController: _searchController,
-                        ),
-                      ),
-                      GaragePreview(
-                          miles: miles,
-                          availSpots: availSpots,
-                          lowPrice: lowPrice,
-                          highPrice: highPrice),
-                      GaragePictures(
-                        garage: result[0],
-                      ),
-                    ],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: Colors.black,
+              height: devHeight * 0.5,
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20),
+                    height: devHeight * 0.05,
+                    width: devWidth * 0.75,
+                    child: SearchBar(
+                      searchNode: _searchNode,
+                      searchController: _searchController,
+                    ),
                   ),
-                ),
+                  GaragePreview(
+                      miles: miles,
+                      availSpots: availSpots,
+                      lowPrice: lowPrice,
+                      highPrice: highPrice),
+                  GaragePictures(
+                    garage: result[0],
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),

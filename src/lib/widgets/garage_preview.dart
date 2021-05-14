@@ -33,7 +33,7 @@ class GaragePreview extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 35,
+                fontSize: 30,
                 fontWeight: FontWeight.w800,
               ),
             ),
@@ -59,7 +59,7 @@ class GaragePreview extends StatelessWidget {
           child: Icon(
             Icons.chevron_right,
             color: Theme.of(context).iconTheme.color,
-            size: 35,
+            size: 30,
           ),
         )
       ],
