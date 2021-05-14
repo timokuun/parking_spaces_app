@@ -15,13 +15,13 @@ class GaragePictures extends StatelessWidget {
     double devHeight = MediaQuery.of(context).size.height;
     double devWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: devHeight * 0.21,
+      height: devHeight * 0.20,
       child: ListView.builder(
         itemCount: garage.spots.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Container(
-            width: devWidth * 0.45,
+            width: devWidth * 0.43,
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               border: Border.all(),

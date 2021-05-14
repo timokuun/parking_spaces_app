@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GaragePreview extends StatelessWidget {
-  const GaragePreview({
+class GarageTitle extends StatelessWidget {
+  const GarageTitle({
     Key key,
     @required this.miles,
     @required this.availSpots,
@@ -19,13 +19,11 @@ class GaragePreview extends StatelessWidget {
     double devHeight = MediaQuery.of(context).size.height;
     double devWidth = MediaQuery.of(context).size.width;
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: 20),
-          width: devWidth * 0.35,
-          height: devHeight * 0.05,
           child: FittedBox(
             fit: BoxFit.fitHeight,
             child: Text(
@@ -33,33 +31,32 @@ class GaragePreview extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 30,
+                fontSize: 20,
                 fontWeight: FontWeight.w800,
               ),
             ),
           ),
         ),
         Container(
-          alignment: Alignment.centerLeft,
-          width: devWidth * 0.5,
-          height: devHeight * 0.05,
-          child: Center(
-            child: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                "${miles} miles • ${availSpots} spots • \$${lowPrice}-${highPrice}",
-                style: TextStyle(color: Colors.grey, fontSize: 16),
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              "${miles} miles • ${availSpots} spots • \$${lowPrice}-${highPrice}",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 11,
               ),
             ),
           ),
         ),
         Container(
-          width: devWidth * 0.15,
-          height: devHeight * 0.05,
+          margin: EdgeInsets.only(
+            right: 20,
+          ),
           child: Icon(
             Icons.chevron_right,
             color: Theme.of(context).iconTheme.color,
-            size: 30,
+            size: 20,
           ),
         )
       ],
