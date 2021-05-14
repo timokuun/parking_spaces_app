@@ -128,23 +128,38 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             backgroundColor: Colors.black,
-            icon: FaIcon(FontAwesomeIcons.map),
+            icon: FaIcon(
+              FontAwesomeIcons.map,
+              size: 15,
+            ),
             label: "Maps",
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.search),
+            icon: FaIcon(
+              FontAwesomeIcons.search,
+              size: 15,
+            ),
             label: "Search",
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.car),
+            icon: FaIcon(
+              FontAwesomeIcons.car,
+              size: 15,
+            ),
             label: "Parked",
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.heart),
+            icon: FaIcon(
+              FontAwesomeIcons.heart,
+              size: 15,
+            ),
             label: "Favorite",
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.userCircle),
+            icon: FaIcon(
+              FontAwesomeIcons.userCircle,
+              size: 15,
+            ),
             label: "Profile",
           ),
         ],
