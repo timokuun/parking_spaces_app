@@ -11,3 +11,7 @@ ACTIVE SPOTS:
 SPOTS LIST:
 
 // TODO: Correct the time formating
+
+Digital Scrollable Sheet:
+
+// TODO: FINISH DSS
