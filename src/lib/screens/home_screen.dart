@@ -28,69 +28,73 @@ class _HomeScreenState extends State<HomeScreen> {
     int availSpots = 500;
     int lowPrice = 100;
     int highPrice = 200;
-    // TODO: Look into keyboard making "results" drawer move up
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          GoogleMap(
-            zoomControlsEnabled: false,
-            mapType: MapType.normal,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(37.773972, -122.431297),
-              zoom: 15,
+    return SafeArea(
+      // TODO: Can we make status bar transparent?
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GoogleMap(
+              zoomControlsEnabled: false,
+              mapType: MapType.normal,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(37.773972, -122.431297),
+                zoom: 15,
+              ),
+              // onMapCreated: (GoogleMapController controller) {
+              //   _controller.complete(controller);
+              // },
             ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-          ),
-          DraggableScrollableSheet(
-            initialChildSize: 0.12,
-            maxChildSize: 0.7,
-            minChildSize: 0.12,
-            builder: (context, scrollController) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+            DraggableScrollableSheet(
+              initialChildSize: 0.05,
+              maxChildSize: 0.9,
+              minChildSize: 0.05,
+              builder: (context, scrollController) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
                   ),
-                ),
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  child: Column(
-                    children: [
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    padding: EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: Column(children: [
                       // Draggable indicator
                       Container(
                         alignment: Alignment.center,
                         margin: EdgeInsets.symmetric(
-                          vertical: 7,
+                          vertical: 10,
+                          horizontal: 0,
                         ),
                         color: Colors.grey,
                         width: 40,
                         height: 3,
                       ),
                       // Search Bar
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 2,
-                          bottom: 5,
-                        ),
-                        height: devHeight * 0.045,
-                        width: devWidth * 0.75,
+                      Align(
+                        alignment: Alignment.topCenter,
                         child: SearchBar(
                           searchNode: _searchNode,
                           searchController: _searchController,
+                          customHeight: devHeight * 0.045,
+                          customWidth: devWidth * 0.75,
+                          customMargin: EdgeInsets.only(
+                            top: 10,
+                            bottom: 5,
+                          ),
                         ),
                       ),
-                      // List View
                       Container(
                         height: devHeight * 0.6,
                         child: ListView.separated(
+                          controller: scrollController,
                           // Override the default padding value
-                          padding: EdgeInsets.symmetric(
-                            vertical: 20,
+                          padding: EdgeInsets.only(
+                            top: 30,
                           ),
                           separatorBuilder: (_, __) => Divider(
                             height: 20,
@@ -111,58 +115,58 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount: 8,
                         ),
                       ),
-                    ],
+                    ]),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (newIndex) {
-          setState(() {});
-        },
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.cyan,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: Colors.black,
-            icon: FaIcon(
-              FontAwesomeIcons.map,
-              size: 15,
+                );
+              },
             ),
-            label: "Maps",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.search,
-              size: 15,
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (newIndex) {
+            setState(() {});
+          },
+          showUnselectedLabels: true,
+          selectedItemColor: Colors.cyan,
+          items: [
+            BottomNavigationBarItem(
+              backgroundColor: Colors.black,
+              icon: FaIcon(
+                FontAwesomeIcons.map,
+                size: 15,
+              ),
+              label: "Maps",
             ),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.car,
-              size: 15,
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.search,
+                size: 15,
+              ),
+              label: "Search",
             ),
-            label: "Parked",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.heart,
-              size: 15,
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.car,
+                size: 15,
+              ),
+              label: "Parked",
             ),
-            label: "Favorite",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.userCircle,
-              size: 15,
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.heart,
+                size: 15,
+              ),
+              label: "Favorite",
             ),
-            label: "Profile",
-          ),
-        ],
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.userCircle,
+                size: 15,
+              ),
+              label: "Profile",
+            ),
+          ],
+        ),
       ),
     );
   }

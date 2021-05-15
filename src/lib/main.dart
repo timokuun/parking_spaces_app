@@ -7,10 +7,21 @@ import 'screens/home_screen.dart';
 import 'screens/active_spots_screen.dart';
 import 'screens/spot_info_screen.dart';
 
+import 'package:flutter/services.dart';
+
 /* Models */
 import './models/Color.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   SystemUiOverlayStyle(
+  //     systemNavigationBarColor: Colors.transparent,
+  //     statusBarColor: Color.fromRGBO(0, 0, 0, 0), // transparent status bar
+  //   ),
+  // );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
