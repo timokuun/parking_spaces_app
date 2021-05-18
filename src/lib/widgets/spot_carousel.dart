@@ -52,7 +52,7 @@ class _SpotCarouselState extends State<SpotCarousel> {
                           image: AssetImage(e),
                           fit: BoxFit.fill,
                         ),
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.circular(7),
                       ),
                     );
                   },
@@ -66,8 +66,8 @@ class _SpotCarouselState extends State<SpotCarousel> {
           children: spots1.map((url) {
             int index = spots1.indexOf(url);
             return Container(
-              width: 12.0,
-              height: 12.0,
+              width: 4.0,
+              height: 4.0,
               margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

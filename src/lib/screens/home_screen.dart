@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     int availSpots = 500;
     int lowPrice = 100;
     int highPrice = 200;
+    // TODO: NEVER MIND => Indicator still gets pushed up
     return SafeArea(
       // TODO: Can we make status bar transparent?
       child: Scaffold(
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Container(
-                        height: devHeight * 0.6,
+                        height: devHeight * 0.8,
                         child: ListView.separated(
                           controller: scrollController,
                           // Override the default padding value
