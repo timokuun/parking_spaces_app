@@ -13,13 +13,18 @@ import 'package:flutter/services.dart';
 import './models/Color.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setSystemUIOverlayStyle(
   //   SystemUiOverlayStyle(
-  //     systemNavigationBarColor: Colors.transparent,
-  //     statusBarColor: Color.fromRGBO(0, 0, 0, 0), // transparent status bar
+  //     //systemNavigationBarColor: Colors.transparent,
+  //     statusBarColor: Colors.black, // transparent status bar
   //   ),
   // );
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.light),
+  );
   runApp(MyApp());
 }
 

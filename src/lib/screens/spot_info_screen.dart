@@ -32,88 +32,114 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
   Widget build(BuildContext context) {
     double devHeight = MediaQuery.of(context).size.height;
     double devWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      extendBodyBehindAppBar: false,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: InkWell(
-          splashColor: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(30),
-          onTap: () => Navigator.of(context).pop(),
-          child: Icon(
-            Icons.chevron_left,
-            color: Colors.white,
-            size: 45,
-          ),
-        ),
-      ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                SpotCarousel(devHeight: devHeight),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SpotInfoBox(
-                      spotTitle: "The Hilton at San Diego L2S4",
-                      overallRating: 4.3,
-                      totalReviews: 43,
-                      spotHeight: 155,
-                    ),
-                    SpotAmenityLabel(
-                      devHeight: devHeight,
-                      devWidth: devWidth,
-                      backgroundColor: Colors.white,
-                      fontColor: OurColor.ourCyan,
-                    ),
-                    Container(
-                      color: Colors.red,
-                      height: devHeight * 0.5,
-                      width: devWidth * 0.6,
-                    ),
-                    Container(
-                      height: devHeight * 0.6,
-                      width: devWidth * 0.7,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        extendBodyBehindAppBar: false,
+        // appBar: AppBar(
+        //   backgroundColor: Colors.black,
+        //   leading: InkWell(
+        //     splashColor: Theme.of(context).primaryColor,
+        //     borderRadius: BorderRadius.circular(30),
+        //     onTap: () => Navigator.of(context).pop(),
+        //     child: Icon(
+        //       Icons.chevron_left,
+        //       color: Colors.white,
+        //       size: 45,
+        //     ),
+        //   ),
+        // ),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Stack(
+                    alignment: Alignment.topLeft,
+                    children: [
+                      SpotCarousel(devHeight: devHeight),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 12,
+                            ),
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                icon: Icon(
+                                  Icons.chevron_left,
+                                  size: 60,
+                                  color: Theme.of(context).primaryColor,
+                                )),
+                          )
+                        ],
                       ),
-                      child: GoogleMap(
-                        mapType: MapType.normal,
-                        initialCameraPosition: CameraPosition(
-                          target: LatLng(22, 88),
-                          zoom: 15,
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SpotInfoBox(
+                        spotTitle: "The Hilton at San Diego L2S4",
+                        overallRating: 4.3,
+                        totalReviews: 43,
+                        spotHeight: 155,
+                      ),
+                      SpotAmenityLabel(
+                        devHeight: devHeight,
+                        devWidth: devWidth,
+                        backgroundColor: Colors.white,
+                        fontColor: OurColor.ourCyan,
+                      ),
+                      Container(
+                        color: Colors.red,
+                        height: devHeight * 0.5,
+                        width: devWidth * 0.6,
+                      ),
+                      Container(
+                        height: devHeight * 0.6,
+                        width: devWidth * 0.7,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
                         ),
-                        onMapCreated: (GoogleMapController controller) {
-                          _controller.complete(controller);
-                        },
+                        child: GoogleMap(
+                          mapType: MapType.normal,
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(22, 88),
+                            zoom: 15,
+                          ),
+                          onMapCreated: (GoogleMapController controller) {
+                            _controller.complete(controller);
+                          },
+                        ),
                       ),
-                    ),
-                    SpotOwnerBox(
-                      devHeight: devHeight,
-                      devWidth: devWidth,
-                      owner: "Thomas",
-                    ),
-                  ],
-                ),
-              ],
+                      SpotOwnerBox(
+                        devHeight: devHeight,
+                        devWidth: devWidth,
+                        owner: "Thomas",
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SpotBuyButton(
-              devHeight: devHeight,
-              devWidth: devWidth,
-              buttonColor: OurColor.ourCyan,
-              cost: 7,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SpotBuyButton(
+                height: devHeight * 0.065,
+                width: devWidth * 0.8,
+                buttonColor: OurColor.ourCyan,
+                cost: 7,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

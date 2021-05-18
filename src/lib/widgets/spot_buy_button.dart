@@ -4,23 +4,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SpotBuyButton extends StatelessWidget {
   const SpotBuyButton({
     Key key,
-    @required this.devHeight,
-    @required this.devWidth,
+    @required this.height,
+    @required this.width,
     @required this.cost,
     @required this.buttonColor,
   }) : super(key: key);
 
   final Color buttonColor;
-  final double devHeight;
-  final double devWidth;
+  final double height;
+  final double width;
   final int cost;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
-      height: devHeight * 0.08,
-      width: devWidth * 0.75,
+      height: height,
+      width: width,
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
@@ -39,7 +39,7 @@ class SpotBuyButton extends StatelessWidget {
                   "RENT FROM",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 11,
                   ),
                 ),
                 Text(
