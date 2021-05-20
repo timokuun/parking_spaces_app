@@ -14,12 +14,6 @@ import './models/Color.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setSystemUIOverlayStyle(
-  //   SystemUiOverlayStyle(
-  //     //systemNavigationBarColor: Colors.transparent,
-  //     statusBarColor: Colors.black, // transparent status bar
-  //   ),
-  // );
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
         statusBarColor: Colors.black,

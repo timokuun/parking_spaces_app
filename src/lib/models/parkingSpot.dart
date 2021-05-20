@@ -34,6 +34,58 @@ class ParkingGarage {
       this.spots});
 }
 
+final List<ParkingSpot> spots = [
+  ParkingSpot(
+    spaceID: "A1",
+    name: "UCSD Hopkins L1S23",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 16, 45),
+  ),
+  ParkingSpot(
+    spaceID: "A2",
+    name: "UCSD Hopkins L1S19",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 16, 50),
+  ),
+  ParkingSpot(
+    spaceID: "A3",
+    name: "UCSD Hopkins L1S04",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 16, 53),
+  ),
+  ParkingSpot(
+    spaceID: "A4",
+    name: "UCSD Hopkins L1S07",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 16, 55),
+  ),
+  ParkingSpot(
+    spaceID: "A5",
+    name: "UCSD Hopkins L1S09",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 16, 57),
+  ),
+  ParkingSpot(
+    spaceID: "A6",
+    name: "UCSD Hopkins L1S11",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 16, 59),
+  ),
+  ParkingSpot(
+    spaceID: "A7",
+    name: "UCSD Hopkins L1S12",
+    price: 3,
+    available: true,
+    startTime: DateTime(2021, 4, 23, 17, 01),
+  ),
+];
+
 List<String> spots1 = [
   'assets/images/spot4.jpg',
   'assets/images/spot2.jpg',

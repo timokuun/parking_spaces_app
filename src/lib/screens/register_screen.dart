@@ -1,3 +1,5 @@
+import 'package:car_park_login/screens/home_screen.dart';
+import 'package:car_park_login/widgets/placeholder_logo.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/animated_text_field.dart';
@@ -50,63 +52,53 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).primaryColor,
-                ),
+              PlaceholderImage(
                 margin: EdgeInsets.fromLTRB(
-                    0, devHeight * 0.09, 0, devHeight * 0.09),
-                height: 200,
-                width: 200,
-                child: Text("IMAGE GOES HERE"),
+                    0, devHeight * 0.15, 0, devHeight * 0.09),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
+              AnimatedTextField(
+                height: devHeight * 0.075,
                 width: devWidth * 0.75,
-                child: AnimatedTextField(
-                  textNode: _phoneNode,
-                  fieldController: pNum,
-                  fieldLabel: "Phone #",
-                  isPassword: false,
-                ),
+                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                textNode: _phoneNode,
+                fieldController: pNum,
+                fieldLabel: "Phone #",
+                isPassword: false,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
+              AnimatedTextField(
+                height: devHeight * 0.075,
                 width: devWidth * 0.75,
-                child: AnimatedTextField(
-                  textNode: _emailNode,
-                  fieldController: username,
-                  fieldLabel: "Email",
-                  isPassword: false,
-                ),
+                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                textNode: _emailNode,
+                fieldController: email,
+                fieldLabel: "Email",
+                isPassword: false,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
+              AnimatedTextField(
+                height: devHeight * 0.075,
                 width: devWidth * 0.75,
-                child: AnimatedTextField(
-                  textNode: _userNode,
-                  fieldController: email,
-                  fieldLabel: "Username",
-                  isPassword: false,
-                ),
+                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                textNode: _userNode,
+                fieldController: username,
+                fieldLabel: "Username",
+                isPassword: false,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.025),
+              AnimatedTextField(
+                height: devHeight * 0.075,
                 width: devWidth * 0.75,
-                child: AnimatedTextField(
-                  textNode: _passNode,
-                  fieldController: password,
-                  fieldLabel: "Password",
-                  isPassword: true,
-                ),
+                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                textNode: _passNode,
+                fieldController: password,
+                fieldLabel: "Password",
+                isPassword: false,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GeneralButton(
-                    buttonLabel:
-                        "Register", // TODO: Connect with the backend for user creation
+                    buttonLabel: "Register",
+                    height: devHeight * 0.055,
+                    width: devWidth * 0.25,
                     onTap: () {},
                   ),
                 ],

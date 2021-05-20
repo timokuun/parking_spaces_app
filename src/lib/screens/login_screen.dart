@@ -5,6 +5,7 @@ import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/animated_text_field.dart';
+import '../widgets/placeholder_logo.dart';
 import '../widgets/general_button.dart';
 
 // TODO: Remove Buttons row used for DEBUG navigating
@@ -51,37 +52,28 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               /* Logo Image */
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).primaryColor,
-                ),
+              PlaceholderImage(
                 margin: EdgeInsets.fromLTRB(
                     0, devHeight * 0.15, 0, devHeight * 0.12),
-                height: 200,
-                width: 200,
-                child: Text("IMAGE GOES HERE"),
               ),
               /* Login Form */
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.05),
+              AnimatedTextField(
+                height: devHeight * 0.075,
                 width: devWidth * 0.75,
-                child: AnimatedTextField(
-                  textNode: _userNode,
-                  fieldController: username,
-                  fieldLabel: "Username/Phone #",
-                  isPassword: false,
-                ),
+                margin: EdgeInsets.only(bottom: devHeight * 0.03),
+                textNode: _userNode,
+                fieldController: username,
+                fieldLabel: "Username/Phone #",
+                isPassword: false,
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.05),
+              AnimatedTextField(
+                height: devHeight * 0.075,
                 width: devWidth * 0.75,
-                child: AnimatedTextField(
-                  textNode: _passNode,
-                  fieldController: password,
-                  fieldLabel: "Password",
-                  isPassword: true,
-                ),
+                margin: EdgeInsets.only(bottom: devHeight * 0.03),
+                textNode: _passNode,
+                fieldController: password,
+                fieldLabel: "Password",
+                isPassword: true,
               ),
               /* Submit/Register Buttons */
               Row(
@@ -89,36 +81,48 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   GeneralButton(
                     buttonLabel: "Register",
+                    height: devHeight * 0.055,
+                    width: devWidth * 0.25,
+                    margin: EdgeInsets.symmetric(horizontal: devWidth * 0.04),
                     onTap: () {
                       Navigator.of(context).pushNamed(RegisterScreen.id);
                     },
                   ),
-                  SizedBox(
-                    width: devWidth * 0.05,
-                  ),
                   GeneralButton(
+                    height: devHeight * 0.055,
+                    width: devWidth * 0.25,
+                    margin: EdgeInsets.symmetric(horizontal: devWidth * 0.04),
                     buttonLabel: "Login",
                     onTap: () {},
                   ),
                 ],
               ),
+              // Using for debug navigation...
+              SizedBox(
+                height: 50,
+              ),
               Row(
-                //Use for navigation rn...
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GeneralButton(
+                    height: devHeight * 0.055,
+                    width: devWidth * 0.25,
                     buttonLabel: "Info Screen",
                     onTap: () {
                       Navigator.of(context).pushNamed(SpotInfoScreen.id);
                     },
                   ),
                   GeneralButton(
+                    height: devHeight * 0.055,
+                    width: devWidth * 0.25,
                     buttonLabel: "Active Spots",
                     onTap: () {
                       Navigator.of(context).pushNamed(ActiveSpotsScreen.id);
                     },
                   ),
                   GeneralButton(
+                    height: devHeight * 0.055,
+                    width: devWidth * 0.25,
                     buttonLabel: "Home page",
                     onTap: () {
                       Navigator.of(context).pushNamed(HomeScreen.id);
