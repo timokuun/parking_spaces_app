@@ -41,7 +41,7 @@ class GarageTitle extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.fitWidth,
             child: Text(
-              "${miles} miles • ${availSpots} spots • \$${lowPrice}-${highPrice}",
+              "$miles miles • $availSpots spots • \$$lowPrice-$highPrice",
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 11,

@@ -1,16 +1,14 @@
-import 'package:car_park_login/screens/register_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-/* Screens */
+// Screens
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/active_spots_screen.dart';
 import 'screens/spot_info_screen.dart';
+import 'screens/register_screen.dart';
 
-import 'package:flutter/services.dart';
-
-/* Models */
-import './models/Color.dart';
+import 'theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,11 +34,9 @@ class MyApp extends StatelessWidget {
         ActiveSpotsScreen.id: (context) => ActiveSpotsScreen(),
         SpotInfoScreen.id: (context) => SpotInfoScreen(),
       },
-      theme: ThemeData(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.black,
-        primarySwatch: OurColor.ourCyan,
-      ),
+      themeMode: ThemeMode.dark,
+      theme: lightThemeData(context),
+      darkTheme: darkThemeData(context),
       home: LoginPage(), // TODO: NEED CONDITIONAL FOR AUTH: Sign-in vs Log-in
     );
   }

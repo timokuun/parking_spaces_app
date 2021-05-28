@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import './garage_pictures.dart';
 import './garage_title.dart';
-import '../models/parkingSpot.dart';
+import '../models/parking_garage.dart';
 
 class GarageResult extends StatelessWidget {
   /* Properties */

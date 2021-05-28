@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/parkingSpot.dart';
+import '../models/parking_spot.dart';
 
 class ActiveSpotsNumberIndicator extends StatelessWidget {
   const ActiveSpotsNumberIndicator({

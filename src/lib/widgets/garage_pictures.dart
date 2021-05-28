@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/parkingSpot.dart';
+import '../models/parking_garage.dart';
 
 class GaragePictures extends StatelessWidget {
   const GaragePictures({

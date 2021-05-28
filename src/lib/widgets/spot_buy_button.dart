@@ -43,7 +43,7 @@ class SpotBuyButton extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "\$${cost} / hour",
+                  "\$$cost / hour",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,

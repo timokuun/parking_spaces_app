@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models/parkingSpot.dart';
+import '../models/parking_spot.dart';
 import '../widgets/active_spots_list_element.dart';
 
 // TODO: Correct the time formating
@@ -36,6 +36,8 @@ class ActiveSpotsList extends StatelessWidget {
         separatorBuilder: (context, index) => Divider(
           color: Colors.grey,
           height: 30,
+          indent: 45,
+          endIndent: 45,
         ),
         itemCount: spots.length,
       ),
