@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/persist_navigator/BuildConfig.java
+ com.example.persist_navigator.BuildConfig
