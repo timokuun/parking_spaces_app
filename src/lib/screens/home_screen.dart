@@ -28,6 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
     int availSpots = 500;
     int lowPrice = 100;
     int highPrice = 200;
+
+    ScrollController singleChildSrollController = new ScrollController();
+
     // TODO: NEVER MIND => Indicator still gets pushed up
     return SafeArea(
       // TODO: Can we make status bar transparent?
@@ -45,10 +48,26 @@ class _HomeScreenState extends State<HomeScreen> {
               //   _controller.complete(controller);
               // },
             ),
+            // Search Bar
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                child: SearchBar(
+                  searchNode: _searchNode,
+                  searchController: _searchController,
+                  height: devHeight * 0.06,
+                  width: devWidth * 0.88,
+                  margin: EdgeInsets.only(
+                    top: 25,
+                    bottom: 5,
+                  ),
+                ),
+              ),
+            ),
             DraggableScrollableSheet(
-              initialChildSize: 0.05,
+              initialChildSize: 0.45,
               maxChildSize: 0.9,
-              minChildSize: 0.05,
+              minChildSize: 0.10,
               builder: (context, scrollController) {
                 return Container(
                   decoration: BoxDecoration(
@@ -58,37 +77,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       topRight: Radius.circular(30),
                     ),
                   ),
+                  // Prevent List View from overflowing DSS
+                  padding: EdgeInsets.only(
+                    top: 15,
+                  ),
                   child: SingleChildScrollView(
-                    controller: scrollController,
-                    padding: EdgeInsets.only(
-                      top: 20,
-                    ),
+                    // controller: scrollController,
+                    controller: singleChildSrollController,
+                    // padding: EdgeInsets.only(
+                    //   top: 20,
+                    // ),
                     child: Column(children: [
-                      // Draggable indicator
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 0,
-                        ),
-                        color: Colors.grey,
-                        width: 40,
-                        height: 3,
-                      ),
-                      // Search Bar
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: SearchBar(
-                          searchNode: _searchNode,
-                          searchController: _searchController,
-                          customHeight: devHeight * 0.045,
-                          customWidth: devWidth * 0.75,
-                          customMargin: EdgeInsets.only(
-                            top: 10,
-                            bottom: 5,
-                          ),
-                        ),
-                      ),
                       Container(
                         height: devHeight * 0.8,
                         child: ListView.separated(
@@ -98,21 +97,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: 30,
                           ),
                           separatorBuilder: (_, __) => Divider(
-                            height: 20,
-                            thickness: 1,
-                            indent: 100,
-                            endIndent: 100,
+                            height: 30,
                           ),
                           itemBuilder: (context, index) {
-                            return GarageResult(
-                              miles: miles,
-                              availableSpots: availSpots,
-                              lowPrice: lowPrice,
-                              highPrice: highPrice,
-                              garage: result[0],
-                            );
+                            // NOTE: First item is the Draggable indicator
+                            return index == 0
+                                ? // Draggable indicator
+                                Container(
+                                    margin: EdgeInsets.only(
+                                      left: devWidth * 0.45,
+                                      right: devWidth * 0.45,
+                                      bottom: 25,
+                                    ),
+                                    color: Colors.grey,
+                                    // width: 30,
+                                    height: 3,
+                                  )
+                                : GarageResult(
+                                    miles: miles,
+                                    availableSpots: availSpots,
+                                    lowPrice: lowPrice,
+                                    highPrice: highPrice,
+                                    garage: result[0],
+                                  );
                           },
                           // TODO: This "8" is only temporary
+                          // ITEMCOUNT has to be the length + 1 (including indicator)
                           itemCount: 8,
                         ),
                       ),
@@ -120,51 +130,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-            ),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (newIndex) {
-            setState(() {});
-          },
-          showUnselectedLabels: true,
-          selectedItemColor: Colors.cyan,
-          items: [
-            BottomNavigationBarItem(
-              backgroundColor: Colors.black,
-              icon: FaIcon(
-                FontAwesomeIcons.map,
-                size: 15,
-              ),
-              label: "Maps",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.search,
-                size: 15,
-              ),
-              label: "Search",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.car,
-                size: 15,
-              ),
-              label: "Parked",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.heart,
-                size: 15,
-              ),
-              label: "Favorite",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.userCircle,
-                size: 15,
-              ),
-              label: "Profile",
             ),
           ],
         ),

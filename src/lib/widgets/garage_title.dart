@@ -20,6 +20,7 @@ class GarageTitle extends StatelessWidget {
     double devWidth = MediaQuery.of(context).size.width;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
           alignment: Alignment.centerLeft,

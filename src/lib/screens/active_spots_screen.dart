@@ -35,29 +35,6 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
           ActiveSpotsList(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.cyan,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: Colors.black,
-            icon: FaIcon(FontAwesomeIcons.search),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.car),
-            label: "Parked",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.heart),
-            label: "Favorite",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.userCircle),
-            label: "Profile",
-          ),
-        ],
-      ),
     );
   }
 }
