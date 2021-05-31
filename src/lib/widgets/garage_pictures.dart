@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 import '../theme.dart';
-import '../screens/test_screen2.dart';
+
 import '../models/parking_garage.dart';
 
 class GaragePictures extends StatelessWidget {
@@ -24,8 +24,8 @@ class GaragePictures extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return InkWell(
+            highlightColor: customCyan,
             radius: 300,
-            splashColor: customCyan,
             borderRadius: BorderRadius.circular(10),
             onTap: () {
               print("Open parking spot info page");

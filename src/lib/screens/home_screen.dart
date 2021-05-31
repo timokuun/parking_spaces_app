@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             DraggableScrollableSheet(
               initialChildSize: 0.4,
               // TODO: Need to reach last element of list but DSS gets too tall
-              maxChildSize: 0.68,
+              maxChildSize: 0.85,
               minChildSize: 0.1,
               builder: (context, scrollController) {
                 return Container(
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: singleChildSrollController,
                     child: Column(children: [
                       Container(
-                        height: SizeConfig.screenHeight * 0.8,
+                        height: SizeConfig.screenHeight * 0.73,
                         child: ListView.separated(
                           controller: scrollController,
                           // Override the default padding value
