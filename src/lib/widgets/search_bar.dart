@@ -28,58 +28,54 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isFocused = _searchNode.hasFocus;
-    return Container(
-      // TODO: Explain that margin is set here because of the coloring
+    return Card(
       margin: margin,
-      child: Card(
-        elevation: 30.0,
-        color: customCyan,
-        shape: RoundedRectangleBorder(
+      elevation: 30.0,
+      color: customCyan,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(40),
         ),
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Stack(
-            children: [
-              TextField(
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-                cursorColor: Colors.white,
-                decoration: InputDecoration(
-                  hintText: "Where are you going?",
-                  // Hide HintText when typing
-                  hintStyle: TextStyle(
-                    color: isFocused
-                        ? Theme.of(context).primaryColor
-                        : Colors.white,
-                  ),
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
-                onTap: () => _searchNode.requestFocus(),
-                focusNode: _searchNode,
-                controller: _searchController,
+        child: Stack(
+          children: [
+            TextField(
+              style: TextStyle(
+                color: Colors.white,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  margin: EdgeInsets.only(
-                    left: 15,
-                  ),
-                  child: Icon(
-                    Icons.search,
-                  ),
+              textAlign: TextAlign.center,
+              cursorColor: Colors.white,
+              decoration: InputDecoration(
+                hintText: "Where are you going?",
+                // Hide HintText when typing
+                hintStyle: TextStyle(
+                  color:
+                      isFocused ? Theme.of(context).primaryColor : Colors.white,
+                ),
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+              ),
+              onTap: () => _searchNode.requestFocus(),
+              focusNode: _searchNode,
+              controller: _searchController,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                margin: EdgeInsets.only(
+                  left: 15,
+                ),
+                child: Icon(
+                  Icons.search,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

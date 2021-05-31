@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../size_config.dart';
+import '../models/parking_spot.dart';
+
 class SpotInfoBox extends StatelessWidget {
   const SpotInfoBox({
     Key key,
-    @required this.spotTitle,
-    @required this.overallRating,
-    @required this.totalReviews,
-    @required this.spotHeight,
+    @required this.spot,
   }) : super(key: key);
 
-  final String spotTitle;
-  final double overallRating;
-  final int totalReviews;
-  final int spotHeight;
+  final ParkingSpot spot;
 
   @override
   Widget build(BuildContext context) {
-    double devHeight = MediaQuery.of(context).size.height;
-    double devWidth = MediaQuery.of(context).size.width;
+    SizeConfig().init(context);
     return Container(
-      width: devWidth * 0.8,
+      width: SizeConfig.screenWidth * 0.8,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -28,13 +24,18 @@ class SpotInfoBox extends StatelessWidget {
           ),
         ),
       ),
-      margin: EdgeInsets.fromLTRB(0, devHeight * 0.03, 0, devHeight * 0.03),
-      padding: EdgeInsets.fromLTRB(0, 0, 0, devHeight * 0.03),
+      margin: EdgeInsets.only(
+        top: SizeConfig.screenHeight * 0.03,
+        bottom: SizeConfig.screenHeight * 0.03,
+      ),
+      padding: EdgeInsets.only(
+        bottom: SizeConfig.screenHeight * 0.03,
+      ),
       child: Column(
         children: [
           FittedBox(
             child: Text(
-              "$spotTitle",
+              "${spot.name}",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -42,7 +43,7 @@ class SpotInfoBox extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: devHeight * 0.02,
+            height: SizeConfig.screenHeight * 0.02,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +56,7 @@ class SpotInfoBox extends StatelessWidget {
                     size: 35,
                   ),
                   Text(
-                    "$overallRating($totalReviews)",
+                    "${spot.avgRating}(${spot.totalRatings})",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -64,8 +65,8 @@ class SpotInfoBox extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                height: devHeight * 0.05,
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                height: SizeConfig.screenHeight * 0.05,
                 decoration: BoxDecoration(
                   border: Border(
                     left: BorderSide(
@@ -85,7 +86,7 @@ class SpotInfoBox extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${spotHeight}cm",
+                    "${spot.maxHeight}cm",
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.white,

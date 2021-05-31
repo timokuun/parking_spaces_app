@@ -1,44 +1,40 @@
+import 'package:car_park_login/models/parking_spot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-
-// Screens
-import 'screens/login_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/active_spots_screen.dart';
-import 'screens/spot_info_screen.dart';
-import 'screens/register_screen.dart';
-
-import 'screens/test_screen.dart';
-import 'screens/test_screen2.dart';
-
-import 'theme.dart';
-
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import 'theme.dart';
-import 'widgets/active_spots_list.dart';
-import 'widgets/active_spots_list.dart';
+
+// Screens
+import 'screens/home_screen.dart';
+import 'screens/active_spots_screen.dart';
+import 'screens/spot_info_screen.dart';
+import 'screens/test_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
-        statusBarIconBrightness: Brightness.light),
+      statusBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.light,
+    ),
   );
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       darkTheme: darkThemeData(context),
       themeMode: ThemeMode.dark,
       theme: lightThemeData(context),
+      routes: {
+        TestScreen.id: (context) => TestScreen(),
+      },
       home: MyMain(),
     );
   }
@@ -54,7 +50,16 @@ class _MyAppState extends State<MyMain> {
       PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
-    return [HomeScreen(), ActiveSpotsScreen(), SpotInfoScreen()];
+    return [
+      HomeScreen(),
+      ActiveSpotsScreen(
+        userSpots: spots,
+      ),
+      SpotInfoScreen(
+        spot: spots[0],
+        bought: false,
+      )
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -63,21 +68,21 @@ class _MyAppState extends State<MyMain> {
         icon: Icon(Icons.home),
         title: ("ActiveSpots"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Colors.white,
         iconSize: 25,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.directions_car_outlined),
         title: ("Active Spots"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Colors.white,
         iconSize: 25,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
+        icon: Icon(Icons.info),
         title: ("Spot Info"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: CupertinoColors.white,
+        inactiveColorPrimary: Colors.white,
         iconSize: 25,
       ),
     ];

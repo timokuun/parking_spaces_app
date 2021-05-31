@@ -3,21 +3,26 @@ import 'package:flutter/material.dart';
 class SpotOwnerBox extends StatelessWidget {
   const SpotOwnerBox({
     Key key,
-    @required this.devHeight,
-    @required this.devWidth,
+    @required this.height,
+    @required this.width,
     @required this.owner,
   }) : super(key: key);
 
-  final double devHeight;
-  final double devWidth;
+  final double height;
+  final double width;
   final String owner;
+
+  // TODO: How should we externalize the dimensions? width used for a lot...(21,37)
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: devHeight * 0.2,
-      width: devWidth,
-      margin: EdgeInsets.fromLTRB(0, devHeight * 0.04, 0, devHeight * 0.12),
+      height: height * 0.2,
+      width: width,
+      margin: EdgeInsets.only(
+        top: height * 0.04,
+        bottom: height * 0.12,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -29,8 +34,8 @@ class SpotOwnerBox extends StatelessWidget {
               color: Colors.white,
             ),
             margin: EdgeInsets.all(15),
-            height: devWidth * 0.18,
-            width: devWidth * 0.18,
+            height: width * 0.18,
+            width: width * 0.18,
           ),
           FittedBox(
             fit: BoxFit.fitWidth,

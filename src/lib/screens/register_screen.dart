@@ -1,6 +1,7 @@
-import 'package:car_park_login/screens/home_screen.dart';
 import 'package:car_park_login/widgets/placeholder_logo.dart';
 import 'package:flutter/material.dart';
+
+import '../size_config.dart';
 
 import '../widgets/animated_text_field.dart';
 import '../widgets/general_button.dart';
@@ -43,8 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double devHeight = MediaQuery.of(context).size.height;
-    double devWidth = MediaQuery.of(context).size.width;
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
@@ -53,40 +53,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               PlaceholderImage(
-                margin: EdgeInsets.fromLTRB(
-                    0, devHeight * 0.15, 0, devHeight * 0.09),
+                margin: EdgeInsets.only(
+                    top: SizeConfig.screenHeight * 0.15,
+                    bottom: SizeConfig.screenHeight * 0.09),
               ),
               AnimatedTextField(
-                height: devHeight * 0.075,
-                width: devWidth * 0.75,
-                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                height: SizeConfig.screenHeight * 0.075,
+                width: SizeConfig.screenWidth * 0.75,
+                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
                 textNode: _phoneNode,
                 fieldController: pNum,
                 fieldLabel: "Phone #",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: devHeight * 0.075,
-                width: devWidth * 0.75,
-                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                height: SizeConfig.screenHeight * 0.075,
+                width: SizeConfig.screenWidth * 0.75,
+                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
                 textNode: _emailNode,
                 fieldController: email,
                 fieldLabel: "Email",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: devHeight * 0.075,
-                width: devWidth * 0.75,
-                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                height: SizeConfig.screenHeight * 0.075,
+                width: SizeConfig.screenWidth * 0.75,
+                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
                 textNode: _userNode,
                 fieldController: username,
                 fieldLabel: "Username",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: devHeight * 0.075,
-                width: devWidth * 0.75,
-                margin: EdgeInsets.only(bottom: devHeight * 0.02),
+                height: SizeConfig.screenHeight * 0.075,
+                width: SizeConfig.screenWidth * 0.75,
+                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
                 textNode: _passNode,
                 fieldController: password,
                 fieldLabel: "Password",
@@ -97,8 +98,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   GeneralButton(
                     buttonLabel: "Register",
-                    height: devHeight * 0.055,
-                    width: devWidth * 0.25,
+                    height: SizeConfig.screenHeight * 0.055,
+                    width: SizeConfig.screenWidth * 0.25,
                     onTap: () {},
                   ),
                 ],

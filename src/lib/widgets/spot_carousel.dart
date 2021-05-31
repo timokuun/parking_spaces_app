@@ -7,11 +7,12 @@ import '../models/parking_spot.dart';
 class SpotCarousel extends StatefulWidget {
   const SpotCarousel({
     Key key,
-    @required this.devHeight,
+    @required this.height,
+    @required this.images,
   }) : super(key: key);
 
-  final double devHeight;
-
+  final double height;
+  final List<String> images;
   @override
   _SpotCarouselState createState() => _SpotCarouselState();
 }
@@ -25,10 +26,10 @@ class _SpotCarouselState extends State<SpotCarousel> {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+          padding: EdgeInsets.only(top: 10),
           child: CarouselSlider(
             options: CarouselOptions(
-              height: widget.devHeight * 0.4,
+              height: widget.height,
               aspectRatio: 1.3,
               viewportFraction: 1,
               autoPlay: false,
@@ -38,11 +39,7 @@ class _SpotCarouselState extends State<SpotCarousel> {
                 });
               },
             ),
-            items: [
-              'assets/images/spot1.jpg',
-              'assets/images/spot2.jpg',
-              'assets/images/spot4.jpg',
-            ].map(
+            items: widget.images.map(
               (e) {
                 return Builder(
                   builder: (BuildContext context) {
@@ -52,7 +49,7 @@ class _SpotCarouselState extends State<SpotCarousel> {
                           image: AssetImage(e),
                           fit: BoxFit.fill,
                         ),
-                        borderRadius: BorderRadius.circular(7),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     );
                   },
@@ -66,8 +63,8 @@ class _SpotCarouselState extends State<SpotCarousel> {
           children: spots1.map((url) {
             int index = spots1.indexOf(url);
             return Container(
-              width: 4.0,
-              height: 4.0,
+              width: 6.0,
+              height: 6.0,
               margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../size_config.dart';
+
 class GeneralButton extends StatelessWidget {
   const GeneralButton({
     Key key,
@@ -18,14 +20,15 @@ class GeneralButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceSize = MediaQuery.of(context).size;
+    SizeConfig().init(context);
     return Container(
       height: height,
       width: width,
       margin: margin,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(deviceSize.width * 0.3, deviceSize.height * 0.06),
+          minimumSize: Size(
+              SizeConfig.screenWidth * 0.3, SizeConfig.screenHeight * 0.06),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

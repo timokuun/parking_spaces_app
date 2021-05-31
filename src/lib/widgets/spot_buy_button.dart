@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SpotBuyButton extends StatelessWidget {
   const SpotBuyButton({
@@ -18,7 +17,7 @@ class SpotBuyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
+      margin: EdgeInsets.only(bottom: 15),
       height: height,
       width: width,
       child: ElevatedButton(
@@ -54,8 +53,8 @@ class SpotBuyButton extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerLeft,
-              child: FaIcon(
-                FontAwesomeIcons.shoppingBasket,
+              child: Icon(
+                Icons.shopping_cart,
                 color: Colors.white,
                 size: 32,
               ),

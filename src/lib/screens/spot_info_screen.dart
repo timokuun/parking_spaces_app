@@ -1,6 +1,9 @@
+import 'package:car_park_login/models/parking_spot.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
+
+import '../size_config.dart';
 
 import '../models/Color.dart';
 import '../widgets/spot_amenity_label.dart';
@@ -10,9 +13,14 @@ import '../widgets/spot_owner_box.dart';
 import '../widgets/spot_buy_button.dart';
 
 class SpotInfoScreen extends StatefulWidget {
-  SpotInfoScreen({Key key, this.title}) : super(key: key);
+  SpotInfoScreen({
+    Key key,
+    @required this.spot,
+    @required this.bought,
+  }) : super(key: key);
 
-  final String title;
+  final ParkingSpot spot;
+  final bool bought;
   static const String id = '/spot_info';
 
   @override
@@ -30,8 +38,7 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double devHeight = MediaQuery.of(context).size.height;
-    double devWidth = MediaQuery.of(context).size.width;
+    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
@@ -58,7 +65,10 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                   Stack(
                     alignment: Alignment.topLeft,
                     children: [
-                      SpotCarousel(devHeight: devHeight),
+                      SpotCarousel(
+                        images: widget.spot.spotImages,
+                        height: SizeConfig.screenHeight * 0.4,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -68,7 +78,8 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                             ),
                             child: IconButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  // TODO: This crashes app, not needed yet...
+                                  //Navigator.of(context).pop();
                                 },
                                 icon: Icon(
                                   Icons.chevron_left,
@@ -84,25 +95,19 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SpotInfoBox(
-                        spotTitle: "The Hilton at San Diego L2S4",
-                        overallRating: 4.3,
-                        totalReviews: 43,
-                        spotHeight: 155,
+                        spot: widget.spot,
                       ),
+                      // TODO: make a mapping for this, ParkingSpot will need list of strings for amenities
                       SpotAmenityLabel(
-                        devHeight: devHeight,
-                        devWidth: devWidth,
+                        name: "Lights",
+                        height: SizeConfig.screenHeight * 0.045,
+                        width: SizeConfig.screenWidth * 0.25,
                         backgroundColor: Colors.white,
                         fontColor: OurColor.ourCyan,
                       ),
                       Container(
-                        color: Colors.red,
-                        height: devHeight * 0.5,
-                        width: devWidth * 0.6,
-                      ),
-                      Container(
-                        height: devHeight * 0.6,
-                        width: devWidth * 0.7,
+                        height: SizeConfig.screenHeight * 0.6,
+                        width: SizeConfig.screenWidth * 0.7,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(10),
@@ -119,9 +124,10 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                           },
                         ),
                       ),
+                      // TODO: Each parking spot shall have owner property?
                       SpotOwnerBox(
-                        devHeight: devHeight,
-                        devWidth: devWidth,
+                        height: SizeConfig.screenHeight,
+                        width: SizeConfig.screenWidth,
                         owner: "Thomas",
                       ),
                     ],
@@ -129,15 +135,16 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                 ],
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SpotBuyButton(
-                height: devHeight * 0.065,
-                width: devWidth * 0.8,
-                buttonColor: OurColor.ourCyan,
-                cost: 7,
+            if (!widget.bought)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: SpotBuyButton(
+                  height: SizeConfig.screenHeight * 0.065,
+                  width: SizeConfig.screenWidth * 0.8,
+                  buttonColor: OurColor.ourCyan,
+                  cost: widget.spot.price,
+                ),
               ),
-            ),
           ],
         ),
       ),

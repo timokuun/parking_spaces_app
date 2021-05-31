@@ -1,5 +1,9 @@
+import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../size_config.dart';
+import '../theme.dart';
+import '../screens/test_screen2.dart';
 import '../models/parking_garage.dart';
 
 class GaragePictures extends StatelessWidget {
@@ -12,24 +16,40 @@ class GaragePictures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double devHeight = MediaQuery.of(context).size.height;
-    double devWidth = MediaQuery.of(context).size.width;
+    SizeConfig().init(context);
     return Container(
-      height: devHeight * 0.20,
+      height: SizeConfig.screenHeight * 0.20,
       child: ListView.builder(
         itemCount: garage.spots.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Container(
-            width: devWidth * 0.43,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            decoration: BoxDecoration(
-              border: Border.all(),
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                // Only render the first picture of a spot
-                image: AssetImage(garage.spots[index].spotImages[0]),
-                fit: BoxFit.fill,
+          return InkWell(
+            radius: 300,
+            splashColor: customCyan,
+            borderRadius: BorderRadius.circular(10),
+            onTap: () {
+              print("Open parking spot info page");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SpotInfoScreen(
+                    spot: garage.spots[index],
+                    bought: false,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              width: SizeConfig.screenWidth * 0.44,
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  // Only render the first picture of a spot
+                  image: AssetImage(garage.spots[index].spotImages[0]),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           );

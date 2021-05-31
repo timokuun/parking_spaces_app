@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../models/parking_spot.dart';
-
 class ActiveSpotsNumberIndicator extends StatelessWidget {
   const ActiveSpotsNumberIndicator({
     Key key,
+    this.numSpots,
     this.margin,
     this.padding,
   }) : super(key: key);
 
+  final int numSpots;
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
 
@@ -22,7 +22,7 @@ class ActiveSpotsNumberIndicator extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       ),
       child: Text(
-        "${spots.length} Active Spots",
+        "$numSpots Active Spots",
         style: TextStyle(color: Colors.white),
       ),
     );
