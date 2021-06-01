@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 
+import 'main_router.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/placeholder_logo.dart';
 import '../widgets/general_button.dart';
@@ -89,7 +90,12 @@ class _LoginPageState extends State<LoginPage> {
                     margin: EdgeInsets.symmetric(
                         horizontal: SizeConfig.screenWidth * 0.04),
                     onTap: () {
-                      Navigator.of(context).pushNamed(RegisterScreen.id);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterScreen(),
+                        ),
+                      );
                     },
                   ),
                   GeneralButton(
@@ -98,7 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                     margin: EdgeInsets.symmetric(
                         horizontal: SizeConfig.screenWidth * 0.04),
                     buttonLabel: "Login",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainRouter(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

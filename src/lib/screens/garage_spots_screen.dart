@@ -40,7 +40,7 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
                 horizontal: 7,
                 vertical: 5,
               ),
-              height: SizeConfig.screenHeight * 0.8,
+              height: SizeConfig.screenHeight * 0.84,
               child: GridView.count(
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 25,

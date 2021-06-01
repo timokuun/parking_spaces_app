@@ -18,7 +18,20 @@ class ParkingGarage {
   });
 }
 
-List<ParkingSpot> pangeaSpots = [pangea1, pangea2, pangea3];
+List<ParkingSpot> pangeaSpots = [
+  pangea1,
+  pangea2,
+  pangea3,
+  pangea1,
+  pangea2,
+  pangea3,
+  pangea1,
+  pangea2,
+  pangea3,
+  pangea1,
+  pangea2,
+  pangea3
+];
 List<ParkingSpot> hopkinsSpots = [hopkins1, hopkins2, hopkins3];
 List<ParkingSpot> hillcrestSpots = [hillcrest1, hillcrest2, hillcrest3];
 

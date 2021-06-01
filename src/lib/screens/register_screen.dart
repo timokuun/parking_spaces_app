@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 
+import 'main_router.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/general_button.dart';
 
@@ -100,7 +101,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     buttonLabel: "Register",
                     height: SizeConfig.screenHeight * 0.055,
                     width: SizeConfig.screenWidth * 0.25,
-                    onTap: () {},
+                    onTap: () {
+                      // TODO: set up with backend later
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainRouter(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               )
