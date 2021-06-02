@@ -5,9 +5,6 @@ import 'package:flutter/services.dart';
 
 import 'theme.dart';
 
-// Screens
-import 'screens/test_screen.dart';
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
@@ -28,9 +25,6 @@ class MyApp extends StatelessWidget {
       darkTheme: darkThemeData(context),
       themeMode: ThemeMode.dark,
       theme: lightThemeData(context),
-      routes: {
-        TestScreen.id: (context) => TestScreen(),
-      },
       home: LoginPage(),
     );
   }

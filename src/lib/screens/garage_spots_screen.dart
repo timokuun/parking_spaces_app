@@ -21,7 +21,7 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: customBlack,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -40,11 +40,11 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
                 horizontal: 7,
                 vertical: 5,
               ),
-              height: SizeConfig.screenHeight * 0.84,
+              height: SizeConfig.screenHeight * 0.815,
               child: GridView.count(
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 25,
-                childAspectRatio: 0.85,
+                childAspectRatio: SizeConfig.screenWidth * 0.0019, // 0.85
                 crossAxisCount: 2,
                 children: widget.garage.spots.map((spot) {
                   return InkWell(
@@ -73,6 +73,14 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
                             margin: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 10),
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black,
+                                  spreadRadius: 0.5,
+                                  //blurRadius: 0.5,
+                                  offset: Offset(0, 1.5),
+                                )
+                              ],
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
                                 image: AssetImage(
@@ -86,6 +94,7 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
                             spot.name,
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.w500,
                               fontSize: 16,
                             ),
                           ),
@@ -93,6 +102,7 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
                             "${spot.maxHeight}cm • \$${spot.price}/hr",
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.w500,
                               fontSize: 16,
                               height: 1.5,
                             ),
