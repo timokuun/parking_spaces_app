@@ -16,7 +16,7 @@ ThemeData lightThemeData(BuildContext context) {
 
 ThemeData darkThemeData(BuildContext context) {
   return ThemeData.dark().copyWith(
-    backgroundColor: Colors.black,
+    backgroundColor: customBlack,
     primaryColor: customCyan,
     iconTheme: IconThemeData(color: Colors.white),
   );

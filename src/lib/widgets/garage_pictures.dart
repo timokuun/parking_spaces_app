@@ -25,7 +25,7 @@ class GaragePictures extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             highlightColor: customCyan,
-            radius: 300,
+            radius: 500,
             borderRadius: BorderRadius.circular(10),
             onTap: () {
               print("Open parking spot info page");

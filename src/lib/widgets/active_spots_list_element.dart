@@ -1,5 +1,7 @@
+import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../size_config.dart';
 import '../models/parking_spot.dart';
 import '../screens/spot_info_screen.dart';
 
@@ -19,7 +21,11 @@ class ActiveSpotsListElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    SizeConfig().init(context);
+    return InkWell(
+      splashColor: customCyan,
+      radius: 1500,
+      borderRadius: BorderRadius.circular(20),
       onTap: () {
         Navigator.push(
           context,
@@ -34,7 +40,7 @@ class ActiveSpotsListElement extends StatelessWidget {
       child: Container(
         margin: margin,
         child: ListTile(
-          tileColor: Colors.black,
+          //tileColor: customBlack,
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).primaryColor,
             radius: 30,

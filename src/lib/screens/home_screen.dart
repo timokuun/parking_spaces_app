@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -26,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double miles = 1.1;
-    int availSpots = 500;
     int lowPrice = 100;
     int highPrice = 200;
 
@@ -45,9 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 target: LatLng(37.773972, -122.431297),
                 zoom: 15,
               ),
-              // onMapCreated: (GoogleMapController controller) {
-              //   _controller.complete(controller);
-              // },
             ),
             // TODO: finalize max height for DSS
             DraggableScrollableSheet(
@@ -58,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, scrollController) {
                 return Container(
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: customBlack,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
@@ -73,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: singleChildSrollController,
                     child: Column(children: [
                       Container(
-                        height: SizeConfig.screenHeight * 0.73,
+                        height: SizeConfig.screenHeight * 0.75,
                         child: ListView.separated(
                           controller: scrollController,
                           // Override the default padding value
@@ -81,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: 30,
                           ),
                           separatorBuilder: (_, __) => Divider(
-                            height: 10,
+                            height: 7,
                           ),
                           itemBuilder: (context, index) {
                             // NOTE: First item is the Draggable indicator
@@ -89,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? DraggableIndicator()
                                 : GarageResult(
                                     miles: miles,
-                                    availableSpots: availSpots,
                                     lowPrice: lowPrice,
                                     highPrice: highPrice,
                                     garage: result[index - 1],

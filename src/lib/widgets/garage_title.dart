@@ -10,14 +10,12 @@ class GarageTitle extends StatelessWidget {
     Key key,
     @required this.garage,
     @required this.miles,
-    @required this.availSpots,
     @required this.lowPrice,
     @required this.highPrice,
   }) : super(key: key);
 
   final ParkingGarage garage;
   final double miles;
-  final int availSpots;
   final int lowPrice;
   final int highPrice;
 
@@ -25,12 +23,10 @@ class GarageTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return InkWell(
-      radius: 500,
+      radius: 1000,
       splashColor: customCyan,
       borderRadius: BorderRadius.circular(10),
       onTap: () {
-        print("Opened garage page");
-
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -64,7 +60,7 @@ class GarageTitle extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Text(
-                  "$miles miles • $availSpots spots • \$$lowPrice-$highPrice",
+                  "$miles miles • ${garage.spots.length} spots • \$$lowPrice-$highPrice",
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 11,

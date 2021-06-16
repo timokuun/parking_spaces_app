@@ -1,11 +1,11 @@
-import 'package:car_park_login/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
+import '../theme.dart';
 
-import '../screens/spot_info_screen.dart';
 import '../models/parking_garage.dart';
+import '../widgets/garage_screen_element.dart';
 
 class GarageSpotsScreen extends StatefulWidget {
   GarageSpotsScreen({@required this.garage});
@@ -47,69 +47,8 @@ class _GarageSpotsScreenState extends State<GarageSpotsScreen> {
                 childAspectRatio: SizeConfig.screenWidth * 0.0019, // 0.85
                 crossAxisCount: 2,
                 children: widget.garage.spots.map((spot) {
-                  return InkWell(
-                    highlightColor: customCyan,
-                    borderRadius: BorderRadius.circular(10),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SpotInfoScreen(
-                            spot: spot,
-                            bought: false,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: SizeConfig.screenWidth * 0.44,
-                            height: SizeConfig.screenHeight * 0.2,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black,
-                                  spreadRadius: 0.5,
-                                  //blurRadius: 0.5,
-                                  offset: Offset(0, 1.5),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  spot.spotImages[0],
-                                ),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            spot.name,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            "${spot.maxHeight}cm • \$${spot.price}/hr",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              height: 1.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  return GarageScreenElement(
+                    spot: spot,
                   );
                 }).toList(),
               ),

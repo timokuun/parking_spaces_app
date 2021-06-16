@@ -1,3 +1,4 @@
+import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 
 import './garage_pictures.dart';
@@ -8,14 +9,13 @@ class GarageResult extends StatelessWidget {
   /* Properties */
 
   final double miles;
-  final int availableSpots;
+
   final int lowPrice;
   final int highPrice;
   final ParkingGarage garage;
 
   GarageResult({
     @required this.miles,
-    @required this.availableSpots,
     @required this.lowPrice,
     @required this.highPrice,
     @required this.garage,
@@ -24,13 +24,12 @@ class GarageResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
+      color: customBlack,
       child: Column(
         children: [
           GarageTitle(
               garage: garage,
               miles: miles,
-              availSpots: availableSpots,
               lowPrice: lowPrice,
               highPrice: highPrice),
           GaragePictures(

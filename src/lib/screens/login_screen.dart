@@ -1,7 +1,4 @@
-import 'package:car_park_login/screens/active_spots_screen.dart';
-import 'package:car_park_login/screens/home_screen.dart';
 import 'package:car_park_login/screens/register_screen.dart';
-import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
@@ -111,39 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                           builder: (context) => MainRouter(),
                         ),
                       );
-                    },
-                  ),
-                ],
-              ),
-              // Using for debug navigation...
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GeneralButton(
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
-                    buttonLabel: "Info Screen",
-                    onTap: () {
-                      Navigator.of(context).pushNamed(SpotInfoScreen.id);
-                    },
-                  ),
-                  GeneralButton(
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
-                    buttonLabel: "Active Spots",
-                    onTap: () {
-                      Navigator.of(context).pushNamed(ActiveSpotsScreen.id);
-                    },
-                  ),
-                  GeneralButton(
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
-                    buttonLabel: "Home page",
-                    onTap: () {
-                      Navigator.of(context).pushNamed(HomeScreen.id);
                     },
                   ),
                 ],

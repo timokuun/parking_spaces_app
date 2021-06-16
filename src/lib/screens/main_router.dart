@@ -75,7 +75,7 @@ class _MainRouterState extends State<MainRouter> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      backgroundColor: Colors.black,
+      backgroundColor: customBlack,
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,

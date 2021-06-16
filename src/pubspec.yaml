@@ -32,12 +32,17 @@ dependencies:
 
   google_maps_flutter: ^2.0.3
 
+  google_places_flutter: ^2.0.3
+
+  geocoder: ^0.2.1
+
+  geocoding: ^1.0.5
+
+  persistent_bottom_nav_bar: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # persistent navigator
-  persistent_bottom_nav_bar: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

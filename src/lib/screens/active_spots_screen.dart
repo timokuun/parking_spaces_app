@@ -22,7 +22,7 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         children: [
           ActiveSpotsNumberIndicator(
