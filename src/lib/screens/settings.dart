@@ -43,20 +43,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: TextFormField(
                   controller: searchController,
                   onChanged: (userInput) async {
-                    if (userInput.length > 0) {
-                      List<String> results =
-                          await placesGetter.values(userInput);
-                      print("hello");
-                      print("-----results length:" + results.length.toString());
-                      this.setState(() {
-                        // Set height of result container to SizeConfig.screenHeight * 0.5;
-                        userTyped = true;
-                        predictions = results;
+                    String results =
+                        await placesGetter.obtainPredictions(userInput);
+                    // if (userInput.length > 0) {
+                    //   List<String> results =
+                    //       await placesGetter.values(userInput);
+                    //   print("hello");
+                    //   print("-----results length:" + results.length.toString());
+                    //   this.setState(() {
+                    //     // Set height of result container to SizeConfig.screenHeight * 0.5;
+                    //     userTyped = true;
+                    //     predictions = results;
 
-                        // Collect list of predictions from PlacesAutocompleter
-                        // predictions = await placesGetter.values(userInput);
-                      });
-                    }
+                    //     // Collect list of predictions from PlacesAutocompleter
+                    //     // predictions = await placesGetter.values(userInput);
+                    //   });
+                    // }
                   },
                 ),
               ),

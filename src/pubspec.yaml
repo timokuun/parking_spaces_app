@@ -24,19 +24,19 @@ dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.17.0
-
   cupertino_icons: ^1.0.2
 
   carousel_slider: ^3.0.0
 
-  google_maps_flutter: ^2.0.3
-
-  google_places_flutter: ^2.0.3
-
   geocoder: ^0.2.1
 
   geocoding: ^1.0.5
+
+  google_maps_flutter: ^2.0.3
+
+  http: ^0.13.3
+
+  intl: ^0.17.0
 
   persistent_bottom_nav_bar: any
 

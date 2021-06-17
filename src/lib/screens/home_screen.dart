@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../size_config.dart';
+import '../theme.dart';
 
 import '../models/parking_garage.dart';
 import '../widgets/search_bar.dart';
