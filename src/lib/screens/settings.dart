@@ -26,8 +26,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    bool userTyped = false;
-    String result = " ";
+    List<String> results = [];
+    String result = "first";
     PlacesAutocompleter placesGetter = PlacesAutocompleter();
     TextEditingController searchController = TextEditingController();
     return SafeArea(
@@ -37,28 +37,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             children: [
               Container(
-                // color: Colors.red,
                 height: SizeConfig.screenHeight * 0.27,
                 width: SizeConfig.screenWidth,
                 child: TextFormField(
                   controller: searchController,
                   onChanged: (userInput) async {
-                    String results =
-                        await placesGetter.obtainPredictions(userInput);
-                    // if (userInput.length > 0) {
-                    //   List<String> results =
-                    //       await placesGetter.values(userInput);
-                    //   print("hello");
-                    //   print("-----results length:" + results.length.toString());
-                    //   this.setState(() {
-                    //     // Set height of result container to SizeConfig.screenHeight * 0.5;
-                    //     userTyped = true;
-                    //     predictions = results;
+                    // List<String> obtained =
+                    //     await placesGetter.getPredictions(userInput);
+                    String temp = await placesGetter.getPredictions(userInput);
 
-                    //     // Collect list of predictions from PlacesAutocompleter
-                    //     // predictions = await placesGetter.values(userInput);
-                    //   });
-                    // }
+                    setState(() {
+                      result = temp;
+                    });
                   },
                 ),
               ),
@@ -77,6 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Text(predictions[1]),
                     Text(predictions[4]),
                     Text(predictions[3]),
+                    Text("$result"),
                   ],
                 ),
               ),
@@ -84,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
 
-        // TODO: Restore original log in button
+        // TODO: Restore original logout button
         // child: Column(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -106,37 +97,4 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
-}
-
-// Tried to utilize FutureBuilder to make the container with predictions as
-//  as it should handle futures (future in set state gave problems)
-
-// Next, try to have setState in textField to UPDATE the future of this futureBuilder...
-Widget makeResults(String userInput) {
-  print(userInput);
-  if (userInput.isEmpty) return Text("Wait for it...");
-  PlacesAutocompleter placesGetter = PlacesAutocompleter();
-  Future<List<String>> predResults;
-  FutureBuilder(
-    future: predResults,
-    builder: (context, snapshot) {
-      print(snapshot.data.length);
-      switch (snapshot.connectionState) {
-        case ConnectionState.none:
-          return Text("None");
-          break;
-        case ConnectionState.active:
-        case ConnectionState.waiting:
-          return Text("Loading");
-        case ConnectionState.done:
-          return Column(children: [
-            snapshot.data.asMap().forEach((index, element) {
-              Text(snapshot.data[index]);
-            })
-          ]);
-        default:
-          return Text("Default");
-      }
-    },
-  );
 }

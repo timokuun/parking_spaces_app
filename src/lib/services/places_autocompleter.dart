@@ -6,6 +6,8 @@ class PlacesAutocompleter {
   //String query = "taipei 101";
   Coordinates coordinate = Coordinates(32.10, 90.50);
 
+  List<String> results = [];
+
   PlacesAutocompleter();
 
   Future<List<String>> values(String query) async {
@@ -21,34 +23,28 @@ class PlacesAutocompleter {
     return predictions.take(5);
   }
 
-  Future<String> obtainPredictions(String input) async {
+  // Future<List<String>> getPredictions(String input) async {
+  Future<String> getPredictions(String input) async {
+    List<String> results = [];
     String apiKey = "AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ";
-    // var url = Uri.parse(
-    //     "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}&types=address");
 
+    // TODO: Default location now is UCSD, need to obtain user coords
     var url = Uri.parse(
-        "https://maps.googleapis.com/maps/api/js?libraries=places&key=${apiKey}");
-    // WE USE THIS ONE
-    // https://maps.googleapis.com/maps/api/place/textsearch/json?query=UCSD&location=42.3675294,-71.186966&radius=10000&key=AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ
+        "https://maps.googleapis.com/maps/api/place/textsearch/json?query=${input}&location=32.8800649,-117.2362022&radius=100&key=${apiKey}");
 
     var response = await http.get(url);
-    // var jsonData = json.decode(response.body);
-    print("")
-    print(response.body);
-    // var predictions = jsonData["predictions"];
-    // print(predictions);
-    // print("----- predictions size: ${predictions.length}");
+    var jsonData = json.decode(response.body);
+    var predictions = jsonData["results"];
 
-    //print(response[0]["predictions"]);
-    // var predResults = [];
+    for (var result in predictions) {
+      print("---type: ${result["formatted_address"].runtimeType}");
+      results.add(result["formatted_address"]);
+    }
 
-    // print("-----predResults size: ${predResults.length}");
-    // Observe what the body looks like, then return addresses as List<String>
+    // Not sure how many results we want to display...
+    // if (results.length > 7) return results.take(7);
+
+    // return results;
     return "nice";
   }
-  // Create HTTP obj to make calls to Google Places API
-  // (https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}&types=address)
-  //  will return list of predictions, need to obtain "description" from the result object, put into List<String>
-
-  // Then setState the results to update the autoCompleteDrawer (make an http call in "onChanged" of textField)
 }
