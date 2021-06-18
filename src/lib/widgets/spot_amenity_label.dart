@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SpotAmenityLabel extends StatelessWidget {
+  final String name;
+  final double height;
+  final double width;
+  final Color backgroundColor;
+  final Color fontColor;
+
   const SpotAmenityLabel({
     Key key,
     @required this.name,
@@ -9,12 +15,6 @@ class SpotAmenityLabel extends StatelessWidget {
     @required this.backgroundColor,
     @required this.fontColor,
   }) : super(key: key);
-
-  final String name;
-  final double height;
-  final double width;
-  final Color backgroundColor;
-  final Color fontColor;
 
   @override
   Widget build(BuildContext context) {

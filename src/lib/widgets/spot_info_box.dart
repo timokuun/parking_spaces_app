@@ -4,12 +4,12 @@ import '../size_config.dart';
 import '../models/parking_spot.dart';
 
 class SpotInfoBox extends StatelessWidget {
+  final ParkingSpot spot;
+
   const SpotInfoBox({
     Key key,
     @required this.spot,
   }) : super(key: key);
-
-  final ParkingSpot spot;
 
   @override
   Widget build(BuildContext context) {

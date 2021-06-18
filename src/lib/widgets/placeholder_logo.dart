@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PlaceholderImage extends StatelessWidget {
+  final EdgeInsetsGeometry margin;
+
   const PlaceholderImage({
     Key key,
     this.margin,
   }) : super(key: key);
-
-  final EdgeInsetsGeometry margin;
 
   @override
   Widget build(BuildContext context) {

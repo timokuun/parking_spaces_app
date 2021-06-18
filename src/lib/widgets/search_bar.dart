@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 
 // TODO: Need to pass in function for search results
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
   final double width;
   final double height;
   final EdgeInsetsGeometry margin;
@@ -26,18 +26,24 @@ class SearchBar extends StatelessWidget {
   final TextEditingController _searchController;
 
   @override
+  _SearchBarState createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<SearchBar> {
+  @override
   Widget build(BuildContext context) {
-    bool isFocused = _searchNode.hasFocus;
+    String text1 = "nice";
+    bool isFocused = widget._searchNode.hasFocus;
     return Card(
-      margin: margin,
+      margin: widget.margin,
       elevation: 30.0,
       color: customCyan,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
       ),
       child: Container(
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(40),
@@ -60,9 +66,25 @@ class SearchBar extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
               ),
-              onTap: () => _searchNode.requestFocus(),
-              focusNode: _searchNode,
-              controller: _searchController,
+              onTap: () {
+                widget._searchNode.requestFocus();
+              },
+              // onChanged: (userInput) {
+              //   setState(() {
+              //     widget._searchController.value = TextEditingValue(
+              //       text: userInput,
+              //       selection: TextSelection.fromPosition(
+              //         TextPosition(offset: userInput.length),
+              //       ),
+              //     );
+              //   });
+              // },
+              focusNode: widget._searchNode,
+              controller: widget._searchController,
+              onSubmitted: (input) {
+                print(input);
+                print(widget._searchNode.hasFocus);
+              },
             ),
             Align(
               alignment: Alignment.centerLeft,

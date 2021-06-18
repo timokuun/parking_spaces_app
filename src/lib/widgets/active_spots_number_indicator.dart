@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ActiveSpotsNumberIndicator extends StatelessWidget {
+  final int numSpots;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
+
   const ActiveSpotsNumberIndicator({
     Key key,
     this.numSpots,
     this.margin,
     this.padding,
   }) : super(key: key);
-
-  final int numSpots;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {

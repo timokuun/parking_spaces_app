@@ -1,17 +1,17 @@
-import 'package:car_park_login/models/parking_spot.dart';
 import 'package:flutter/material.dart';
 import '../size_config.dart';
 
+import '../models/parking_spot.dart';
 import '../widgets/active_spots_list.dart';
 import '../widgets/active_spots_number_indicator.dart';
 
 // TODO: Conditional-ize the image carousel (if no pictures)
 
 class ActiveSpotsScreen extends StatefulWidget {
-  ActiveSpotsScreen({Key key, this.userSpots}) : super(key: key);
-
-  final List<ParkingSpot> userSpots;
   static const String id = '/activeSpots';
+  final List<ParkingSpot> userSpots;
+
+  ActiveSpotsScreen({Key key, this.userSpots}) : super(key: key);
 
   @override
   _ActiveSpotsScreenState createState() => _ActiveSpotsScreenState();

@@ -1,9 +1,8 @@
-import 'package:car_park_login/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
-
 import 'main_router.dart';
+import './register_screen.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/placeholder_logo.dart';
 import '../widgets/general_button.dart';
@@ -11,10 +10,10 @@ import '../widgets/general_button.dart';
 // TODO: Remove Buttons row used for DEBUG navigating
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key, this.title}) : super(key: key);
-
-  final String title;
   static const String id = '/login';
+  final String title;
+
+  LoginPage({Key key, this.title}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();

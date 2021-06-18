@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SpotOwnerBox extends StatelessWidget {
+  final double height;
+  final double width;
+  final String owner;
+
   const SpotOwnerBox({
     Key key,
     @required this.height,
     @required this.width,
     @required this.owner,
   }) : super(key: key);
-
-  final double height;
-  final double width;
-  final String owner;
 
   // TODO: How should we externalize the dimensions? width used for a lot...(21,37)
 

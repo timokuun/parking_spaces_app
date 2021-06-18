@@ -6,12 +6,12 @@ import '../screens/spot_info_screen.dart';
 import '../models/parking_spot.dart';
 
 class GarageScreenElement extends StatelessWidget {
+  final ParkingSpot spot;
+
   const GarageScreenElement({
     Key key,
     @required this.spot,
   }) : super(key: key);
-
-  final ParkingSpot spot;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,6 @@ class GarageScreenElement extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black,
                     spreadRadius: 0.5,
-                    //blurRadius: 0.5,
                     offset: Offset(0, 0.25),
                   )
                 ],

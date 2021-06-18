@@ -1,17 +1,16 @@
-import 'package:car_park_login/widgets/placeholder_logo.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
-
 import 'main_router.dart';
+import '../widgets/placeholder_logo.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/general_button.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key key, this.title}) : super(key: key);
-
-  final String title;
   static const String id = '/register';
+  final String title;
+
+  RegisterScreen({Key key, this.title}) : super(key: key);
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();

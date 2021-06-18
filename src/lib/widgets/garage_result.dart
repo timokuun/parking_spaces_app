@@ -1,15 +1,12 @@
-import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../theme.dart';
 import './garage_pictures.dart';
 import './garage_title.dart';
 import '../models/parking_garage.dart';
 
 class GarageResult extends StatelessWidget {
-  /* Properties */
-
   final double miles;
-
   final int lowPrice;
   final int highPrice;
   final ParkingGarage garage;

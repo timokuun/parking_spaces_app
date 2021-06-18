@@ -1,11 +1,16 @@
-import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
+import '../theme.dart';
 import '../models/parking_spot.dart';
 import '../screens/spot_info_screen.dart';
 
 class ActiveSpotsListElement extends StatelessWidget {
+  final ParkingSpot spot;
+  final int buildIndex;
+  final EdgeInsetsGeometry margin;
+  final String timeLeft;
+
   const ActiveSpotsListElement({
     Key key,
     @required this.spot,
@@ -13,11 +18,6 @@ class ActiveSpotsListElement extends StatelessWidget {
     @required this.timeLeft,
     this.margin,
   }) : super(key: key);
-
-  final ParkingSpot spot;
-  final int buildIndex;
-  final EdgeInsetsGeometry margin;
-  final String timeLeft;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,6 @@ class ActiveSpotsListElement extends StatelessWidget {
       child: Container(
         margin: margin,
         child: ListTile(
-          //tileColor: customBlack,
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).primaryColor,
             radius: 30,

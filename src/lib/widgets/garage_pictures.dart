@@ -1,18 +1,17 @@
-import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 import '../theme.dart';
-
+import '../screens/spot_info_screen.dart';
 import '../models/parking_garage.dart';
 
 class GaragePictures extends StatelessWidget {
+  final ParkingGarage garage;
+
   const GaragePictures({
     Key key,
     @required this.garage,
   }) : super(key: key);
-
-  final ParkingGarage garage;
 
   @override
   Widget build(BuildContext context) {

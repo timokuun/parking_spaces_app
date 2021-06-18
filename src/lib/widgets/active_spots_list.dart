@@ -8,11 +8,11 @@ import '../widgets/active_spots_list_element.dart';
 // TODO: Correct the time formating
 
 class ActiveSpotsList extends StatelessWidget {
+  final List<ParkingSpot> userSpots;
+
   ActiveSpotsList({
     @required this.userSpots,
   });
-
-  final List<ParkingSpot> userSpots;
 
   // TODO: Should maybe change name of variables with this... (calculates current rent time)
   DateTime calcRentTime(DateTime start) {

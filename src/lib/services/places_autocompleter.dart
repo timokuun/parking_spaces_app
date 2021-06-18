@@ -1,30 +1,10 @@
-import 'package:geocoder/geocoder.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PlacesAutocompleter {
-  //String query = "taipei 101";
-  Coordinates coordinate = Coordinates(32.10, 90.50);
-
-  List<String> results = [];
-
   PlacesAutocompleter();
 
-  Future<List<String>> values(String query) async {
-    List<String> predictions;
-    List<Address> results = await Geocoder.local.findAddressesFromQuery(query);
-    results.asMap().forEach((index, element) {
-      predictions.insert(index, element.addressLine);
-    });
-
-    // predictions.map((e) => print("-------results: " + predictions[0]));
-
-    // Only want first 5 predictions
-    return predictions.take(5);
-  }
-
-  // Future<List<String>> getPredictions(String input) async {
-  Future<String> getPredictions(String input) async {
+  Future<List<String>> getPredictions(String input) async {
     List<String> results = [];
     String apiKey = "AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ";
 
@@ -44,7 +24,6 @@ class PlacesAutocompleter {
     // Not sure how many results we want to display...
     // if (results.length > 7) return results.take(7);
 
-    // return results;
-    return "nice";
+    return results;
   }
 }

@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import '../size_config.dart';
 
 class GeneralButton extends StatelessWidget {
+  final String buttonLabel;
+  final double height;
+  final double width;
+  final EdgeInsetsGeometry margin;
+  final Function onTap;
+
   const GeneralButton({
     Key key,
     @required this.buttonLabel,
@@ -11,12 +17,6 @@ class GeneralButton extends StatelessWidget {
     this.margin,
     @required this.onTap,
   }) : super(key: key);
-
-  final String buttonLabel;
-  final double height;
-  final double width;
-  final EdgeInsetsGeometry margin;
-  final Function onTap;
 
   @override
   Widget build(BuildContext context) {

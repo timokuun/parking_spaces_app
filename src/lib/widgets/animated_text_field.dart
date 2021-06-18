@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
+// TODO: Add actual function for onTap
 class AnimatedTextField extends StatelessWidget {
+  final double height;
+  final double width;
+  final EdgeInsetsGeometry margin;
+  final FocusNode _textNode;
+  final TextEditingController fieldController;
+  final String fieldLabel;
+  final bool isPassword;
+
   const AnimatedTextField(
       {Key key,
       @required this.height,
@@ -12,16 +21,6 @@ class AnimatedTextField extends StatelessWidget {
       @required this.isPassword})
       : _textNode = textNode,
         super(key: key);
-
-  final double height;
-  final double width;
-  final EdgeInsetsGeometry margin;
-  final FocusNode _textNode;
-  final TextEditingController fieldController;
-  final String fieldLabel;
-  final bool isPassword;
-
-  // Add an ACTUAL function for onTap
 
   @override
   Widget build(BuildContext context) {

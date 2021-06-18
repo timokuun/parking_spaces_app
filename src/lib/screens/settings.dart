@@ -1,35 +1,27 @@
-import 'package:car_park_login/screens/login_screen.dart';
-import 'package:car_park_login/widgets/garage_pictures.dart';
-import 'package:car_park_login/widgets/garage_result.dart';
-import 'package:car_park_login/widgets/garage_title.dart';
-import 'package:car_park_login/widgets/general_button.dart';
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 import '../theme.dart';
-import '../models/parking_spot.dart';
+import '../screens/login_screen.dart';
+import '../widgets/general_button.dart';
 import '../services/places_autocompleter.dart';
 
 class SettingsScreen extends StatefulWidget {
-  static const String id = '/test';
-  final List<String> backgrounds;
-
-  SettingsScreen({this.backgrounds});
+  static const String id = '/settings';
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  List<String> predictions = ["i", "i", "i", "i", "i"];
-  Future<List<String>> predResults;
+  final TextEditingController searchController = TextEditingController();
+  final PlacesAutocompleter placesGetter = PlacesAutocompleter();
+  final FocusNode _testNode = FocusNode();
+  List<String> predictions = [];
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    List<String> results = [];
-    String result = "first";
-    PlacesAutocompleter placesGetter = PlacesAutocompleter();
-    TextEditingController searchController = TextEditingController();
     return SafeArea(
       child: Scaffold(
         backgroundColor: customBlack,
@@ -39,61 +31,59 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Container(
                 height: SizeConfig.screenHeight * 0.27,
                 width: SizeConfig.screenWidth,
-                child: TextFormField(
+                child: TextField(
+                  focusNode: _testNode,
                   controller: searchController,
                   onChanged: (userInput) async {
-                    // List<String> obtained =
-                    //     await placesGetter.getPredictions(userInput);
-                    String temp = await placesGetter.getPredictions(userInput);
-
+                    List<String> obtained = [];
+                    if (userInput.length > 0) {
+                      obtained = await placesGetter.getPredictions(userInput);
+                    }
                     setState(() {
-                      result = temp;
+                      predictions = obtained;
                     });
+                  },
+                  onTap: () {
+                    _testNode.requestFocus();
                   },
                 ),
               ),
-              // Container to hold the user's prediction results
-              //if (searchController.value.toString().length > 0)
-              //makeResults(searchController.value.toString())
-
               Container(
                 color: Colors.green,
-                height: 100,
                 width: SizeConfig.screenWidth * 0.85,
                 child: Column(
                   children: [
-                    Text(predictions[0]),
-                    Text(predictions[2]),
-                    Text(predictions[1]),
-                    Text(predictions[4]),
-                    Text(predictions[3]),
-                    Text("$result"),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      height: 150,
+                      width: SizeConfig.screenWidth * 0.9,
+                      child: ListView.builder(
+                        itemCount: predictions.length,
+                        itemBuilder: (context, index) {
+                          return Text(predictions[index]);
+                        },
+                      ),
+                    ),
                   ],
                 ),
+              ),
+              GeneralButton(
+                buttonLabel: "Logout",
+                height: SizeConfig.screenHeight * 0.05,
+                width: SizeConfig.screenHeight * 0.1,
+                margin: EdgeInsets.all(10),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
         ),
-
-        // TODO: Restore original logout button
-        // child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     GeneralButton(
-        //       buttonLabel: "Logout",
-        //       height: SizeConfig.screenHeight * 0.05,
-        //       width: SizeConfig.screenHeight * 0.1,
-        //       onTap: () {
-        //         Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //             builder: (context) => LoginPage(),
-        //           ),
-        //         );
-        //       },
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }

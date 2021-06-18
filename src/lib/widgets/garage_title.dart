@@ -6,6 +6,11 @@ import '../size_config.dart';
 import '../theme.dart';
 
 class GarageTitle extends StatelessWidget {
+  final ParkingGarage garage;
+  final double miles;
+  final int lowPrice;
+  final int highPrice;
+
   const GarageTitle({
     Key key,
     @required this.garage,
@@ -13,11 +18,6 @@ class GarageTitle extends StatelessWidget {
     @required this.lowPrice,
     @required this.highPrice,
   }) : super(key: key);
-
-  final ParkingGarage garage;
-  final double miles;
-  final int lowPrice;
-  final int highPrice;
 
   @override
   Widget build(BuildContext context) {

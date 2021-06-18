@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../size_config.dart';
 import '../theme.dart';
-
 import '../models/parking_garage.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/garage_result.dart';
@@ -12,16 +10,15 @@ import '../widgets/draggable_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Completer<GoogleMapController> _controller = Completer();
+  ScrollController singleChildSrollController = new ScrollController();
   TextEditingController _searchController = TextEditingController();
   FocusNode _searchNode = FocusNode();
-
-  List<ParkingGarage> garageResults = [];
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
     int lowPrice = 100;
     int highPrice = 200;
 
-    ScrollController singleChildSrollController = new ScrollController();
-
     // TODO: conditionalize results (if there are no spots in an area)
     return SafeArea(
-      // TODO: Can we make status bar transparent?
       child: Scaffold(
         body: Stack(
           children: [
@@ -66,14 +60,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     top: 7,
                   ),
                   child: SingleChildScrollView(
-                    // controller: scrollController,
                     controller: singleChildSrollController,
                     child: Column(children: [
                       Container(
                         height: SizeConfig.screenHeight * 0.75,
                         child: ListView.separated(
                           controller: scrollController,
-                          // Override the default padding value
                           padding: EdgeInsets.only(
                             top: 30,
                           ),
@@ -100,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            // Search Bar
             Align(
               alignment: Alignment.topCenter,
               child: SearchBar(

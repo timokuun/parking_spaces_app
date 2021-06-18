@@ -1,18 +1,16 @@
-import 'package:car_park_login/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../theme.dart';
-
 import 'home_screen.dart';
 import 'settings.dart';
 import 'active_spots_screen.dart';
 import 'spot_info_screen.dart';
-
 import '../models/parking_spot.dart';
 
 class MainRouter extends StatefulWidget {
   static const String id = '/main';
+
   @override
   _MainRouterState createState() => _MainRouterState();
 }

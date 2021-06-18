@@ -5,14 +5,15 @@ import 'package:carousel_slider/carousel_options.dart';
 import '../models/parking_spot.dart';
 
 class SpotCarousel extends StatefulWidget {
+  final double height;
+  final List<String> images;
+
   const SpotCarousel({
     Key key,
     @required this.height,
     @required this.images,
   }) : super(key: key);
 
-  final double height;
-  final List<String> images;
   @override
   _SpotCarouselState createState() => _SpotCarouselState();
 }

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
+// TODO: Add onTap function
 class SpotBuyButton extends StatelessWidget {
+  final Color buttonColor;
+  final double height;
+  final double width;
+  final int cost;
+
   const SpotBuyButton({
     Key key,
     @required this.height,
@@ -8,11 +14,6 @@ class SpotBuyButton extends StatelessWidget {
     @required this.cost,
     @required this.buttonColor,
   }) : super(key: key);
-
-  final Color buttonColor;
-  final double height;
-  final double width;
-  final int cost;
 
   @override
   Widget build(BuildContext context) {
