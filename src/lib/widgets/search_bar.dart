@@ -7,6 +7,7 @@ class SearchBar extends StatefulWidget {
   final double width;
   final double height;
   final EdgeInsetsGeometry margin;
+  final Function onChanged;
 
   const SearchBar({
     Key key,
@@ -15,6 +16,7 @@ class SearchBar extends StatefulWidget {
     @required double width,
     @required double height,
     @required EdgeInsetsGeometry margin,
+    @required this.onChanged,
   })  : _searchNode = searchNode,
         _searchController = searchController,
         width = width,
@@ -69,16 +71,7 @@ class _SearchBarState extends State<SearchBar> {
               onTap: () {
                 widget._searchNode.requestFocus();
               },
-              // onChanged: (userInput) {
-              //   setState(() {
-              //     widget._searchController.value = TextEditingValue(
-              //       text: userInput,
-              //       selection: TextSelection.fromPosition(
-              //         TextPosition(offset: userInput.length),
-              //       ),
-              //     );
-              //   });
-              // },
+              onChanged: widget.onChanged,
               focusNode: widget._searchNode,
               controller: widget._searchController,
               onSubmitted: (input) {

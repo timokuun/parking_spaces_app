@@ -7,6 +7,7 @@ import '../models/parking_garage.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/garage_result.dart';
 import '../widgets/draggable_indicator.dart';
+import '../services/places_autocompleter.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -18,7 +19,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController singleChildSrollController = new ScrollController();
   TextEditingController _searchController = TextEditingController();
+  final PlacesAutocompleter placesGetter = PlacesAutocompleter();
   FocusNode _searchNode = FocusNode();
+  List<String> predictions = [];
+  String userInput = "";
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +96,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
+            Container(
+              margin: EdgeInsets.only(top: 75),
+              color: Colors.green,
+              width: SizeConfig.screenWidth * 0.85,
+              height: SizeConfig.screenHeight * 0.3,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    height: 150,
+                    width: SizeConfig.screenWidth * 0.9,
+                    // child: ListView.builder(
+                    //   itemCount: predictions.length,
+                    //   itemBuilder: (context, index) {
+                    //     return Text(predictions[index]);
+                    //   },
+                    // ),
+                    child: FutureBuilder(
+                      future: placesGetter.getPredictions(userInput),
+                      builder: (context, snapshot) {
+                        return ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return Text(snapshot.data[index]);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Align(
               alignment: Alignment.topCenter,
               child: SearchBar(
@@ -103,6 +139,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   top: 15,
                   bottom: 5,
                 ),
+                // onChanged: (userInput) async {
+                //   List<String> obtained = [];
+                //   //if (userInput.length > 0) {
+                //   obtained = await placesGetter.getPredictions(userInput);
+                //   //}
+                //   setState(() {
+                //     predictions = obtained;
+                //   });
+                // },
+                onChanged: (input) {
+                  setState(() {
+                    userInput = input;
+                  });
+                },
               ),
             ),
           ],

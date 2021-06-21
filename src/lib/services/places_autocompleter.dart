@@ -17,7 +17,6 @@ class PlacesAutocompleter {
     var predictions = jsonData["results"];
 
     for (var result in predictions) {
-      print("---type: ${result["formatted_address"].runtimeType}");
       results.add(result["formatted_address"]);
     }
 
