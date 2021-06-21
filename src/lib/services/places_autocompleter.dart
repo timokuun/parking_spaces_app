@@ -4,7 +4,7 @@ import 'dart:convert';
 class PlacesAutocompleter {
   PlacesAutocompleter();
 
-  Future<List<String>> getPredictions(String input) async {
+  Future<List<dynamic>> getPredictions(String input) async {
     List<String> results = [];
     String apiKey = "AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ";
 
@@ -16,13 +16,6 @@ class PlacesAutocompleter {
     var jsonData = json.decode(response.body);
     var predictions = jsonData["results"];
 
-    for (var result in predictions) {
-      results.add(result["formatted_address"]);
-    }
-
-    // Not sure how many results we want to display...
-    // if (results.length > 7) return results.take(7);
-
-    return results;
+    return predictions;
   }
 }

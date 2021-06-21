@@ -107,19 +107,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(5),
                     height: 150,
                     width: SizeConfig.screenWidth * 0.9,
-                    // child: ListView.builder(
-                    //   itemCount: predictions.length,
-                    //   itemBuilder: (context, index) {
-                    //     return Text(predictions[index]);
-                    //   },
-                    // ),
                     child: FutureBuilder(
                       future: placesGetter.getPredictions(userInput),
                       builder: (context, snapshot) {
                         return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                            return Text(snapshot.data[index]);
+                            return Text(
+                                snapshot.data[index]["formatted_address"]);
                           },
                         );
                       },
@@ -139,15 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   top: 15,
                   bottom: 5,
                 ),
-                // onChanged: (userInput) async {
-                //   List<String> obtained = [];
-                //   //if (userInput.length > 0) {
-                //   obtained = await placesGetter.getPredictions(userInput);
-                //   //}
-                //   setState(() {
-                //     predictions = obtained;
-                //   });
-                // },
                 onChanged: (input) {
                   setState(() {
                     userInput = input;
