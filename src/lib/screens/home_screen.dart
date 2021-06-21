@@ -7,6 +7,7 @@ import '../models/parking_garage.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/garage_result.dart';
 import '../widgets/draggable_indicator.dart';
+import '../widgets/query_result.dart';
 import '../services/places_autocompleter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,9 +20,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController singleChildSrollController = new ScrollController();
   TextEditingController _searchController = TextEditingController();
-  final PlacesAutocompleter placesGetter = PlacesAutocompleter();
+  // final PlacesAutocompleter placesGetter = PlacesAutocompleter();
   FocusNode _searchNode = FocusNode();
   List<String> predictions = [];
+  bool isSearching = false;
   String userInput = "";
 
   @override
@@ -65,64 +67,76 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: SingleChildScrollView(
                     controller: singleChildSrollController,
-                    child: Column(children: [
-                      Container(
-                        height: SizeConfig.screenHeight * 0.75,
-                        child: ListView.separated(
-                          controller: scrollController,
-                          padding: EdgeInsets.only(
-                            top: 30,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: SizeConfig.screenHeight * 0.75,
+                          child: ListView.separated(
+                            controller: scrollController,
+                            padding: EdgeInsets.only(
+                              top: 30,
+                            ),
+                            separatorBuilder: (_, __) => Divider(
+                              height: 7,
+                            ),
+                            itemBuilder: (context, index) {
+                              // NOTE: First item is the Draggable indicator
+                              return index == 0
+                                  ? DraggableIndicator()
+                                  : GarageResult(
+                                      miles: miles,
+                                      lowPrice: lowPrice,
+                                      highPrice: highPrice,
+                                      garage: result[index - 1],
+                                    );
+                            },
+                            // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
+                            itemCount: result.length + 1,
                           ),
-                          separatorBuilder: (_, __) => Divider(
-                            height: 7,
-                          ),
-                          itemBuilder: (context, index) {
-                            // NOTE: First item is the Draggable indicator
-                            return index == 0
-                                ? DraggableIndicator()
-                                : GarageResult(
-                                    miles: miles,
-                                    lowPrice: lowPrice,
-                                    highPrice: highPrice,
-                                    garage: result[index - 1],
-                                  );
-                          },
-                          // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
-                          itemCount: result.length + 1,
                         ),
-                      ),
-                    ]),
+                      ],
+                    ),
                   ),
                 );
               },
             ),
-            Container(
-              margin: EdgeInsets.only(top: 75),
-              color: Colors.green,
-              width: SizeConfig.screenWidth * 0.85,
-              height: SizeConfig.screenHeight * 0.3,
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    height: 150,
-                    width: SizeConfig.screenWidth * 0.9,
-                    child: FutureBuilder(
-                      future: placesGetter.getPredictions(userInput),
-                      builder: (context, snapshot) {
-                        return ListView.builder(
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            return Text(
-                                snapshot.data[index]["formatted_address"]);
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   margin: EdgeInsets.only(top: 75),
+            //   color: Colors.green,
+            //   width: SizeConfig.screenWidth * 0.85,
+            //   height: SizeConfig.screenHeight * 0.3,
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //         padding: EdgeInsets.all(5),
+            //         height: 150,
+            //         width: SizeConfig.screenWidth * 0.9,
+            //         child: FutureBuilder(
+            //           future: placesGetter.getPredictions(userInput),
+            //           builder: (context, snapshot) {
+            //             return ListView.builder(
+            //               itemCount: snapshot.data.length,
+            //               itemBuilder: (context, index) {
+            //                 return Text(
+            //                     snapshot.data[index]["formatted_address"]);
+            //               },
+            //             );
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            isSearching
+                ? QueryResult(
+                    userInput: userInput,
+                    onResultTap: () {
+                      setState(() {
+                        isSearching = false;
+                      });
+                    },
+                  )
+                : SizedBox(),
             Align(
               alignment: Alignment.topCenter,
               child: SearchBar(
@@ -134,6 +148,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   top: 15,
                   bottom: 5,
                 ),
+                onTap: () {
+                  isSearching = true;
+                  _searchNode.requestFocus();
+                },
                 onChanged: (input) {
                   setState(() {
                     userInput = input;
