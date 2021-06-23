@@ -2,9 +2,15 @@
     package="com.example.car_park_login">
    <application
         android:label="car_park_login"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
+        <!-- TODO: To be deleted line 7-->
+        
+        <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBBy8IKL8U_x96TEPRqtZKEx0C2Kbolq_0"/> -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyBBy8IKL8U_x96TEPRqtZKEx0C2Kbolq_0"/>
+               android:value="AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ"/>
+               <!-- TODO: need to change "__" to "-*2" -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

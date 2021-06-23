@@ -8,7 +8,10 @@ import '../widgets/search_bar.dart';
 import '../widgets/garage_result.dart';
 import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
-import '../services/places_autocompleter.dart';
+import 'dart:collection';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -25,6 +28,64 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> predictions = [];
   bool isSearching = false;
   String userInput = "";
+  // TODO: Need to set to user location
+  LatLng userSearchLatLng = LatLng(32.8800649, -117.2362022);
+  // TODO: List of spots
+  // List<dynamic> spotsResult = [];
+
+  Set<Marker> _markers = HashSet<Marker>();
+  GoogleMapController _mapController;
+
+  void _onMapCreated(GoogleMapController controller) {
+    _mapController = controller;
+
+    setState(() {
+      /* Places ID */
+      _markers.add(
+        Marker(
+          markerId: MarkerId("0"),
+          position: LatLng(32.8800649, -117.2362022),
+          infoWindow: InfoWindow(
+            title: "Leggo",
+            snippet: "Me Gay",
+          ),
+        ),
+      );
+    });
+  }
+
+  void onSearchSelected(LatLng newLatLng) async {
+    // void onSearchSelected(LatLng newLatLng) {
+    final Uri url = Uri.parse("http://10.0.2.2:3000/");
+    var response = await http.get(url);
+    var jsonData = json.decode(response.body)["data"];
+
+    setState(() {
+      userSearchLatLng = newLatLng;
+      isSearching = false;
+      // TODO: populate list of markers
+      _markers.clear();
+      for (var data in jsonData) {
+        _markers.add(
+          Marker(
+            markerId: MarkerId("${data["id"]}"),
+            position: LatLng(data["lat"], -data["lng"]),
+            infoWindow: InfoWindow(
+              title: data["name"],
+              snippet: data["description"],
+            ),
+          ),
+        );
+      }
+
+      final CameraPosition newCameraPos = CameraPosition(
+        target: userSearchLatLng,
+        zoom: 15,
+      );
+      _mapController
+          .animateCamera(CameraUpdate.newCameraPosition(newCameraPos));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
               zoomControlsEnabled: false,
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
-                target: LatLng(37.773972, -122.431297),
+                // target: LatLng(37.773972, -122.431297),
+                target: LatLng(32.8800649, -117.2362022),
                 zoom: 15,
               ),
+              onMapCreated: _onMapCreated,
+              markers: _markers,
             ),
             // TODO: finalize max height for DSS
             DraggableScrollableSheet(
@@ -100,41 +164,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            // Container(
-            //   margin: EdgeInsets.only(top: 75),
-            //   color: Colors.green,
-            //   width: SizeConfig.screenWidth * 0.85,
-            //   height: SizeConfig.screenHeight * 0.3,
-            //   child: Column(
-            //     children: [
-            //       Container(
-            //         padding: EdgeInsets.all(5),
-            //         height: 150,
-            //         width: SizeConfig.screenWidth * 0.9,
-            //         child: FutureBuilder(
-            //           future: placesGetter.getPredictions(userInput),
-            //           builder: (context, snapshot) {
-            //             return ListView.builder(
-            //               itemCount: snapshot.data.length,
-            //               itemBuilder: (context, index) {
-            //                 return Text(
-            //                     snapshot.data[index]["formatted_address"]);
-            //               },
-            //             );
-            //           },
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             isSearching
                 ? QueryResult(
                     userInput: userInput,
-                    onResultTap: () {
-                      setState(() {
-                        isSearching = false;
-                      });
-                    },
+                    onSearchSelected: onSearchSelected,
+                    userSearchLatLng: userSearchLatLng,
                   )
                 : SizedBox(),
             Align(
