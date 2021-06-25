@@ -35,13 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
   LatLng userSearchLatLng = LatLng(32.8800649, -117.2362022);
 
   // TODO: List of spots results from search
-  List<ParkingSpotV2> spotsResult = [];
+  List<ParkingSpotV2> _spotsResult = [];
 
   Set<Marker> _markers = HashSet<Marker>();
   GoogleMapController _mapController;
 
   void _onMapCreated(GoogleMapController controller) {
-    _mapController = controller; 
+    _mapController = controller;
 
     setState(() {
       /* Places ID */
@@ -61,6 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void onSearchSelected(LatLng newLatLng) async {
     final Uri url = Uri.parse("http://10.0.2.2:3000/");
     var response = await http.get(url);
+
+    // List of spots from our server
     var jsonData = json.decode(response.body)["data"];
 
     setState(() {
@@ -69,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       FocusScope.of(context).unfocus();
       // TODO: populate list of markers
       _markers.clear();
+      _spotsResult.clear();
       for (var data in jsonData) {
         _markers.add(
           Marker(
@@ -80,7 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         );
+        // Add parking spots to populate DSS
+        _spotsResult.add(ParkingSpotV2.fromJson(data));
       }
+      print("qqqqqqqqqqqqqqqqqqqq spotsResult size: " +
+          _spotsResult.length.toString());
 
       final CameraPosition newCameraPos = CameraPosition(
         target: userSearchLatLng,
@@ -89,11 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _mapController
           .animateCamera(CameraUpdate.newCameraPosition(newCameraPos));
     });
-  }
-
-  // spotsData is JSON data
-  void populateSpots(spotsData) {
-    spotsResult.add(value)
   }
 
   @override
@@ -156,15 +158,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               // NOTE: First item is the Draggable indicator
                               return index == 0
                                   ? DraggableIndicator()
-                                  : GarageResult(
-                                      miles: miles,
-                                      lowPrice: lowPrice,
-                                      highPrice: highPrice,
-                                      garage: result[index - 1],
+                                  // : GarageResult(
+                                  //     miles: miles,
+                                  //     lowPrice: lowPrice,
+                                  //     highPrice: highPrice,
+                                  //     garage: result[index - 1],
+                                  //   );
+                                  : Container(
+                                      child: Text(
+                                        _spotsResult[index - 1].name,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     );
                             },
                             // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
-                            itemCount: result.length + 1,
+                            // itemCount: result.length + 1,
+                            itemCount: _spotsResult.length + 1,
                           ),
                         ),
                       ],

@@ -52,7 +52,11 @@ class QueryResult extends StatelessWidget {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Icon(Icons.location_city),
+                  leading: Image.network(
+                    snapshot.data[index]["icon"],
+                    color: customCyan,
+                    height: SizeConfig.screenHeight * 0.04,
+                  ),
                   title: Text(snapshot.data[index]["name"]),
                   subtitle: Text(snapshot.data[index]["formatted_address"]),
                   onTap: () {
