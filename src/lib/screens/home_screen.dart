@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../size_config.dart';
 import '../theme.dart';
 import '../models/parking_garage.dart';
+import '../models/parking_spot_v2.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/garage_result.dart';
 import '../widgets/draggable_indicator.dart';
@@ -29,10 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> predictions = [];
   bool isSearching = false;
   String userInput = "";
+
   // TODO: Need to set to user location
   LatLng userSearchLatLng = LatLng(32.8800649, -117.2362022);
-  // TODO: List of spots
-  // List<dynamic> spotsResult = [];
+
+  // TODO: List of spots results from search
+  List<ParkingSpotV2> spotsResult = [];
 
   Set<Marker> _markers = HashSet<Marker>();
   GoogleMapController _mapController;
@@ -56,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onSearchSelected(LatLng newLatLng) async {
-    // void onSearchSelected(LatLng newLatLng) {
     final Uri url = Uri.parse("http://10.0.2.2:3000/");
     var response = await http.get(url);
     var jsonData = json.decode(response.body)["data"];
@@ -64,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       userSearchLatLng = newLatLng;
       isSearching = false;
+      FocusScope.of(context).unfocus();
       // TODO: populate list of markers
       _markers.clear();
       for (var data in jsonData) {
@@ -87,6 +90,11 @@ class _HomeScreenState extends State<HomeScreen> {
           .animateCamera(CameraUpdate.newCameraPosition(newCameraPos));
     });
   }
+
+  // spotsData is JSON data
+  // void populateSpots(spotsData) {
+  //   spotsResult.add(value);
+  // }
 
   @override
   Widget build(BuildContext context) {
