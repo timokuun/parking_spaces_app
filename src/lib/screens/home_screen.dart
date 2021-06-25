@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../size_config.dart';
@@ -164,20 +165,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            isSearching
-                ? QueryResult(
+            if (isSearching)
+              Stack(
+                children: [
+                  // TODO: put icon button inside of QueryResult
+                  QueryResult(
                     userInput: userInput,
                     onSearchSelected: onSearchSelected,
                     userSearchLatLng: userSearchLatLng,
-                  )
-                : SizedBox(),
+                  ),
+                  Positioned(
+                    top: SizeConfig.screenHeight * 0.012,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isSearching = !isSearching;
+                          FocusScope.of(context).unfocus();
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
             Align(
               alignment: Alignment.topCenter,
               child: SearchBar(
                 searchNode: _searchNode,
                 searchController: _searchController,
                 height: SizeConfig.screenHeight * 0.055,
-                width: SizeConfig.screenWidth * 0.88,
+                width: SizeConfig.screenWidth * 0.75,
                 margin: EdgeInsets.only(
                   top: 15,
                   bottom: 5,
