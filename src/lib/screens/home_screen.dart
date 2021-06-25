@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   GoogleMapController _mapController;
 
   void _onMapCreated(GoogleMapController controller) {
-    _mapController = controller;
+    _mapController = controller; 
 
     setState(() {
       /* Places ID */
@@ -92,9 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // spotsData is JSON data
-  // void populateSpots(spotsData) {
-  //   spotsResult.add(value);
-  // }
+  void populateSpots(spotsData) {
+    spotsResult.add(value)
+  }
 
   @override
   Widget build(BuildContext context) {
