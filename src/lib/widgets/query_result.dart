@@ -24,9 +24,20 @@ class QueryResult extends StatelessWidget {
     return FutureBuilder(
       future: placesGetter.getPredictions(userInput),
       builder: (context, snapshot) {
-        print("----------snapshot");
         print(snapshot.data);
-        if (snapshot.connectionState == ConnectionState.waiting) {
+        if (userInput.isEmpty) {
+          return Container(
+            color: Colors.black,
+            alignment: Alignment.center,
+            height: SizeConfig.screenHeight,
+            child: Text(
+              "Search to your hearts desire <3",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
             height: SizeConfig.screenHeight,
             width: SizeConfig.screenWidth,
