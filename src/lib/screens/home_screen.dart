@@ -1,3 +1,4 @@
+import 'package:car_park_login/widgets/spot_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -8,6 +9,7 @@ import '../models/parking_garage.dart';
 import '../models/parking_spot_v2.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/garage_result.dart';
+import '../widgets/spot_result.dart';
 import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
 import 'dart:collection';
@@ -148,11 +150,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: SizeConfig.screenHeight * 0.75,
                           child: ListView.separated(
                             controller: scrollController,
+
                             padding: EdgeInsets.only(
                               top: 30,
                             ),
                             separatorBuilder: (_, __) => Divider(
-                              height: 7,
+                              color: customBlack,
+                              height: 30,
                             ),
                             itemBuilder: (context, index) {
                               // NOTE: First item is the Draggable indicator
@@ -164,12 +168,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   //     highPrice: highPrice,
                                   //     garage: result[index - 1],
                                   //   );
-                                  : Container(
-                                      child: Text(
-                                        _spotsResult[index - 1].name,
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    );
+                                  // : Container(
+                                  //     child: Text(
+                                  //       _spotsResult[index - 1].name,
+                                  //       style: TextStyle(color: Colors.white),
+                                  //     ),
+                                  //   );
+                                  : SpotResult();
                             },
                             // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
                             // itemCount: result.length + 1,
@@ -201,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onPressed: () {
                         setState(() {
-                          isSearching = !isSearching;
+                          isSearching = false;
                           FocusScope.of(context).unfocus();
                         });
                       },
