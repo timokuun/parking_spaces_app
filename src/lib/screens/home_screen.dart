@@ -148,15 +148,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Container(
                           height: SizeConfig.screenHeight * 0.75,
-                          child: ListView.separated(
+                          child: ListView.builder(
                             controller: scrollController,
 
                             padding: EdgeInsets.only(
                               top: 30,
-                            ),
-                            separatorBuilder: (_, __) => Divider(
-                              color: customBlack,
-                              height: 30,
                             ),
                             itemBuilder: (context, index) {
                               // NOTE: First item is the Draggable indicator
