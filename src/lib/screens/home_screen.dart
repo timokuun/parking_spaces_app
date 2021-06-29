@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       userSearchLatLng = newLatLng;
       isSearching = false;
       FocusScope.of(context).unfocus();
-      // TODO: populate list of markers
+      // populate list of markers
       _markers.clear();
       _spotsResult.clear();
       for (var data in jsonData) {
@@ -170,7 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   //       style: TextStyle(color: Colors.white),
                                   //     ),
                                   //   );
-                                  : SpotResult();
+                                  : SpotResult(
+                                      name: _spotsResult[index - 1].name,
+                                      address: _spotsResult[index - 1].address,
+                                      // price: _spotsResult[index-1].price,
+                                      imageUrl:
+                                          _spotsResult[index - 1].imageUrl,
+                                    );
                             },
                             // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
                             // itemCount: result.length + 1,

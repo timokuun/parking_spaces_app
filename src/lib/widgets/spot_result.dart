@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import '../size_config.dart';
 
 class SpotResult extends StatelessWidget {
-  const SpotResult({Key key}) : super(key: key);
+  final name;
+  final address;
+  final price;
+  // final height;
+  final imageUrl;
+
+  const SpotResult({this.name, this.address, this.price = 0, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class SpotResult extends StatelessWidget {
         children: [
           // Spot information
           Positioned(
-            left: 20,
+            left: 10,
             child: Container(
                 height: SizeConfig.screenHeight * 0.17,
                 width: SizeConfig.screenWidth * 0.85,
@@ -26,7 +32,7 @@ class SpotResult extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: customCyan,
-                    width: 3,
+                    width: 2,
                   ),
                   color: Colors.transparent,
                 ),
@@ -34,8 +40,8 @@ class SpotResult extends StatelessWidget {
                   left: 35,
                 ),
                 padding: EdgeInsets.only(
-                  left: 80,
-                  right: 40,
+                  left: 85,
+                  right: 10,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,9 +51,9 @@ class SpotResult extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "University of California, San Diego",
+                          "$name",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
                           ),
@@ -57,7 +63,7 @@ class SpotResult extends StatelessWidget {
                           height: 3,
                         ),
                         Text(
-                          "123 University Ave, La Jolla CA 92092",
+                          "$address",
                           style: TextStyle(
                             color: Colors.grey[400],
                           ),
@@ -79,7 +85,7 @@ class SpotResult extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "\$2/hr",
+                                "0",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -117,14 +123,13 @@ class SpotResult extends StatelessWidget {
           ),
           // TODO: Image (production) / Icon(development)
           Positioned(
-            left: 20,
+            left: 10,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                // "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/school-71.png",
-                "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-                height: 100,
-                width: 100,
+                "$imageUrl",
+                height: 110,
+                width: 110,
                 fit: BoxFit.cover,
               ),
             ),
