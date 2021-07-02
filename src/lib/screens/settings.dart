@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../size_config.dart';
 import '../theme.dart';
+import '../size_config.dart';
 import '../screens/login_screen.dart';
 import '../widgets/general_button.dart';
 import '../services/places_autocompleter.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import '../widgets/panel_widget.dart';
+import '../widgets/draggable_indicator.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String id = '/settings';
@@ -17,6 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final TextEditingController searchController = TextEditingController();
   final PlacesAutocompleter placesGetter = PlacesAutocompleter();
   final FocusNode _testNode = FocusNode();
+  final PanelController _pController = PanelController();
   List<String> predictions = [];
 
   @override
@@ -24,65 +29,50 @@ class _SettingsScreenState extends State<SettingsScreen> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: customBlack,
-        body: Center(
-          child: Column(
+        body: SlidingUpPanel(
+          parallaxEnabled: true,
+          parallaxOffset: 0.075,
+          controller: _pController,
+          color: customBlack,
+          minHeight: SizeConfig.screenHeight * 0.27,
+          maxHeight: SizeConfig.screenHeight * 0.8,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          body: Stack(
             children: [
-              Container(
-                height: SizeConfig.screenHeight * 0.27,
-                width: SizeConfig.screenWidth,
-                child: TextField(
-                  focusNode: _testNode,
-                  controller: searchController,
-                  onChanged: (userInput) async {
-                    List<String> obtained = [];
-                    if (userInput.length > 0) {
-                      obtained = await placesGetter.getPredictions(userInput);
-                    }
+              GoogleMap(
+                zoomControlsEnabled: false,
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(32.8800649, -117.2362022),
+                  zoom: 15,
+                ),
+              ),
+              TextButton(
+                  style: TextButton.styleFrom(backgroundColor: Colors.red),
+                  onPressed: () {
                     setState(() {
-                      predictions = obtained;
+                      _pController.isPanelOpen
+                          ? _pController.close()
+                          : _pController.open();
                     });
                   },
-                  onTap: () {
-                    _testNode.requestFocus();
-                  },
-                ),
-              ),
-              Container(
-                color: Colors.green,
-                width: SizeConfig.screenWidth * 0.85,
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      height: 150,
-                      width: SizeConfig.screenWidth * 0.9,
-                      child: ListView.builder(
-                        itemCount: predictions.length,
-                        itemBuilder: (context, index) {
-                          return Text(predictions[index]);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GeneralButton(
-                buttonLabel: "Logout",
-                height: SizeConfig.screenHeight * 0.05,
-                width: SizeConfig.screenHeight * 0.1,
-                margin: EdgeInsets.all(10),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ),
-                  );
-                },
-              ),
+                  child: Text("Toggle Panel"))
             ],
           ),
+          panelBuilder: (controller) {
+            return Container(
+              height: 150,
+              child: Column(children: [
+                Container(
+                  child: DraggableIndicator(),
+                  padding: EdgeInsets.only(top: 20),
+                ),
+                Container(
+                    height: SizeConfig.screenHeight * 0.74,
+                    child: PanelWidget(controller: controller)),
+              ]),
+            );
+          },
         ),
       ),
     );
