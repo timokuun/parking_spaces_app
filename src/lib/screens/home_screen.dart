@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   GoogleMapController _mapController;
 
-  // TODO: Obtain user location for initial displayed results
+  // TODO: Obtain user location for initial displayed results.
   void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
   }
