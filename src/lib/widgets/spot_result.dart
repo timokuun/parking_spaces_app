@@ -96,7 +96,7 @@ class SpotResult extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "0",
+                                "\$$price/hr",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,

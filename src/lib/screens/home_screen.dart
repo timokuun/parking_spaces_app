@@ -1,6 +1,7 @@
 import 'package:car_park_login/widgets/spot_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../size_config.dart';
@@ -16,6 +17,7 @@ import 'dart:collection';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../providers/providers.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -68,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var jsonData = json.decode(response.body)["data"];
 
     setState(() {
+      context.read(httpResponseProvider);
       userSearchLatLng = newLatLng;
       isSearching = false;
       FocusScope.of(context).unfocus();
@@ -88,8 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
         // Add parking spots to populate DSS
         _spotsResult.add(ParkingSpotV2.fromJson(data));
       }
-      print("qqqqqqqqqqqqqqqqqqqq spotsResult size: " +
-          _spotsResult.length.toString());
 
       final CameraPosition newCameraPos = CameraPosition(
         target: userSearchLatLng,
@@ -112,16 +113,33 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: Stack(
           children: [
-            GoogleMap(
-              zoomControlsEnabled: false,
-              mapType: MapType.normal,
-              initialCameraPosition: CameraPosition(
-                // target: LatLng(37.773972, -122.431297),
-                target: LatLng(32.8800649, -117.2362022),
-                zoom: 15,
-              ),
-              onMapCreated: _onMapCreated,
-              markers: _markers,
+            Consumer(
+              builder: (context, watch, child) {
+                final markerSet = watch(mapMarkerSetProvider);
+                // context.read(httpResponseProvider);
+                return GoogleMap(
+                  zoomControlsEnabled: false,
+                  mapType: MapType.normal,
+                  initialCameraPosition: CameraPosition(
+                    // target: LatLng(37.773972, -122.431297),
+                    target: LatLng(32.8800649, -117.2362022),
+                    zoom: 15,
+                  ),
+                  onMapCreated: _onMapCreated,
+                  markers: markerSet, // _markers
+                );
+              },
+              //             child: GoogleMap(
+              //   zoomControlsEnabled: false,
+              //   mapType: MapType.normal,
+              //   initialCameraPosition: CameraPosition(
+              //     // target: LatLng(37.773972, -122.431297),
+              //     target: LatLng(32.8800649, -117.2362022),
+              //     zoom: 15,
+              //   ),
+              //   onMapCreated: _onMapCreated,
+              //   markers: _markers,
+              // ),
             ),
             // TODO: finalize max height for DSS
             DraggableScrollableSheet(
@@ -148,39 +166,80 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Container(
                           height: SizeConfig.screenHeight * 0.75,
-                          child: ListView.builder(
-                            controller: scrollController,
+                          child: Consumer(
+                            builder: (context, watch, child) {
+                              final results = watch(parkingSpotResultsProvider);
+                              return ListView.builder(
+                                controller: scrollController,
 
-                            padding: EdgeInsets.only(
-                              top: 30,
-                            ),
-                            itemBuilder: (context, index) {
-                              // NOTE: First item is the Draggable indicator
-                              return index == 0
-                                  ? DraggableIndicator()
-                                  // : GarageResult(
-                                  //     miles: miles,
-                                  //     lowPrice: lowPrice,
-                                  //     highPrice: highPrice,
-                                  //     garage: result[index - 1],
-                                  //   );
-                                  // : Container(
-                                  //     child: Text(
-                                  //       _spotsResult[index - 1].name,
-                                  //       style: TextStyle(color: Colors.white),
-                                  //     ),
-                                  //   );
-                                  : SpotResult(
-                                      name: _spotsResult[index - 1].name,
-                                      address: _spotsResult[index - 1].address,
-                                      // price: _spotsResult[index-1].price,
-                                      imageUrl:
-                                          _spotsResult[index - 1].imageUrl,
-                                    );
+                                padding: EdgeInsets.only(
+                                  top: 30,
+                                ),
+                                itemBuilder: (context, index) {
+                                  // NOTE: First item is the Draggable indicator
+                                  return index == 0
+                                      ? DraggableIndicator()
+                                      // : GarageResult(
+                                      //     miles: miles,
+                                      //     lowPrice: lowPrice,
+                                      //     highPrice: highPrice,
+                                      //     garage: result[index - 1],
+                                      //   );
+                                      // : Container(
+                                      //     child: Text(
+                                      //       _spotsResult[index - 1].name,
+                                      //       style: TextStyle(color: Colors.white),
+                                      //     ),
+                                      //   );
+                                      : SpotResult(
+                                          name: results[index - 1].name,
+                                          address: results[index - 1].address,
+                                          price: results[index - 1]
+                                              .price
+                                              .toStringAsFixed(2),
+                                          imageUrl: results[index - 1].imageUrl,
+                                        );
+                                },
+                                // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
+                                // itemCount: result.length + 1,
+                                itemCount: results.length + 1,
+                              );
                             },
-                            // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
-                            // itemCount: result.length + 1,
-                            itemCount: _spotsResult.length + 1,
+                            // child: ListView.builder(
+                            //   controller: scrollController,
+
+                            //   padding: EdgeInsets.only(
+                            //     top: 30,
+                            //   ),
+                            //   itemBuilder: (context, index) {
+                            //     // NOTE: First item is the Draggable indicator
+                            //     return index == 0
+                            //         ? DraggableIndicator()
+                            //         // : GarageResult(
+                            //         //     miles: miles,
+                            //         //     lowPrice: lowPrice,
+                            //         //     highPrice: highPrice,
+                            //         //     garage: result[index - 1],
+                            //         //   );
+                            //         // : Container(
+                            //         //     child: Text(
+                            //         //       _spotsResult[index - 1].name,
+                            //         //       style: TextStyle(color: Colors.white),
+                            //         //     ),
+                            //         //   );
+                            //         : SpotResult(
+                            //             name: _spotsResult[index - 1].name,
+                            //             address:
+                            //                 _spotsResult[index - 1].address,
+                            //             // price: _spotsResult[index-1].price,
+                            //             imageUrl:
+                            //                 _spotsResult[index - 1].imageUrl,
+                            //           );
+                            //   },
+                            //   // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
+                            //   // itemCount: result.length + 1,
+                            //   itemCount: _spotsResult.length + 1,
+                            // ),
                           ),
                         ),
                       ],
