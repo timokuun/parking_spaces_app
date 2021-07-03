@@ -67,6 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: DraggableIndicator(),
                   padding: EdgeInsets.only(top: 20),
                 ),
+                // LISTVIEW BUILDER HERE
                 Container(
                     height: SizeConfig.screenHeight * 0.74,
                     child: PanelWidget(controller: controller)),

@@ -1,23 +1,18 @@
 import 'package:car_park_login/widgets/spot_result.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../size_config.dart';
 import '../theme.dart';
-import '../models/parking_garage.dart';
-import '../models/parking_spot_v2.dart';
+
+import '../providers/providers.dart';
 import '../widgets/search_bar.dart';
-import '../widgets/garage_result.dart';
 import '../widgets/spot_result.dart';
 import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
-import 'dart:collection';
-
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import '../providers/providers.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -29,68 +24,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController singleChildSrollController = new ScrollController();
   TextEditingController _searchController = TextEditingController();
-  // final PlacesAutocompleter placesGetter = PlacesAutocompleter();
+  final PanelController _pController = PanelController();
   FocusNode _searchNode = FocusNode();
-  List<String> predictions = [];
   bool isSearching = false;
   String userInput = "";
+
+  // TODO: Start slide-up panel in the closed position
+  bool firstVisit = true;
 
   // TODO: Need to set to user location
   LatLng userSearchLatLng = LatLng(32.8800649, -117.2362022);
 
-  // TODO: List of spots results from search
-  List<ParkingSpotV2> _spotsResult = [];
-
-  Set<Marker> _markers = HashSet<Marker>();
   GoogleMapController _mapController;
 
+  // TODO: Obtain user location for initial displayed results
   void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
-
-    setState(() {
-      /* Places ID */
-      _markers.add(
-        Marker(
-          markerId: MarkerId("0"),
-          position: LatLng(32.8800649, -117.2362022),
-          infoWindow: InfoWindow(
-            title: "Leggo",
-            snippet: "Me Gay",
-          ),
-        ),
-      );
-    });
   }
 
   void onSearchSelected(LatLng newLatLng) async {
-    final Uri url = Uri.parse("http://10.0.2.2:3000/");
-    var response = await http.get(url);
-
-    // List of spots from our server
-    var jsonData = json.decode(response.body)["data"];
-
     setState(() {
+      firstVisit = false;
+
+      // Update markers and results in future provider
       context.read(httpResponseProvider);
       userSearchLatLng = newLatLng;
       isSearching = false;
       FocusScope.of(context).unfocus();
-      // populate list of markers
-      _markers.clear();
-      _spotsResult.clear();
-      for (var data in jsonData) {
-        _markers.add(
-          Marker(
-            markerId: MarkerId("${data["id"]}"),
-            position: LatLng(data["lat"], -data["lng"]),
-            infoWindow: InfoWindow(
-              title: data["name"],
-              snippet: data["description"],
-            ),
-          ),
-        );
-        // Add parking spots to populate DSS
-        _spotsResult.add(ParkingSpotV2.fromJson(data));
-      }
 
       final CameraPosition newCameraPos = CameraPosition(
         target: userSearchLatLng,
@@ -104,9 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double miles = 1.1;
-    int lowPrice = 100;
-    int highPrice = 200;
 
     // TODO: conditionalize results (if there are no spots in an area)
     return SafeArea(
@@ -116,135 +73,56 @@ class _HomeScreenState extends State<HomeScreen> {
             Consumer(
               builder: (context, watch, child) {
                 final markerSet = watch(mapMarkerSetProvider);
-                // context.read(httpResponseProvider);
-                return GoogleMap(
-                  zoomControlsEnabled: false,
-                  mapType: MapType.normal,
-                  initialCameraPosition: CameraPosition(
-                    // target: LatLng(37.773972, -122.431297),
-                    target: LatLng(32.8800649, -117.2362022),
-                    zoom: 15,
+                final results = watch(parkingSpotResultsProvider);
+                return SlidingUpPanel(
+                  parallaxEnabled: true,
+                  parallaxOffset: 0.075,
+                  controller: _pController,
+                  color: customBlack,
+                  minHeight: SizeConfig.screenHeight * 0.27,
+                  maxHeight: SizeConfig.screenHeight * 0.8,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  body: Stack(
+                    children: [
+                      GoogleMap(
+                        zoomControlsEnabled: false,
+                        mapType: MapType.normal,
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(32.8800649, -117.2362022),
+                          zoom: 15,
+                        ),
+                        onMapCreated: _onMapCreated,
+                        markers: markerSet,
+                      ),
+                    ],
                   ),
-                  onMapCreated: _onMapCreated,
-                  markers: markerSet, // _markers
-                );
-              },
-              //             child: GoogleMap(
-              //   zoomControlsEnabled: false,
-              //   mapType: MapType.normal,
-              //   initialCameraPosition: CameraPosition(
-              //     // target: LatLng(37.773972, -122.431297),
-              //     target: LatLng(32.8800649, -117.2362022),
-              //     zoom: 15,
-              //   ),
-              //   onMapCreated: _onMapCreated,
-              //   markers: _markers,
-              // ),
-            ),
-            // TODO: finalize max height for DSS
-            DraggableScrollableSheet(
-              initialChildSize: 0.4,
-              // TODO: Need to reach last element of list but DSS gets too tall
-              maxChildSize: 0.85,
-              minChildSize: 0.1,
-              builder: (context, scrollController) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: customBlack,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                  // Prevent List View from overflowing DSS
-                  padding: EdgeInsets.only(
-                    top: 7,
-                  ),
-                  child: SingleChildScrollView(
-                    controller: singleChildSrollController,
-                    child: Column(
-                      children: [
+                  panelBuilder: (controller) {
+                    return Container(
+                      height: 150,
+                      child: Column(children: [
                         Container(
-                          height: SizeConfig.screenHeight * 0.75,
-                          child: Consumer(
-                            builder: (context, watch, child) {
-                              final results = watch(parkingSpotResultsProvider);
-                              return ListView.builder(
-                                controller: scrollController,
-
-                                padding: EdgeInsets.only(
-                                  top: 30,
-                                ),
-                                itemBuilder: (context, index) {
-                                  // NOTE: First item is the Draggable indicator
-                                  return index == 0
-                                      ? DraggableIndicator()
-                                      // : GarageResult(
-                                      //     miles: miles,
-                                      //     lowPrice: lowPrice,
-                                      //     highPrice: highPrice,
-                                      //     garage: result[index - 1],
-                                      //   );
-                                      // : Container(
-                                      //     child: Text(
-                                      //       _spotsResult[index - 1].name,
-                                      //       style: TextStyle(color: Colors.white),
-                                      //     ),
-                                      //   );
-                                      : SpotResult(
-                                          name: results[index - 1].name,
-                                          address: results[index - 1].address,
-                                          price: results[index - 1]
-                                              .price
-                                              .toStringAsFixed(2),
-                                          imageUrl: results[index - 1].imageUrl,
-                                        );
-                                },
-                                // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
-                                // itemCount: result.length + 1,
-                                itemCount: results.length + 1,
+                          child: DraggableIndicator(),
+                          padding: EdgeInsets.only(top: 20),
+                        ),
+                        Container(
+                          height: SizeConfig.screenHeight * 0.74,
+                          child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            controller: controller,
+                            itemBuilder: (context, index) {
+                              return SpotResult(
+                                name: results[index].name,
+                                address: results[index].address,
+                                price: results[index].price.toStringAsFixed(2),
+                                imageUrl: results[index].imageUrl,
                               );
                             },
-                            // child: ListView.builder(
-                            //   controller: scrollController,
-
-                            //   padding: EdgeInsets.only(
-                            //     top: 30,
-                            //   ),
-                            //   itemBuilder: (context, index) {
-                            //     // NOTE: First item is the Draggable indicator
-                            //     return index == 0
-                            //         ? DraggableIndicator()
-                            //         // : GarageResult(
-                            //         //     miles: miles,
-                            //         //     lowPrice: lowPrice,
-                            //         //     highPrice: highPrice,
-                            //         //     garage: result[index - 1],
-                            //         //   );
-                            //         // : Container(
-                            //         //     child: Text(
-                            //         //       _spotsResult[index - 1].name,
-                            //         //       style: TextStyle(color: Colors.white),
-                            //         //     ),
-                            //         //   );
-                            //         : SpotResult(
-                            //             name: _spotsResult[index - 1].name,
-                            //             address:
-                            //                 _spotsResult[index - 1].address,
-                            //             // price: _spotsResult[index-1].price,
-                            //             imageUrl:
-                            //                 _spotsResult[index - 1].imageUrl,
-                            //           );
-                            //   },
-                            //   // NOTE: ITEMCOUNT has to be the length + 1 (including indicator)
-                            //   // itemCount: result.length + 1,
-                            //   itemCount: _spotsResult.length + 1,
-                            // ),
+                            itemCount: results.length,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
+                      ]),
+                    );
+                  },
                 );
               },
             ),
