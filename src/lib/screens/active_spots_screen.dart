@@ -30,8 +30,6 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ActiveSpotsNumberIndicator(
-              numSpots: widget.userSpots.length,
-              padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(
                 top: SizeConfig.screenHeight * 0.075,
                 bottom: SizeConfig.screenHeight * 0.01,

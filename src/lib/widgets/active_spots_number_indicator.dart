@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ActiveSpotsNumberIndicator extends StatelessWidget {
-  final int numSpots;
+import '../providers/providers.dart';
+
+class ActiveSpotsNumberIndicator extends ConsumerWidget {
   final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
 
-  const ActiveSpotsNumberIndicator({
-    Key key,
-    this.numSpots,
-    this.margin,
-    this.padding,
-  }) : super(key: key);
+  ActiveSpotsNumberIndicator({this.margin});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, watch) {
+    final activeSpots = watch(userActiveSpotsProvider);
     return Container(
-      padding: padding,
+      padding: EdgeInsets.all(10),
       margin: margin,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Text(
-        "$numSpots Active Spots",
+        "${activeSpots.length} Active Spots",
         style: TextStyle(color: Colors.white),
       ),
     );

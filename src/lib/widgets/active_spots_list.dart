@@ -37,7 +37,8 @@ class ActiveSpotsList extends ConsumerWidget {
           return context.read(userActiveSpotsProvider.notifier).loadList();
         },
         child: ListView.builder(
-          physics: BouncingScrollPhysics(),
+          physics:
+              BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           padding: EdgeInsets.all(0),
           itemBuilder: (buildContext, index) {
             final currTime = "5";
