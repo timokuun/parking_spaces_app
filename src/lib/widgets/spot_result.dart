@@ -1,25 +1,15 @@
+import 'package:car_park_login/models/parking_spot_v2.dart';
+import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import '../size_config.dart';
 
 // TODO: add bool for in activeSpotsScreen or in search result
 class SpotResult extends StatelessWidget {
-  final name;
-  final address;
-  final price;
-  final height;
-  final imageUrl;
-
-  // bool for rendering price/height or currTime
-  final bought;
+  final ParkingSpotV2 spot;
 
   const SpotResult({
-    this.name,
-    this.address,
-    this.price = 0,
-    this.imageUrl,
-    this.height,
-    this.bought,
+    this.spot,
   });
 
   @override
@@ -30,7 +20,14 @@ class SpotResult extends StatelessWidget {
       splashColor: customCyan,
       radius: 500,
       onTap: () {
-        print("pressed");
+        // Pass spot id to SpotInfoScreen for DB call
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => SpotInfoScreen(
+              spot: spot,
+            ),
+          ),
+        );
       },
       child: Container(
         height: SizeConfig.screenHeight * 0.17,
@@ -71,7 +68,7 @@ class SpotResult extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "$name",
+                            "${spot.name}",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -83,7 +80,7 @@ class SpotResult extends StatelessWidget {
                             height: 3,
                           ),
                           Text(
-                            "$address",
+                            "${spot.address}}",
                             style: TextStyle(
                               color: Colors.grey[400],
                               // color: Colors.grey,
@@ -92,7 +89,7 @@ class SpotResult extends StatelessWidget {
                           ),
                         ],
                       ),
-                      bought
+                      spot.bought
                           ? Row(
                               children: [Text("Current Rental Time: 1:30")],
                             )
@@ -109,7 +106,7 @@ class SpotResult extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "\$$price/hr",
+                                      "\$${spot.price}/hr",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -129,7 +126,7 @@ class SpotResult extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "$height",
+                                      "${spot.height}",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -149,7 +146,7 @@ class SpotResult extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  "$imageUrl",
+                  "${spot.imageUrl}",
                   height: 110,
                   width: 110,
                   fit: BoxFit.cover,

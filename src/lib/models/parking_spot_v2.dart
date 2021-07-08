@@ -13,6 +13,7 @@ class ParkingSpotV2 {
   final String imageUrl;
   final double avgRating;
   final int numRatings;
+  final bool bought;
 
   ParkingSpotV2.fromJson(Map<String, dynamic> jsonData)
       : id = jsonData['id'].toString(),
@@ -23,6 +24,7 @@ class ParkingSpotV2 {
         imageUrl = jsonData['imageUrl'],
         avgRating = jsonData["avgRating"],
         numRatings = jsonData["numRatings"],
+        bought = jsonData["bought"],
         height = double.parse(jsonData["height"].toString()) > 0
             ? double.parse(jsonData["height"].toString())
             : "No limit";

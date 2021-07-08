@@ -7,6 +7,10 @@ const obj1 = {
     description: "This is UCSD",
     imageUrl: "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
     price: 7.00,
+    height: -1,
+    avgRating: 4.1,
+    numRatings: 28,
+    bought: true,
   };
   
 const obj2 = {
@@ -18,6 +22,10 @@ const obj2 = {
     description: "This is Café Ventanas",
     imageUrl: "https://hdh-web.ucsd.edu/images/Dining/cafeventanas/facility-Cafe-Ventanas.jpg",
     price: 5.00,
+    height: 150,
+    avgRating: 4.3,
+    numRatings: 10,
+    bought: true,
 };
 
 const obj3 = {
@@ -29,6 +37,10 @@ const obj3 = {
     description: "This is Pines",
     imageUrl: "https://i.ytimg.com/vi/hQqdNd0tfKI/maxresdefault.jpg",
     price: 3.00,
+    height: 160,
+    avgRating: 3.9,
+    numRatings: 5,
+    bought: false,
 };
 
 const obj4 = {
@@ -40,6 +52,10 @@ const obj4 = {
     description: "This is Soda & Swine",
     imageUrl: "https://cdn.vox-cdn.com/thumbor/TNj4RZuk8xI9f5RRk8pjZWRU9hI=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19207521/DSCF4204.jpg",
     price: 4.00,
+    height: 140,
+    avgRating: 5,
+    numRatings: 3,
+    bought: true,
 };
 
 const obj5 = {
@@ -51,11 +67,15 @@ const obj5 = {
     description: "This is Scripps Institution of Oceanography",
     imageUrl: "https://www.hollisbc.com/wp-content/uploads/UCSD_ScrippsForum_0001_Carolines.jpg",
     price: 7.00,
+    height: 120,
+    avgRating: 0,
+    numRatings: 0,
+    bought: true,
 };
 
  const user1 = {
     id: 1,
-    active_spots : [obj1,obj2,obj3],
+    active_spots : [obj1,obj2, obj3, obj4, obj5],
 };
 
 

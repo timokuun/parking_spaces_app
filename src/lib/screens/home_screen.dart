@@ -111,12 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             controller: controller,
                             itemBuilder: (context, index) {
                               return SpotResult(
-                                name: results[index].name,
-                                address: results[index].address,
-                                price: results[index].price.toStringAsFixed(2),
-                                imageUrl: results[index].imageUrl,
-                                height: results[index].height,
-                                bought: false,
+                                spot: results[index],
                               );
                             },
                             itemCount: results.length,

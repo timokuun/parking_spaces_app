@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:car_park_login/models/parking_spot_v2.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import './map_markers_list.dart';
@@ -17,7 +20,7 @@ final userActiveSpotsProvider = StateNotifierProvider((_) => UserActiveSpots());
 
 // Future provider to get http response
 final httpResponseProvider = FutureProvider<dynamic>((ref) async {
-  final response = await getResponse();
+  final response = await httpGetAllSpots();
 
   // Adds all markers in the response
   ref.read(mapMarkerSetProvider.notifier).addMarkerFromResponse(response);
@@ -26,4 +29,14 @@ final httpResponseProvider = FutureProvider<dynamic>((ref) async {
   ref
       .read(parkingSpotResultsProvider.notifier)
       .addResultsFromResponse(response);
+});
+
+// Future provider to obtain a specific spot from ID (http call)
+final httpSpotFromIdProvider =
+    FutureProvider.family<ParkingSpotV2, String>((ref, spotID) async {
+  final response = await httpGetSpotFromId(spotID);
+  final decodedSpot = jsonDecode(response.body);
+
+  final spot = ParkingSpotV2.fromJson(decodedSpot);
+  return spot;
 });

@@ -45,12 +45,7 @@ class ActiveSpotsList extends ConsumerWidget {
             // DateTime timeLeft = calcRentTime(spots[index].startTime);
             // final left = DateFormat.Hm().format(timeLeft);
             return SpotResult(
-              name: activeSpots[index].name,
-              address: activeSpots[index].address,
-              price: activeSpots[index].price,
-              imageUrl: activeSpots[index].imageUrl,
-              height: activeSpots[index].height,
-              bought: true,
+              spot: activeSpots[index],
             );
           },
           itemCount: activeSpots.length,

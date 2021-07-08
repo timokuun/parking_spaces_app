@@ -21,6 +21,7 @@ class SpotCarousel extends StatefulWidget {
 class _SpotCarouselState extends State<SpotCarousel> {
   int _current = 0;
 
+  // TODO: Correct the page indicator for spot pictures
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -47,7 +48,7 @@ class _SpotCarouselState extends State<SpotCarousel> {
                     return Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(e),
+                          image: NetworkImage(e),
                           fit: BoxFit.fill,
                         ),
                         borderRadius: BorderRadius.circular(10),
@@ -61,8 +62,8 @@ class _SpotCarouselState extends State<SpotCarousel> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: spots1.map((url) {
-            int index = spots1.indexOf(url);
+          children: widget.images.map((url) {
+            int index = widget.images.indexOf(url);
             return Container(
               width: 6.0,
               height: 6.0,

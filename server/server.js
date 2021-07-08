@@ -1,5 +1,6 @@
 const data = require("./data.js");
 const express = require("express");
+// const bodyParser = 
 const app = express();
 
 const user1 = require("./data.js").user1;
@@ -16,6 +17,13 @@ app.get("/active-spots", (req, res) => {
     return res.status(200).json(user1.active_spots);
   }, 2000);
   // return res.status(200).json(user1.active_spots);
+});
+
+app.get("/:id", (req, res) => {
+  var id = parseInt(req.params.id);
+  var spot = arrayObj.data.filter(spot => spot.id === id)[0];
+  console.log(spot);
+  return res.status(200).json(spot);
 });
 
 console.log(`listening at ${port}`);
