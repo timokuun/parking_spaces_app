@@ -20,6 +20,8 @@ class PanelWidget extends StatelessWidget {
           name: "Pangea L1S5",
           address: "9500 Gilman Drive, La Jolla, CA 92093",
           price: 5,
+          bought: false,
+          height: 130,
           imageUrl:
               "https://extension.ucsd.edu/UCSDExtension/media/UCSDExtensionsMedia/about-extension/locations-maps-and-transportation/pangea2.jpg",
         ),
@@ -27,6 +29,8 @@ class PanelWidget extends StatelessWidget {
           name: "Pangea L1S6",
           address: "9500 Gilman Drive, La Jolla, CA 92093",
           price: 5,
+          bought: false,
+          height: 140,
           imageUrl:
               "https://extension.ucsd.edu/UCSDExtension/media/UCSDExtensionsMedia/about-extension/locations-maps-and-transportation/pangea2.jpg",
         ),
@@ -34,6 +38,8 @@ class PanelWidget extends StatelessWidget {
           name: "Hopkins L3S12",
           address: "Voigt Dr, La Jolla, CA 92093",
           price: 3,
+          bought: false,
+          height: 150,
           imageUrl:
               "https://watrydesign.com/uploads/sliders/projects/large/Watry-Design-UC-San-Diego-1024wx500h.jpg",
         ),
@@ -41,6 +47,8 @@ class PanelWidget extends StatelessWidget {
           name: "Hopkins L3S19",
           address: "Voigt Dr, La Jolla, CA 92093",
           price: 3,
+          bought: false,
+          height: 150,
           imageUrl:
               "https://watrydesign.com/uploads/sliders/projects/large/Watry-Design-UC-San-Diego-1024wx500h.jpg",
         ),
@@ -48,6 +56,8 @@ class PanelWidget extends StatelessWidget {
           name: "Osler L4S05",
           address: "9500 Gilman Dr, San Diego, CA 92161",
           price: 4,
+          bought: false,
+          height: 150,
           imageUrl:
               "https://www.watrydesign.com/uploads/sliders/projects/large/190826133a-1024wx500h.jpg",
         ),

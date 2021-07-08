@@ -1,19 +1,22 @@
+import 'package:car_park_login/models/parking_spot_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
 import '../size_config.dart';
-import '../models/parking_spot.dart';
+// import '../models/parking_spot.dart';
 import '../models/Color.dart';
 import '../widgets/spot_amenity_label.dart';
 import '../widgets/spot_carousel.dart';
 import '../widgets/spot_info_box.dart';
 import '../widgets/spot_owner_box.dart';
 import '../widgets/spot_buy_button.dart';
+import '../models/parking_spot_v2.dart';
 
 class SpotInfoScreen extends StatefulWidget {
   static const String id = '/spot_info';
-  final ParkingSpot spot;
+  // final ParkingSpot spot;
+  final ParkingSpotV2 spot;
   final bool bought;
 
   SpotInfoScreen({
@@ -52,7 +55,8 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                     alignment: Alignment.topLeft,
                     children: [
                       SpotCarousel(
-                        images: widget.spot.spotImages,
+                        // TODO: Implement List<String> for spot images
+                        images: [widget.spot.imageUrl, widget.spot.imageUrl],
                         height: SizeConfig.screenHeight * 0.4,
                       ),
                       Row(
@@ -86,8 +90,6 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                       // TODO: make a mapping for this, ParkingSpot will need list of strings for amenities
                       SpotAmenityLabel(
                         name: "Lights",
-                        height: SizeConfig.screenHeight * 0.045,
-                        width: SizeConfig.screenWidth * 0.25,
                         backgroundColor: Colors.white,
                         fontColor: OurColor.ourCyan,
                       ),

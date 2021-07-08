@@ -26,10 +26,10 @@ class _MainRouterState extends State<MainRouter> {
       ActiveSpotsScreen(
         userSpots: spots,
       ),
-      SpotInfoScreen(
-        spot: spots[0],
-        bought: false,
-      ),
+      // SpotInfoScreen(
+      //   spot: spots[0],
+      //   bought: false,
+      // ),
       SettingsScreen(),
     ];
   }
@@ -50,13 +50,13 @@ class _MainRouterState extends State<MainRouter> {
         inactiveColorPrimary: Colors.white,
         iconSize: 25,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.info),
-        title: ("Spot Info"),
-        activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
-      ),
+      // PersistentBottomNavBarItem(
+      //   icon: Icon(Icons.info),
+      //   title: ("Spot Info"),
+      //   activeColorPrimary: customCyan,
+      //   inactiveColorPrimary: Colors.white,
+      //   iconSize: 25,
+      // ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.settings),
         title: ("Profile"),

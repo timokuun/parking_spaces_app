@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../size_config.dart';
-import '../models/parking_spot.dart';
+import '../models/parking_spot_v2.dart';
+// import '../models/parking_spot.dart';
 
 class SpotInfoBox extends StatelessWidget {
-  final ParkingSpot spot;
+  // final ParkingSpot spot;
+  final ParkingSpotV2 spot;
 
   const SpotInfoBox({
     Key key,
@@ -56,7 +58,10 @@ class SpotInfoBox extends StatelessWidget {
                     size: 35,
                   ),
                   Text(
-                    "${spot.avgRating}(${spot.totalRatings})",
+                    // TODO: Implement rating
+                    spot.numRatings == 0
+                        ? "No Ratings"
+                        : "${spot.avgRating}(${spot.numRatings})",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -86,7 +91,7 @@ class SpotInfoBox extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${spot.maxHeight}cm",
+                    "${spot.height}cm",
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.white,

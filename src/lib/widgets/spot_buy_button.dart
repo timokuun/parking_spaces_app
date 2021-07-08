@@ -5,7 +5,7 @@ class SpotBuyButton extends StatelessWidget {
   final Color buttonColor;
   final double height;
   final double width;
-  final int cost;
+  final double cost;
 
   const SpotBuyButton({
     Key key,

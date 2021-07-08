@@ -7,10 +7,20 @@ class SpotResult extends StatelessWidget {
   final name;
   final address;
   final price;
-  // final height;
+  final height;
   final imageUrl;
 
-  const SpotResult({this.name, this.address, this.price = 0, this.imageUrl});
+  // bool for rendering price/height or currTime
+  final bought;
+
+  const SpotResult({
+    this.name,
+    this.address,
+    this.price = 0,
+    this.imageUrl,
+    this.height,
+    this.bought,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -82,52 +92,54 @@ class SpotResult extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "Price",
-                                style: TextStyle(
-                                  // color: Colors.grey,
-                                  color: Colors.grey[400],
-                                  fontSize: 12,
+                      bought
+                          ? Row(
+                              children: [Text("Current Rental Time: 1:30")],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Price",
+                                      style: TextStyle(
+                                        color: Colors.grey[400],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      "\$$price/hr",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Text(
-                                "\$$price/hr",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Height",
+                                      style: TextStyle(
+                                        color: Colors.grey[400],
+                                        // color: Colors.grey,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      "$height",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "Height",
-                                style: TextStyle(
-                                  color: Colors.grey[400],
-                                  // color: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              Text(
-                                "150cm",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
+                              ],
+                            )
                     ],
                   )),
             ),

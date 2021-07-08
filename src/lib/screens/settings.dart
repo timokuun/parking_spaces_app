@@ -3,8 +3,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../theme.dart';
 import '../size_config.dart';
-import '../screens/login_screen.dart';
-import '../widgets/general_button.dart';
 import '../services/places_autocompleter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../widgets/panel_widget.dart';

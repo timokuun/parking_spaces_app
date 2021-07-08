@@ -115,6 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 address: results[index].address,
                                 price: results[index].price.toStringAsFixed(2),
                                 imageUrl: results[index].imageUrl,
+                                height: results[index].height,
+                                bought: false,
                               );
                             },
                             itemCount: results.length,

@@ -2,25 +2,19 @@ import 'package:flutter/material.dart';
 
 class SpotAmenityLabel extends StatelessWidget {
   final String name;
-  final double height;
-  final double width;
   final Color backgroundColor;
   final Color fontColor;
 
-  const SpotAmenityLabel({
-    Key key,
+  SpotAmenityLabel({
     @required this.name,
-    @required this.height,
-    @required this.width,
     @required this.backgroundColor,
     @required this.fontColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width,
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(10),

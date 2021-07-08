@@ -49,6 +49,8 @@ class ActiveSpotsList extends ConsumerWidget {
               address: activeSpots[index].address,
               price: activeSpots[index].price,
               imageUrl: activeSpots[index].imageUrl,
+              height: activeSpots[index].height,
+              bought: true,
             );
           },
           itemCount: activeSpots.length,
