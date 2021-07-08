@@ -2,6 +2,7 @@ import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import '../size_config.dart';
 
+// TODO: add bool for in activeSpotsScreen or in search result
 class SpotResult extends StatelessWidget {
   final name;
   final address;

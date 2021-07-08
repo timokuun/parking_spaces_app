@@ -23,20 +23,25 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Column(
-        children: [
-          ActiveSpotsNumberIndicator(
-            numSpots: widget.userSpots.length,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(
-              top: SizeConfig.screenHeight * 0.075,
-              bottom: SizeConfig.screenHeight * 0.01,
+      body: Container(
+        height: SizeConfig.screenHeight * 0.94,
+        width: SizeConfig.screenWidth,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ActiveSpotsNumberIndicator(
+              numSpots: widget.userSpots.length,
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(
+                top: SizeConfig.screenHeight * 0.075,
+                bottom: SizeConfig.screenHeight * 0.01,
+              ),
             ),
-          ),
-          ActiveSpotsList(
-            userSpots: widget.userSpots,
-          ),
-        ],
+            ActiveSpotsList(
+              userSpots: widget.userSpots,
+            ),
+          ],
+        ),
       ),
     );
   }
