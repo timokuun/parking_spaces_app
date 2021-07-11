@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import './map_markers_list.dart';
 import './user_active_spots.dart';
 import './parking_spots_resultsV2.dart';
+import './location_provider.dart';
 import './http_response_getter.dart';
 
 // State notifier for list of MapMarkers
@@ -17,6 +18,9 @@ final parkingSpotResultsProvider =
 
 // State notifier for list of parking spot results
 final userActiveSpotsProvider = StateNotifierProvider((_) => UserActiveSpots());
+
+// State notifier for Location Data
+final userLocationProvider = StateNotifierProvider((_) => UserLocation());
 
 // Future provider to get http response
 final httpResponseProvider = FutureProvider<dynamic>((ref) async {

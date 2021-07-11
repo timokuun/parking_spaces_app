@@ -13,6 +13,7 @@ import '../widgets/search_bar.dart';
 import '../widgets/spot_result.dart';
 import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
+import 'package:location/location.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -64,7 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
+    // check user location permission
+    context.read(userLocationProvider.notifier).initLocation();
     // TODO: conditionalize results (if there are no spots in an area)
     return SafeArea(
       child: Scaffold(

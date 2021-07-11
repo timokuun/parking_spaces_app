@@ -30,9 +30,9 @@ dependencies:
 
   flutter_riverpod: ^0.14.0+3
 
-  geocoder: ^0.2.1
+  # geocoder: ^0.2.1
 
-  geocoding: ^1.0.5
+  # geocoding: ^1.0.5
 
   google_maps_flutter: ^2.0.3
 
@@ -43,6 +43,8 @@ dependencies:
   persistent_bottom_nav_bar: any
 
   sliding_up_panel: ^2.0.0+1
+
+  location: ^4.2.0
 
 dev_dependencies:
   flutter_test:

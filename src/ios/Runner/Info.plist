@@ -41,5 +41,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<!-- TODO: Modify message maybe -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires access to your location to search for parking.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app requires access to your location to search for parking.</string>
 </dict>
 </plist>
