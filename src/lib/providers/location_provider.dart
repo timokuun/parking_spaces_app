@@ -10,6 +10,10 @@ class UserLocation extends StateNotifier<Location> {
   PermissionStatus _permissionGranted;
   LocationData _locationData;
 
+  Location get state {
+    return state;
+  }
+
   void initLocation() async {
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {

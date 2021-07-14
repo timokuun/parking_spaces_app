@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   FocusNode _searchNode = FocusNode();
   bool isSearching = false;
   String userInput = "";
+  double fabHeight = 135;
 
   // TODO: Start slide-up panel in the closed position
   bool firstVisit = true;
@@ -81,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   parallaxOffset: 0.075,
                   controller: _pController,
                   color: customBlack,
-                  minHeight: SizeConfig.screenHeight * 0.27,
-                  maxHeight: SizeConfig.screenHeight * 0.8,
+                  minHeight: SizeConfig.screenHeight * 0.15, // 0.27
+                  maxHeight: SizeConfig.screenHeight * 0.7,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   body: Stack(
                     children: [
@@ -95,9 +96,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onMapCreated: _onMapCreated,
                         markers: markerSet,
+
+                        // With Location package, shows user location on the map
+                        myLocationEnabled: true,
+                        myLocationButtonEnabled: false,
                       ),
                     ],
                   ),
+                  onPanelSlide: (position) {
+                    setState(() {
+                      final panelHeightDifference =
+                          (SizeConfig.screenHeight * 0.7) -
+                              (SizeConfig.screenHeight * 0.15);
+                      fabHeight = position * panelHeightDifference + 135;
+                    });
+                  },
                   panelBuilder: (controller) {
                     return Container(
                       height: 150,
@@ -107,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.only(top: 20),
                         ),
                         Container(
-                          height: SizeConfig.screenHeight * 0.74,
+                          height: SizeConfig.screenHeight * 0.64,
                           child: ListView.builder(
                             physics: BouncingScrollPhysics(),
                             controller: controller,
@@ -152,6 +165,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+            Positioned(
+              right: 20,
+              bottom: fabHeight,
+              child: FloatingActionButton(
+                child: Icon(Icons.my_location),
+                foregroundColor: Colors.white,
+                backgroundColor: customCyan,
+                onPressed: () {},
+              ),
+            ),
             Align(
               alignment: Alignment.topCenter,
               child: SearchBar(
