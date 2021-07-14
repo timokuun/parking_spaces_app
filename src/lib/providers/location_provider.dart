@@ -1,8 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:location/location.dart';
 
-class UserLocation extends StateNotifier<Location> {
-  UserLocation() : super(Location());
+class UserLocation extends StateNotifier<LocationData> {
+  UserLocation()
+      : super(LocationData.fromMap({
+          "latitude": 0.0,
+          "longitude": 0.0,
+        }));
 
   Location location = new Location();
 
@@ -10,7 +14,7 @@ class UserLocation extends StateNotifier<Location> {
   PermissionStatus _permissionGranted;
   LocationData _locationData;
 
-  Location get state {
+  LocationData get locationData {
     return state;
   }
 
@@ -31,9 +35,9 @@ class UserLocation extends StateNotifier<Location> {
       }
     }
 
-    _locationData = await location.getLocation();
+    state = await location.getLocation();
 
-    print(
-        "_locationData = ${_locationData.latitude}, ${_locationData.longitude}");
+    // print(
+    //     "_locationData = ${_locationData.latitude}, ${_locationData.longitude}");
   }
 }

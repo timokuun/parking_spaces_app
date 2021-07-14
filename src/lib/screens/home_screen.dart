@@ -4,6 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:location/location.dart';
+import 'dart:async';
 
 import '../size_config.dart';
 import '../theme.dart';
@@ -13,7 +15,6 @@ import '../widgets/search_bar.dart';
 import '../widgets/spot_result.dart';
 import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
-import 'package:location/location.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -26,10 +27,19 @@ class _HomeScreenState extends State<HomeScreen> {
   ScrollController singleChildSrollController = new ScrollController();
   TextEditingController _searchController = TextEditingController();
   final PanelController _pController = PanelController();
+  GoogleMapController _mapController;
   FocusNode _searchNode = FocusNode();
   bool isSearching = false;
   String userInput = "";
   double fabHeight = 135;
+  Location _location = Location();
+  StreamSubscription<LocationData> locSubscription;
+  bool firstTimeToUserLoc = true;
+
+  // Used to obtain location permissions
+  bool _serviceEnabled = false;
+  PermissionStatus _permissionGranted;
+  LocationData _userLocData;
 
   // TODO: Start slide-up panel in the closed position
   bool firstVisit = true;
@@ -37,11 +47,42 @@ class _HomeScreenState extends State<HomeScreen> {
   // TODO: Need to set to user location
   LatLng userSearchLatLng = LatLng(32.8800649, -117.2362022);
 
-  GoogleMapController _mapController;
+  void cancelSubscription() {
+    locSubscription.cancel();
+  }
 
   // TODO: Obtain user location for initial displayed results.
   void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
+    locSubscription = _location.onLocationChanged.listen(
+      (loc) {
+        print("serviceEnabled: $_serviceEnabled");
+        print("_permissionGranted: $_permissionGranted");
+        print("_userLocData: $_userLocData");
+        if (firstTimeToUserLoc) {
+          // if (firstTimeToUserLoc && _serviceEnabled) {
+          //if (_permissionGranted == PermissionStatus.granted) {
+          _mapController.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(
+                target: LatLng(loc.latitude, loc.longitude),
+              ),
+            ),
+          );
+          _location.onLocationChanged.listen((loc) {
+            setState(() {
+              _userLocData = LocationData.fromMap(
+                  {"latitude": loc.latitude, "longitude": loc.longitude});
+            });
+          });
+          //}
+          firstTimeToUserLoc = false;
+        } else {
+          // } else if (!firstTimeToUserLoc && _serviceEnabled) {
+          cancelSubscription();
+        }
+      },
+    );
   }
 
   void onSearchSelected(LatLng newLatLng) async {
@@ -58,16 +99,51 @@ class _HomeScreenState extends State<HomeScreen> {
         target: userSearchLatLng,
         zoom: 15,
       );
+      // TODO: update new camera pos var
       _mapController
           .animateCamera(CameraUpdate.newCameraPosition(newCameraPos));
     });
+  }
+
+  void initLocation() async {
+    _serviceEnabled = await _location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await _location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    // Checking if prev permission exists
+    var locPermission = await _location.hasPermission();
+
+    // If not, we shall ask for location permission
+    if (locPermission == PermissionStatus.denied) {
+      locPermission = await _location.requestPermission();
+      setState(() {
+        _permissionGranted = locPermission;
+        print("locPermission: $_permissionGranted");
+      });
+
+      // User rejects location permissions
+      if (locPermission != PermissionStatus.granted) {
+        return;
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initLocation();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     // check user location permission
-    context.read(userLocationProvider.notifier).initLocation();
+    // context.read(userLocationProvider.notifier).initLocation();
+
     // TODO: conditionalize results (if there are no spots in an area)
     return SafeArea(
       child: Scaffold(
@@ -77,6 +153,8 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, watch, child) {
                 final markerSet = watch(mapMarkerSetProvider);
                 final results = watch(parkingSpotResultsProvider);
+                final userLocation = watch(userLocationProvider.notifier);
+
                 return SlidingUpPanel(
                   parallaxEnabled: true,
                   parallaxOffset: 0.075,
@@ -87,20 +165,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   body: Stack(
                     children: [
-                      GoogleMap(
-                        zoomControlsEnabled: false,
-                        mapType: MapType.normal,
-                        initialCameraPosition: CameraPosition(
-                          target: LatLng(32.8800649, -117.2362022),
-                          zoom: 15,
-                        ),
-                        onMapCreated: _onMapCreated,
-                        markers: markerSet,
+                      _permissionGranted == PermissionStatus.granted
+                          ? GoogleMap(
+                              zoomControlsEnabled: false,
+                              mapType: MapType.normal,
+                              initialCameraPosition: CameraPosition(
+                                target: LatLng(32.8800649, -117.2362022),
+                                zoom: 15,
+                              ),
+                              onMapCreated: _onMapCreated,
+                              markers: markerSet,
 
-                        // With Location package, shows user location on the map
-                        myLocationEnabled: true,
-                        myLocationButtonEnabled: false,
-                      ),
+                              // With Location package, shows user location on the map
+                              myLocationEnabled: true,
+                              myLocationButtonEnabled: false,
+                            )
+                          // Pseudo-map without user location
+                          : GoogleMap(
+                              zoomControlsEnabled: false,
+                              mapType: MapType.normal,
+                              initialCameraPosition: CameraPosition(
+                                target: LatLng(32.8800649, -117.2362022),
+                                zoom: 15,
+                              ),
+                              onMapCreated: _onMapCreated,
+                              markers: markerSet,
+                            )
                     ],
                   ),
                   onPanelSlide: (position) {
@@ -165,16 +255,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            Positioned(
-              right: 20,
-              bottom: fabHeight,
-              child: FloatingActionButton(
-                child: Icon(Icons.my_location),
-                foregroundColor: Colors.white,
-                backgroundColor: customCyan,
-                onPressed: () {},
+            if (_userLocData != null)
+              Positioned(
+                right: 20,
+                bottom: fabHeight,
+                child: FloatingActionButton(
+                  child: Icon(Icons.my_location),
+                  foregroundColor: Colors.white,
+                  backgroundColor: customCyan,
+                  onPressed: () {
+                    _mapController.animateCamera(
+                      CameraUpdate.newCameraPosition(
+                        CameraPosition(
+                          target: LatLng(
+                              _userLocData.latitude, _userLocData.longitude),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
             Align(
               alignment: Alignment.topCenter,
               child: SearchBar(
