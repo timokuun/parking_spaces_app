@@ -9,6 +9,7 @@ ThemeData lightThemeData(BuildContext context) {
   return ThemeData.light().copyWith(
     backgroundColor: Colors.white,
     primaryColor: customCyan,
+    errorColor: Colors.red,
     iconTheme: IconThemeData(color: Colors.white),
   );
 }
@@ -17,6 +18,7 @@ ThemeData darkThemeData(BuildContext context) {
   return ThemeData.dark().copyWith(
     backgroundColor: customBlack,
     primaryColor: customCyan,
+    errorColor: Colors.red,
     iconTheme: IconThemeData(color: Colors.white),
   );
 }

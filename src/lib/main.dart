@@ -1,10 +1,10 @@
-import 'package:car_park_login/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'theme.dart';
+import './screens/login_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

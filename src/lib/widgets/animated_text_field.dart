@@ -1,46 +1,55 @@
 import 'package:flutter/material.dart';
+import '../theme.dart';
 
 // TODO: Add actual function for onTap
+// TODO: Removed container height because it warped error message
+
 class AnimatedTextField extends StatelessWidget {
-  final double height;
   final double width;
   final EdgeInsetsGeometry margin;
-  final FocusNode _textNode;
+  final FocusNode textNode;
   final TextEditingController fieldController;
   final String fieldLabel;
   final bool isPassword;
+  final Function(String input) validator;
+  final Function(String input) onSaved;
+  final Function(String input) onSubmit;
+  final TextInputAction textInputAction;
+  final TextInputType textInputType;
 
-  const AnimatedTextField(
+  AnimatedTextField(
       {Key key,
-      @required this.height,
       @required this.width,
       @required this.margin,
-      @required FocusNode textNode,
+      @required this.textNode,
       @required this.fieldController,
       @required this.fieldLabel,
-      @required this.isPassword})
-      : _textNode = textNode,
-        super(key: key);
+      this.textInputAction = TextInputAction.done,
+      this.textInputType,
+      this.validator,
+      this.onSaved,
+      this.onSubmit,
+      this.isPassword = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
       width: width,
       margin: margin,
-      child: TextField(
-        style: TextStyle(
-          color: Colors.white,
-        ),
-        onTap: () => _textNode.requestFocus(),
-        focusNode: _textNode,
-        obscureText: isPassword,
+      child: TextFormField(
+        focusNode: textNode,
         controller: fieldController,
+        obscureText: isPassword,
+        textInputAction: textInputAction,
+        keyboardType: textInputType,
+        autocorrect: false,
+        style: TextStyle(color: Colors.white),
+        onTap: () => textNode.requestFocus(),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(20),
           labelText: fieldLabel,
           labelStyle: TextStyle(
-            color: (_textNode.hasFocus || fieldController.text.isNotEmpty)
+            color: (textNode.hasFocus || fieldController.text.isNotEmpty)
                 ? Colors.white
                 : Colors.grey,
           ),
@@ -60,7 +69,28 @@ class AnimatedTextField extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(20),
           ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: fieldController.text.isEmpty
+                  ? Theme.of(context).errorColor
+                  : customCyan,
+              width: 2.0,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: fieldController.text.isEmpty
+                  ? Theme.of(context).errorColor
+                  : customCyan,
+              width: 4.0,
+            ),
+          ),
         ),
+        validator: validator,
+        onSaved: onSaved,
+        onFieldSubmitted: onSubmit,
       ),
     );
   }
