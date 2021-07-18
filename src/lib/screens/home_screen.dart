@@ -45,13 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
   PermissionStatus _permissionGranted;
   LocationData _userLocData;
 
-  // TODO: To be deteled
-  /* DEBUG */
-  LatLng corner1 = LatLng(0, 0);
-  LatLng corner2 = LatLng(0, 0);
-  Set<Marker> testMarkerSet = new HashSet();
-  /* END OF DEBUG */
-
   // TODO: ---------FOR onCamerMove functionalities---------
   double currentZoom = 12;
 
@@ -119,11 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  /* --------------------------------------------------TESTING-------------------------------------------------- */
   void onCameraMoveSearch(CameraPosition cameraPos) async {
-    print(
-        "----------------------------cameraPos.target----------------------------");
-    print(cameraPos.target);
     LatLng midPoint = cameraPos.target;
     double newZoomLevel = await _mapController.getZoomLevel();
 
@@ -131,23 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() {
       currentZoom = newZoomLevel;
-
-      /* Debug */
-      testMarkerSet = HashSet<Marker>();
-      testMarkerSet.add(
-        Marker(
-          markerId: MarkerId("1"),
-          position: LatLng(midPoint.latitude, midPoint.longitude),
-          infoWindow: InfoWindow(
-            title: "CameraPos",
-          ),
-        ),
-      );
-      /* End Debug */
     });
   }
-
-  /* --------------------------------------------------END TESTING-------------------------------------------------- */
 
   void initLocation() async {
     _serviceEnabled = await _location.serviceEnabled();
