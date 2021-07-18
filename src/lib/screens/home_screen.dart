@@ -46,9 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
   LocationData _userLocData;
 
   // TODO: To be deteled
+  /* DEBUG */
   LatLng corner1 = LatLng(0, 0);
   LatLng corner2 = LatLng(0, 0);
   Set<Marker> testMarkerSet = new HashSet();
+  /* END OF DEBUG */
 
   // TODO: ---------FOR onCamerMove functionalities---------
   double currentZoom = 12;
@@ -118,90 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   /* --------------------------------------------------TESTING-------------------------------------------------- */
-
-  /****** NOT ACCURATE ******/
-  LatLng calcMidPoint(double lat1, double lon1, double lat2, double lon2) {
-    double dLon = math.radians(lon2 - lon1);
-
-    lat1 = math.radians(lat1);
-    lat2 = math.radians(lat2);
-    lon1 = math.radians(lon1);
-
-    double bx = cos(lat2) * cos(dLon);
-    double by = cos(lat2) * sin(dLon);
-    double lat3 = atan2(sin(lat1) + sin(lat2),
-        sqrt((cos(lat1) + bx) * (cos(lat1) + bx) + by * by));
-    double lon3 = lon1 + atan2(by, cos(lat1) + bx);
-
-    double lat3_degree = math.degrees(lat3);
-    double lon3_degree = math.degrees(lon3);
-
-    return LatLng(lat3_degree, lon3_degree);
-  }
-
-  /****** NOTE: This was using our own "calcMidPoint" to calculate midpoint on the map, however it's not really accurate ******/
-  /* Decided to use Google Map's "onCameraMove" where it provides the LatLng for the center of the map */
-  // void onCameraIdleSearch() async {
-  //   final visibleRegion = await _mapController.getVisibleRegion();
-  //   print(
-  //       "------------------------------visible region------------------------------");
-  //   print(visibleRegion);
-  //   corner1 = visibleRegion.northeast;
-  //   corner2 = visibleRegion.southwest;
-
-  //   LatLng midPoint = calcMidPoint(corner1.latitude, corner1.longitude,
-  //       corner2.latitude, corner2.longitude);
-
-  //   print(midPoint);
-
-  //   onSearchSelected(midPoint);
-
-  //   double newZoomLevel = await _mapController.getZoomLevel();
-
-  //   print(
-  //       "---------------------------------newZoomLevel---------------------------------");
-  //   print(newZoomLevel);
-
-  //   setState(() {
-  //     corner1 = visibleRegion.northeast;
-  //     corner2 = visibleRegion.southwest;
-  //     testMarkerSet = HashSet<Marker>();
-  //     testMarkerSet.add(
-  //       Marker(
-  //         markerId: MarkerId("1"),
-  //         position: LatLng(corner1.latitude, corner1.longitude),
-  //         infoWindow: InfoWindow(
-  //           title: "Corner 1",
-  //         ),
-  //       ),
-  //     );
-  //     testMarkerSet.add(
-  //       Marker(
-  //         markerId: MarkerId("2"),
-  //         position: LatLng(corner2.latitude, corner2.longitude),
-  //         infoWindow: InfoWindow(
-  //           title: "Corner 2",
-  //         ),
-  //       ),
-  //     );
-  //     testMarkerSet.add(
-  //       Marker(
-  //         markerId: MarkerId("3"),
-  //         position: LatLng(midPoint.latitude, midPoint.longitude),
-  //         infoWindow: InfoWindow(
-  //           title: "midPoint",
-  //         ),
-  //       ),
-  //     );
-  //     currentZoom = newZoomLevel;
-  //   });
-  // }
-
-  /* --------------------------Decided to use this one-------------------------- */
   void onCameraMoveSearch(CameraPosition cameraPos) async {
-    print(
-        "------------------------Apparently it is moving :)------------------------");
-
     print(
         "----------------------------cameraPos.target----------------------------");
     print(cameraPos.target);
@@ -212,6 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() {
       currentZoom = newZoomLevel;
+
+      /* Debug */
       testMarkerSet = HashSet<Marker>();
       testMarkerSet.add(
         Marker(
@@ -222,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       );
+      /* End Debug */
     });
   }
 
