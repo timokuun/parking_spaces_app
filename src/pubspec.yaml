@@ -46,6 +46,8 @@ dependencies:
 
   location: ^4.2.0
 
+  vector_math: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

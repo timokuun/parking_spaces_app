@@ -1,3 +1,7 @@
+import 'dart:collection';
+import 'dart:math';
+import 'package:vector_math/vector_math.dart' as math;
+
 import 'package:car_park_login/widgets/spot_result.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -40,6 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _serviceEnabled = false;
   PermissionStatus _permissionGranted;
   LocationData _userLocData;
+
+  // TODO: To be deteled
+  LatLng corner1 = LatLng(0, 0);
+  LatLng corner2 = LatLng(0, 0);
+  Set<Marker> testMarkerSet = new HashSet();
+
+  // TODO: ---------FOR onCamerMove functionalities---------
+  double currentZoom = 12;
 
   // TODO: Start slide-up panel in the closed position
   bool firstVisit = true;
@@ -97,13 +109,123 @@ class _HomeScreenState extends State<HomeScreen> {
 
       final CameraPosition newCameraPos = CameraPosition(
         target: userSearchLatLng,
-        zoom: 15,
+        zoom: currentZoom,
       );
       // TODO: update new camera pos var
       _mapController
           .animateCamera(CameraUpdate.newCameraPosition(newCameraPos));
     });
   }
+
+  /* --------------------------------------------------TESTING-------------------------------------------------- */
+
+  /****** NOT ACCURATE ******/
+  LatLng calcMidPoint(double lat1, double lon1, double lat2, double lon2) {
+    double dLon = math.radians(lon2 - lon1);
+
+    lat1 = math.radians(lat1);
+    lat2 = math.radians(lat2);
+    lon1 = math.radians(lon1);
+
+    double bx = cos(lat2) * cos(dLon);
+    double by = cos(lat2) * sin(dLon);
+    double lat3 = atan2(sin(lat1) + sin(lat2),
+        sqrt((cos(lat1) + bx) * (cos(lat1) + bx) + by * by));
+    double lon3 = lon1 + atan2(by, cos(lat1) + bx);
+
+    double lat3_degree = math.degrees(lat3);
+    double lon3_degree = math.degrees(lon3);
+
+    return LatLng(lat3_degree, lon3_degree);
+  }
+
+  /****** NOTE: This was using our own "calcMidPoint" to calculate midpoint on the map, however it's not really accurate ******/
+  /* Decided to use Google Map's "onCameraMove" where it provides the LatLng for the center of the map */
+  // void onCameraIdleSearch() async {
+  //   final visibleRegion = await _mapController.getVisibleRegion();
+  //   print(
+  //       "------------------------------visible region------------------------------");
+  //   print(visibleRegion);
+  //   corner1 = visibleRegion.northeast;
+  //   corner2 = visibleRegion.southwest;
+
+  //   LatLng midPoint = calcMidPoint(corner1.latitude, corner1.longitude,
+  //       corner2.latitude, corner2.longitude);
+
+  //   print(midPoint);
+
+  //   onSearchSelected(midPoint);
+
+  //   double newZoomLevel = await _mapController.getZoomLevel();
+
+  //   print(
+  //       "---------------------------------newZoomLevel---------------------------------");
+  //   print(newZoomLevel);
+
+  //   setState(() {
+  //     corner1 = visibleRegion.northeast;
+  //     corner2 = visibleRegion.southwest;
+  //     testMarkerSet = HashSet<Marker>();
+  //     testMarkerSet.add(
+  //       Marker(
+  //         markerId: MarkerId("1"),
+  //         position: LatLng(corner1.latitude, corner1.longitude),
+  //         infoWindow: InfoWindow(
+  //           title: "Corner 1",
+  //         ),
+  //       ),
+  //     );
+  //     testMarkerSet.add(
+  //       Marker(
+  //         markerId: MarkerId("2"),
+  //         position: LatLng(corner2.latitude, corner2.longitude),
+  //         infoWindow: InfoWindow(
+  //           title: "Corner 2",
+  //         ),
+  //       ),
+  //     );
+  //     testMarkerSet.add(
+  //       Marker(
+  //         markerId: MarkerId("3"),
+  //         position: LatLng(midPoint.latitude, midPoint.longitude),
+  //         infoWindow: InfoWindow(
+  //           title: "midPoint",
+  //         ),
+  //       ),
+  //     );
+  //     currentZoom = newZoomLevel;
+  //   });
+  // }
+
+  /* --------------------------Decided to use this one-------------------------- */
+  void onCameraMoveSearch(CameraPosition cameraPos) async {
+    print(
+        "------------------------Apparently it is moving :)------------------------");
+
+    print(
+        "----------------------------cameraPos.target----------------------------");
+    print(cameraPos.target);
+    LatLng midPoint = cameraPos.target;
+    double newZoomLevel = await _mapController.getZoomLevel();
+
+    onSearchSelected(midPoint);
+
+    setState(() {
+      currentZoom = newZoomLevel;
+      testMarkerSet = HashSet<Marker>();
+      testMarkerSet.add(
+        Marker(
+          markerId: MarkerId("1"),
+          position: LatLng(midPoint.latitude, midPoint.longitude),
+          infoWindow: InfoWindow(
+            title: "CameraPos",
+          ),
+        ),
+      );
+    });
+  }
+
+  /* --------------------------------------------------END TESTING-------------------------------------------------- */
 
   void initLocation() async {
     _serviceEnabled = await _location.serviceEnabled();
@@ -161,6 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   controller: _pController,
                   color: customBlack,
                   minHeight: SizeConfig.screenHeight * 0.15, // 0.27
+                  // minHeight: SizeConfig.screenHeight * 0.01,
                   maxHeight: SizeConfig.screenHeight * 0.7,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   body: Stack(
@@ -170,11 +293,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               zoomControlsEnabled: false,
                               mapType: MapType.normal,
                               initialCameraPosition: CameraPosition(
+                                // TODO: this LatLng should be _userLocData
                                 target: LatLng(32.8800649, -117.2362022),
-                                zoom: 15,
+                                zoom: currentZoom,
                               ),
                               onMapCreated: _onMapCreated,
-                              markers: markerSet,
+                              onCameraMove: onCameraMoveSearch,
+                              // onCameraMoveStarted: onCameraIdleSearch,
+                              // markers: markerSet,
+                              markers: testMarkerSet,
 
                               // With Location package, shows user location on the map
                               myLocationEnabled: true,
@@ -186,10 +313,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               mapType: MapType.normal,
                               initialCameraPosition: CameraPosition(
                                 target: LatLng(32.8800649, -117.2362022),
-                                zoom: 15,
+                                zoom: currentZoom,
                               ),
                               onMapCreated: _onMapCreated,
-                              markers: markerSet,
+                              onCameraMove: onCameraMoveSearch,
+                              // onCameraMoveStarted: onCameraIdleSearch,
+                              // markers: markerSet,
+                              markers: testMarkerSet,
                             )
                     ],
                   ),
@@ -269,6 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         CameraPosition(
                           target: LatLng(
                               _userLocData.latitude, _userLocData.longitude),
+                          zoom: currentZoom,
                         ),
                       ),
                     );

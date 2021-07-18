@@ -22,7 +22,7 @@ class ParkingSpotV2 {
         address = jsonData['address'],
         price = double.parse(jsonData['price'].toString()),
         imageUrl = jsonData['imageUrl'],
-        avgRating = jsonData["avgRating"],
+        avgRating = double.parse(jsonData["avgRating"].toString()),
         numRatings = jsonData["numRatings"],
         bought = jsonData["bought"],
         height = double.parse(jsonData["height"].toString()) > 0
