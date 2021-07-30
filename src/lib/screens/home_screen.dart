@@ -112,10 +112,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  /* TODO: Radius constraint */
   void onCameraMoveSearch(CameraPosition cameraPos) async {
     LatLng midPoint = cameraPos.target;
     double newZoomLevel = await _mapController.getZoomLevel();
 
+    // TODO: Set constraint here
     onSearchSelected(midPoint);
 
     setState(() {
@@ -196,8 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               onMapCreated: _onMapCreated,
                               onCameraMove: onCameraMoveSearch,
                               // onCameraMoveStarted: onCameraIdleSearch,
-                              // markers: markerSet,
-                              markers: testMarkerSet,
+                              markers: markerSet,
+                              // markers: testMarkerSet,
 
                               // With Location package, shows user location on the map
                               myLocationEnabled: true,
@@ -214,8 +216,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               onMapCreated: _onMapCreated,
                               onCameraMove: onCameraMoveSearch,
                               // onCameraMoveStarted: onCameraIdleSearch,
-                              // markers: markerSet,
-                              markers: testMarkerSet,
+                              markers: markerSet,
+                              // markers: testMarkerSet,
                             )
                     ],
                   ),

@@ -26,6 +26,10 @@ final userLocationProvider = StateNotifierProvider((_) => UserLocation());
 final httpResponseProvider = FutureProvider<dynamic>((ref) async {
   final response = await httpGetAllSpots();
 
+  print(
+      "============================================response============================================");
+  print(response);
+
   // Adds all markers in the response
   ref.read(mapMarkerSetProvider.notifier).addMarkerFromResponse(response);
 
