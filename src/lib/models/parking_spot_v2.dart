@@ -15,6 +15,19 @@ class ParkingSpotV2 {
   final int numRatings;
   final bool bought;
 
+// Default constructor used to create dummy favorites tab
+  const ParkingSpotV2(
+      {this.id,
+      this.coords,
+      this.name,
+      this.address,
+      this.price,
+      this.height,
+      this.imageUrl,
+      this.avgRating,
+      this.numRatings,
+      this.bought});
+
   ParkingSpotV2.fromJson(Map<String, dynamic> jsonData)
       : id = jsonData['id'].toString(),
         coords = LatLng(jsonData['lat'], jsonData['lng']),
@@ -29,3 +42,17 @@ class ParkingSpotV2 {
             ? double.parse(jsonData["height"].toString())
             : "No limit";
 }
+
+const spot1V2 = ParkingSpotV2(
+  id: "1",
+  coords: LatLng(32.8801, 117.234),
+  name: "UCSD",
+  address: "9500 Gilman Drive, La Jolla, CA",
+  price: 7.0,
+  height: 150,
+  imageUrl:
+      "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
+  avgRating: 4.1,
+  numRatings: 28,
+  bought: true,
+);

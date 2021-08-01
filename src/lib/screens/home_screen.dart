@@ -283,7 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            if (_userLocData != null)
+            if (_userLocData != null && !isSearching)
               Positioned(
                 right: 20,
                 bottom: fabHeight,

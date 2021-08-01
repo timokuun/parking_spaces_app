@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 import '../theme.dart';
+import './user_settings_tab.dart';
+import './user_favorites_tab.dart';
 
 // Handles which app mode the user is in
 enum AppModes { parker, spacer }
@@ -119,18 +121,8 @@ class _UserScreenState extends State<UserScreen>
                       color: customBlack,
                       child: Center(child: Text("TBD")),
                     ),
-                    Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                      color: customBlack,
-                      child: Center(child: Text("Favorites")),
-                    ),
-                    Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                      color: customBlack,
-                      child: Center(child: Text("Settings")),
-                    ),
+                    UserFavoritesTab(),
+                    UserSettingsTab(),
                   ],
                   controller: _tabController,
                 ),
