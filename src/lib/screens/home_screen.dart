@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
     double newZoomLevel = await _mapController.getZoomLevel();
 
     // TODO: Set constraint here
-    onSearchSelected(midPoint);
+    // onSearchSelected(midPoint);
 
     setState(() {
       currentZoom = newZoomLevel;

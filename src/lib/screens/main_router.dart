@@ -1,12 +1,10 @@
-import 'package:car_park_login/widgets/query_result.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../theme.dart';
-import 'home_screen.dart';
-import 'settings.dart';
-import 'active_spots_screen.dart';
-import 'spot_info_screen.dart';
+import './home_screen.dart';
+import './user_screen.dart';
+import './active_spots_screen.dart';
 import '../models/parking_spot.dart';
 
 class MainRouter extends StatefulWidget {
@@ -30,7 +28,7 @@ class _MainRouterState extends State<MainRouter> {
       //   spot: spots[0],
       //   bought: false,
       // ),
-      SettingsScreen(),
+      UserScreen(),
     ];
   }
 
@@ -38,7 +36,7 @@ class _MainRouterState extends State<MainRouter> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
-        title: ("ActiveSpots"),
+        title: ("Home"),
         activeColorPrimary: customCyan,
         inactiveColorPrimary: Colors.white,
         iconSize: 25,
@@ -50,15 +48,8 @@ class _MainRouterState extends State<MainRouter> {
         inactiveColorPrimary: Colors.white,
         iconSize: 25,
       ),
-      // PersistentBottomNavBarItem(
-      //   icon: Icon(Icons.info),
-      //   title: ("Spot Info"),
-      //   activeColorPrimary: customCyan,
-      //   inactiveColorPrimary: Colors.white,
-      //   iconSize: 25,
-      // ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
+        icon: Icon(Icons.person),
         title: ("Profile"),
         activeColorPrimary: customCyan,
         inactiveColorPrimary: Colors.white,
