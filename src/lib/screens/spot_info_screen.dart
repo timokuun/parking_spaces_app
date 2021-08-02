@@ -17,6 +17,9 @@ import '../widgets/spot_buy_button.dart';
 import '../models/parking_spot_v2.dart';
 import '../providers/providers.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 class SpotInfoScreen extends StatefulWidget {
   static const String id = '/spot_info';
   // final ParkingSpot spot;
@@ -63,14 +66,15 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                               // TODO: Implement List<String> for spot images
                               images: [spot.imageUrl, spot.imageUrl],
                               // height: SizeConfig.screenHeight * 0.4,
-                              height: SizeConfig.proportionalHeight * 41,
+                              height: 40.h,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                    vertical: 12,
+                                    // vertical: 12,
+                                    vertical: 1.5.h,
                                   ),
                                   child: IconButton(
                                     onPressed: () {
@@ -78,7 +82,8 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                                     },
                                     icon: Icon(
                                       Icons.chevron_left,
-                                      size: 60,
+                                      // size: 60,
+                                      size: 43.sp,
                                       color: Theme.of(context).primaryColor,
                                     ),
                                   ),
@@ -102,11 +107,12 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                             Container(
                               // height: SizeConfig.screenHeight * 0.6,
                               // width: SizeConfig.screenWidth * 0.7,
-                              height: SizeConfig.proportionalHeight * 61,
-                              width: SizeConfig.proportionalWidth * 70,
+                              height: 60.h,
+                              width: 70.w,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white),
-                                borderRadius: BorderRadius.circular(10),
+                                // borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.sp),
                                 color: Colors.white,
                               ),
                               child: GoogleMap(
@@ -137,8 +143,8 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                       child: SpotBuyButton(
                         // height: SizeConfig.screenHeight * 0.065,
                         // width: SizeConfig.screenWidth * 0.8,
-                        height: SizeConfig.proportionalHeight * 6.6,
-                        width: SizeConfig.proportionalWidth * 80,
+                        height: 6.5.h,
+                        width: 80.w,
                         buttonColor: OurColor.ourCyan,
                         cost: widget.spot.price,
                       ),

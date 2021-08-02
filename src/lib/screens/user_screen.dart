@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../size_config.dart';
 import '../theme.dart';
 import './user_settings_tab.dart';
 import './user_favorites_tab.dart';
+
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
 
 // Handles which app mode the user is in
 enum AppModes { parker, spacer }
@@ -41,7 +43,6 @@ class _UserScreenState extends State<UserScreen>
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -55,7 +56,8 @@ class _UserScreenState extends State<UserScreen>
                 // TODO: Use actual user profile image
                 child: CircleAvatar(
                   backgroundColor: customCyan,
-                  radius: 50,
+                  // radius: 50,
+                  radius: 34.sp,
                 ),
               ),
 
@@ -63,7 +65,8 @@ class _UserScreenState extends State<UserScreen>
               Text(
                 "Jonathon",
                 style: TextStyle(
-                    fontSize: 32,
+                    // fontSize: 32,
+                    fontSize: 22.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w800),
               ),
@@ -76,26 +79,38 @@ class _UserScreenState extends State<UserScreen>
                       ? Icons.directions_car_outlined
                       : Icons.assignment,
                   color: Colors.white,
-                  size: 24,
+                  // size: 24,
+                  size: 17.sp,
                 ),
                 label: Text(
                   appMode == AppModes.parker ? "Parker" : "Spacer",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  style: TextStyle(
+                    // fontSize: 16,
+                    fontSize: 12.sp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
 
               // Color the tabBar
               Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: EdgeInsets.only(
+                  // top: 10,
+                  top: 1.h,
+                ),
                 color: customBlack,
                 child: TabBar(
                   unselectedLabelColor: Colors.white,
-                  labelStyle:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                  labelStyle: TextStyle(
+                    // fontSize: 18,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
                   unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w400),
                   labelColor: Colors.white,
                   indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    // borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8.sp),
                     color: customCyan,
                   ),
                   tabs: [
@@ -105,8 +120,10 @@ class _UserScreenState extends State<UserScreen>
                   ],
                   controller: _tabController,
                   indicatorSize: TabBarIndicatorSize.tab,
+                  // indicatorPadding:
+                  //     EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                   indicatorPadding:
-                      EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                      EdgeInsets.symmetric(vertical: 5.sp, horizontal: 12.sp),
                 ),
               ),
 

@@ -1,7 +1,3 @@
-import 'dart:collection';
-import 'dart:math';
-import 'package:vector_math/vector_math.dart' as math;
-
 import 'package:car_park_login/widgets/spot_result.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -20,6 +16,9 @@ import '../widgets/spot_result.dart';
 import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
 
@@ -35,7 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
   FocusNode _searchNode = FocusNode();
   bool isSearching = false;
   String userInput = "";
-  double fabHeight = 135;
+  // double fabHeight = 135;
+  double fabHeight = 95.sp;
   Location _location = Location();
   StreamSubscription<LocationData> locSubscription;
   bool firstTimeToUserLoc = true;
@@ -182,9 +182,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: customBlack,
                   // minHeight: SizeConfig.screenHeight * 0.15, // 0.27
                   // maxHeight: SizeConfig.screenHeight * 0.7,
-                  minHeight: SizeConfig.proportionalHeight * 15,
-                  maxHeight: SizeConfig.proportionalHeight * 72,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  minHeight: 15.h,
+                  maxHeight: 70.h,
+                  // borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(15.sp)),
                   body: Stack(
                     children: [
                       _permissionGranted == PermissionStatus.granted
@@ -227,10 +229,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       // final panelHeightDifference =
                       //     (SizeConfig.screenHeight * 0.7) -
                       //         (SizeConfig.screenHeight * 0.15);
-                      final panelHeightDifference =
-                          (SizeConfig.proportionalHeight * 72) -
-                              (SizeConfig.proportionalHeight * 15);
-                      fabHeight = position * panelHeightDifference + 130;
+
+                      final panelHeightDifference = (70.h) - (15.h);
+
+                      fabHeight = position * panelHeightDifference + 95.sp;
                     });
                   },
                   panelBuilder: (controller) {
@@ -239,11 +241,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(children: [
                         Container(
                           child: DraggableIndicator(),
-                          padding: EdgeInsets.only(top: 20),
+                          // padding: EdgeInsets.only(top: 20),
+                          padding: EdgeInsets.only(top: 2.5.h),
                         ),
                         Container(
                           // TODO: Correct to proportionalHeight once connected to server
-                          height: SizeConfig.screenHeight * 0.64,
+                          // height: SizeConfig.screenHeight * 0.64,
+                          height: 64.h,
                           child: ListView.builder(
                             physics: BouncingScrollPhysics(),
                             controller: controller,
@@ -272,12 +276,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Positioned(
                     // top: SizeConfig.screenHeight * 0.012,
-                    top: SizeConfig.proportionalHeight * 1.2,
+                    top: 1.2.h,
                     child: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         color: Colors.white,
-                        size: 40,
+                        // size: 40,
+                        size: 28.sp,
                       ),
                       onPressed: () {
                         setState(() {
@@ -291,7 +296,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             if (_userLocData != null && !isSearching)
               Positioned(
-                right: 20,
+                // right: 20,
+                right: 5.w,
                 bottom: fabHeight,
                 child: FloatingActionButton(
                   child: Icon(Icons.my_location),
@@ -317,11 +323,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchController: _searchController,
                 // height: SizeConfig.screenHeight * 0.055,
                 // width: SizeConfig.screenWidth * 0.75,
-                height: SizeConfig.proportionalHeight * 5.6,
-                width: SizeConfig.proportionalWidth * 75,
+                height: 5.5.h,
+                width: 75.w,
                 margin: EdgeInsets.only(
-                  top: 15,
-                  bottom: 5,
+                  // top: 15,
+                  top: 1.75.h,
                 ),
                 onTap: () {
                   isSearching = true;

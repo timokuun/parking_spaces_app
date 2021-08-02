@@ -42,6 +42,8 @@ dependencies:
 
   persistent_bottom_nav_bar: any
 
+  sizer: ^2.0.13
+
   sliding_up_panel: ^2.0.0+1
 
   location: ^4.2.0

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 // TODO: Need to pass in function for search results
 class SearchBar extends StatefulWidget {
   final double width;
@@ -36,21 +39,22 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
-    String text1 = "nice";
     bool isFocused = widget._searchNode.hasFocus;
     return Card(
       margin: widget.margin,
       elevation: 30.0,
       color: customCyan,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40),
+        // borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(40.sp),
       ),
       child: Container(
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(40),
+          // borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(40.sp),
         ),
         child: Stack(
           children: [
@@ -83,7 +87,8 @@ class _SearchBarState extends State<SearchBar> {
               alignment: Alignment.centerLeft,
               child: Container(
                 margin: EdgeInsets.only(
-                  left: 15,
+                  // left: 15,
+                  left: 3.5.w,
                 ),
                 child: Icon(
                   Icons.search,

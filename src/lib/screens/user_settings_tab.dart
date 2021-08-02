@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import '../size_config.dart';
 import '../widgets/settings_tile.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 class UserSettingsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,10 @@ class UserSettingsTab extends StatelessWidget {
             children: [
               Container(
                 color: Colors.white,
-                width: SizeConfig.proportionalWidth * 23,
-                height: SizeConfig.proportionalHeight * 8,
+                // height: SizeConfig.proportionalHeight * 8,
+                // width: SizeConfig.proportionalWidth * 23,
+                height: 8.h,
+                width: 23.w,
                 child: Center(
                   child: Text(
                     "Light Mode",
@@ -30,8 +35,10 @@ class UserSettingsTab extends StatelessWidget {
               ),
               Container(
                 color: customBlack,
-                width: SizeConfig.proportionalWidth * 23,
-                height: SizeConfig.proportionalHeight * 8,
+                // width: SizeConfig.proportionalWidth * 23,
+                // height: SizeConfig.proportionalHeight * 8,
+                height: 8.h,
+                width: 23.w,
                 child: Center(
                   child: Text(
                     "Dark Mode",

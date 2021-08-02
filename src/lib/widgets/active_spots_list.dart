@@ -8,6 +8,9 @@ import '../size_config.dart';
 import '../models/parking_spot.dart';
 import '../widgets/active_spots_list_element.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 // TODO: Correct the time formating
 
 class ActiveSpotsList extends ConsumerWidget {
@@ -29,9 +32,10 @@ class ActiveSpotsList extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final activeSpots = watch(userActiveSpotsProvider);
     SizeConfig().init(context);
-    // TODO: implement refresh for user active spots list
+    // TODO: Maybe expanded to resolve overflow if it persists...
     return Container(
-      height: SizeConfig.screenHeight * 0.8,
+      // height: SizeConfig.screenHeight * 0.8,
+      height: 80.h,
       child: RefreshIndicator(
         onRefresh: () {
           return context.read(userActiveSpotsProvider.notifier).loadList();

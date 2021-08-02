@@ -7,7 +7,8 @@ import '../widgets/animated_text_field.dart';
 import '../widgets/placeholder_logo.dart';
 import '../widgets/general_button.dart';
 
-// TODO: Remove Buttons row used for DEBUG navigating
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = '/login';
@@ -54,19 +55,18 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.only(
                   // top: SizeConfig.screenHeight * 0.15,
                   // bottom: SizeConfig.screenHeight * 0.12,
-                  top: SizeConfig.proportionalHeight * 16,
-                  bottom: SizeConfig.proportionalHeight * 12,
+                  top: 15.h,
+                  bottom: 12.h,
                 ),
               ),
               /* Login Form */
               AnimatedTextField(
                 // height: SizeConfig.screenHeight * 0.075,
                 // width: SizeConfig.screenWidth * 0.75,
-                height: SizeConfig.proportionalHeight * 7.5,
-                width: SizeConfig.proportionalWidth * 75,
+                height: 7.h,
+                width: 75.w,
                 // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
-                margin:
-                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 3),
+                margin: EdgeInsets.only(bottom: 3.h),
                 textNode: _userNode,
                 fieldController: username,
                 fieldLabel: "Username/Phone #",
@@ -75,11 +75,10 @@ class _LoginPageState extends State<LoginPage> {
               AnimatedTextField(
                 // height: SizeConfig.screenHeight * 0.075,
                 // width: SizeConfig.screenWidth * 0.75,
-                height: SizeConfig.proportionalHeight * 7.5,
-                width: SizeConfig.proportionalWidth * 75,
+                height: 7.h,
+                width: 75.w,
                 // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
-                margin:
-                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 3),
+                margin: EdgeInsets.only(bottom: 3.h),
                 textNode: _passNode,
                 fieldController: password,
                 fieldLabel: "Password",
@@ -93,12 +92,11 @@ class _LoginPageState extends State<LoginPage> {
                     buttonLabel: "Register",
                     // height: SizeConfig.screenHeight * 0.055,
                     // width: SizeConfig.screenWidth * 0.25,
-                    height: SizeConfig.proportionalHeight * 5.5,
-                    width: SizeConfig.proportionalWidth * 25,
+                    height: 5.h,
+                    width: 22.w,
                     // margin: EdgeInsets.symmetric(
                     //     horizontal: SizeConfig.screenWidth * 0.04),
-                    margin: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.proportionalWidth * 4),
+                    margin: EdgeInsets.symmetric(horizontal: 3.h),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -111,12 +109,11 @@ class _LoginPageState extends State<LoginPage> {
                   GeneralButton(
                     // height: SizeConfig.screenHeight * 0.055,
                     // width: SizeConfig.screenWidth * 0.25,
-                    height: SizeConfig.proportionalHeight * 5.5,
-                    width: SizeConfig.proportionalWidth * 25,
+                    height: 5.h,
+                    width: 22.w,
                     // margin: EdgeInsets.symmetric(
                     //     horizontal: SizeConfig.screenWidth * 0.04),
-                    margin: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.proportionalWidth * 4),
+                    margin: EdgeInsets.symmetric(horizontal: 3.h),
                     buttonLabel: "Login",
                     onTap: () {
                       Navigator.pushReplacement(
