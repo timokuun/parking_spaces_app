@@ -18,8 +18,8 @@ class UserSettingsTab extends StatelessWidget {
             children: [
               Container(
                 color: Colors.white,
-                width: SizeConfig.screenWidth * 0.23,
-                height: SizeConfig.screenHeight * 0.08,
+                width: SizeConfig.proportionalWidth * 23,
+                height: SizeConfig.proportionalHeight * 8,
                 child: Center(
                   child: Text(
                     "Light Mode",
@@ -30,8 +30,8 @@ class UserSettingsTab extends StatelessWidget {
               ),
               Container(
                 color: customBlack,
-                width: SizeConfig.screenWidth * 0.23,
-                height: SizeConfig.screenHeight * 0.08,
+                width: SizeConfig.proportionalWidth * 23,
+                height: SizeConfig.proportionalHeight * 8,
                 child: Center(
                   child: Text(
                     "Dark Mode",

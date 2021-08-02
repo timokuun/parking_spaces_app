@@ -52,24 +52,34 @@ class _LoginPageState extends State<LoginPage> {
               /* Logo Image */
               PlaceholderImage(
                 margin: EdgeInsets.only(
-                  top: SizeConfig.screenHeight * 0.15,
-                  bottom: SizeConfig.screenHeight * 0.12,
+                  // top: SizeConfig.screenHeight * 0.15,
+                  // bottom: SizeConfig.screenHeight * 0.12,
+                  top: SizeConfig.proportionalHeight * 16,
+                  bottom: SizeConfig.proportionalHeight * 12,
                 ),
               ),
               /* Login Form */
               AnimatedTextField(
-                height: SizeConfig.screenHeight * 0.075,
-                width: SizeConfig.screenWidth * 0.75,
-                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
+                // height: SizeConfig.screenHeight * 0.075,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 7.5,
+                width: SizeConfig.proportionalWidth * 75,
+                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
+                margin:
+                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 3),
                 textNode: _userNode,
                 fieldController: username,
                 fieldLabel: "Username/Phone #",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: SizeConfig.screenHeight * 0.075,
-                width: SizeConfig.screenWidth * 0.75,
-                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
+                // height: SizeConfig.screenHeight * 0.075,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 7.5,
+                width: SizeConfig.proportionalWidth * 75,
+                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
+                margin:
+                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 3),
                 textNode: _passNode,
                 fieldController: password,
                 fieldLabel: "Password",
@@ -81,10 +91,14 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   GeneralButton(
                     buttonLabel: "Register",
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
+                    // height: SizeConfig.screenHeight * 0.055,
+                    // width: SizeConfig.screenWidth * 0.25,
+                    height: SizeConfig.proportionalHeight * 5.5,
+                    width: SizeConfig.proportionalWidth * 25,
+                    // margin: EdgeInsets.symmetric(
+                    //     horizontal: SizeConfig.screenWidth * 0.04),
                     margin: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.screenWidth * 0.04),
+                        horizontal: SizeConfig.proportionalWidth * 4),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -95,10 +109,14 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   GeneralButton(
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
+                    // height: SizeConfig.screenHeight * 0.055,
+                    // width: SizeConfig.screenWidth * 0.25,
+                    height: SizeConfig.proportionalHeight * 5.5,
+                    width: SizeConfig.proportionalWidth * 25,
+                    // margin: EdgeInsets.symmetric(
+                    //     horizontal: SizeConfig.screenWidth * 0.04),
                     margin: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.screenWidth * 0.04),
+                        horizontal: SizeConfig.proportionalWidth * 4),
                     buttonLabel: "Login",
                     onTap: () {
                       Navigator.pushReplacement(

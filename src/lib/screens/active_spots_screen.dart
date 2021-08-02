@@ -24,15 +24,19 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
-        height: SizeConfig.screenHeight * 0.94,
-        width: SizeConfig.screenWidth,
+        // height: SizeConfig.screenHeight * 0.93,
+        // width: SizeConfig.screenWidth,
+        height: SizeConfig.proportionalHeight * 96,
+        width: SizeConfig.proportionalWidth * 100,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ActiveSpotsNumberIndicator(
               margin: EdgeInsets.only(
+                // top: SizeConfig.proportionalHeight * 7.76,
+                // bottom: SizeConfig.screenHeight * 0.01,
                 top: SizeConfig.screenHeight * 0.075,
-                bottom: SizeConfig.screenHeight * 0.01,
+                bottom: SizeConfig.proportionalHeight * 1,
               ),
             ),
             ActiveSpotsList(

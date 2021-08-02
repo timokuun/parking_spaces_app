@@ -180,9 +180,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   parallaxOffset: 0.075,
                   controller: _pController,
                   color: customBlack,
-                  minHeight: SizeConfig.screenHeight * 0.15, // 0.27
-                  // minHeight: SizeConfig.screenHeight * 0.01,
-                  maxHeight: SizeConfig.screenHeight * 0.7,
+                  // minHeight: SizeConfig.screenHeight * 0.15, // 0.27
+                  // maxHeight: SizeConfig.screenHeight * 0.7,
+                  minHeight: SizeConfig.proportionalHeight * 15,
+                  maxHeight: SizeConfig.proportionalHeight * 72,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   body: Stack(
                     children: [
@@ -223,10 +224,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   onPanelSlide: (position) {
                     setState(() {
+                      // final panelHeightDifference =
+                      //     (SizeConfig.screenHeight * 0.7) -
+                      //         (SizeConfig.screenHeight * 0.15);
                       final panelHeightDifference =
-                          (SizeConfig.screenHeight * 0.7) -
-                              (SizeConfig.screenHeight * 0.15);
-                      fabHeight = position * panelHeightDifference + 135;
+                          (SizeConfig.proportionalHeight * 72) -
+                              (SizeConfig.proportionalHeight * 15);
+                      fabHeight = position * panelHeightDifference + 130;
                     });
                   },
                   panelBuilder: (controller) {
@@ -238,6 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.only(top: 20),
                         ),
                         Container(
+                          // TODO: Correct to proportionalHeight once connected to server
                           height: SizeConfig.screenHeight * 0.64,
                           child: ListView.builder(
                             physics: BouncingScrollPhysics(),
@@ -266,7 +271,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     userSearchLatLng: userSearchLatLng,
                   ),
                   Positioned(
-                    top: SizeConfig.screenHeight * 0.012,
+                    // top: SizeConfig.screenHeight * 0.012,
+                    top: SizeConfig.proportionalHeight * 1.2,
                     child: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
@@ -309,8 +315,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SearchBar(
                 searchNode: _searchNode,
                 searchController: _searchController,
-                height: SizeConfig.screenHeight * 0.055,
-                width: SizeConfig.screenWidth * 0.75,
+                // height: SizeConfig.screenHeight * 0.055,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 5.6,
+                width: SizeConfig.proportionalWidth * 75,
                 margin: EdgeInsets.only(
                   top: 15,
                   bottom: 5,

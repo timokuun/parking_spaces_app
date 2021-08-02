@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../size_config.dart';
+
 class SpotOwnerBox extends StatelessWidget {
-  final double height;
-  final double width;
   final String owner;
 
   const SpotOwnerBox({
     Key key,
-    @required this.height,
-    @required this.width,
     @required this.owner,
   }) : super(key: key);
 
@@ -16,12 +14,17 @@ class SpotOwnerBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-      height: height * 0.2,
-      width: width,
+      // height: SizeConfig.screenHeight * 0.2,
+      // width: SizeConfig.screenWidth,
+      height: SizeConfig.proportionalHeight * 20,
+      width: SizeConfig.proportionalWidth * 100,
       margin: EdgeInsets.only(
-        top: height * 0.04,
-        bottom: height * 0.12,
+        // top: SizeConfig.screenHeight * 0.04,
+        // bottom: SizeConfig.screenHeight * 0.12,
+        top: SizeConfig.proportionalHeight * 4,
+        bottom: SizeConfig.proportionalHeight * 12,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,8 +37,10 @@ class SpotOwnerBox extends StatelessWidget {
               color: Colors.white,
             ),
             margin: EdgeInsets.all(15),
-            height: width * 0.18,
-            width: width * 0.18,
+            // height: SizeConfig.screenWidth * 0.18,
+            // width: SizeConfig.screenWidth * 0.18,
+            height: SizeConfig.proportionalHeight * 9,
+            width: SizeConfig.proportionalWidth * 18,
           ),
           FittedBox(
             fit: BoxFit.fitWidth,

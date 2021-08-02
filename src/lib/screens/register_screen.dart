@@ -54,40 +54,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: <Widget>[
               PlaceholderImage(
                 margin: EdgeInsets.only(
-                    top: SizeConfig.screenHeight * 0.15,
-                    bottom: SizeConfig.screenHeight * 0.09),
+                  top: SizeConfig.proportionalHeight * 16,
+                  bottom: SizeConfig.proportionalHeight * 9,
+                  // top: SizeConfig.screenHeight * 0.15,
+                  // bottom: SizeConfig.screenHeight * 0.09,
+                ),
               ),
               AnimatedTextField(
-                height: SizeConfig.screenHeight * 0.075,
-                width: SizeConfig.screenWidth * 0.75,
-                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                // height: SizeConfig.screenHeight * 0.075,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 7.5,
+                width: SizeConfig.proportionalWidth * 75,
+                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                margin:
+                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 2),
                 textNode: _phoneNode,
                 fieldController: pNum,
                 fieldLabel: "Phone #",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: SizeConfig.screenHeight * 0.075,
-                width: SizeConfig.screenWidth * 0.75,
-                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                // height: SizeConfig.screenHeight * 0.075,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 7.5,
+                width: SizeConfig.proportionalWidth * 75,
+                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                margin:
+                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 2),
                 textNode: _emailNode,
                 fieldController: email,
                 fieldLabel: "Email",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: SizeConfig.screenHeight * 0.075,
-                width: SizeConfig.screenWidth * 0.75,
-                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                // height: SizeConfig.screenHeight * 0.075,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 7.5,
+                width: SizeConfig.proportionalWidth * 75,
+                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                margin:
+                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 2),
                 textNode: _userNode,
                 fieldController: username,
                 fieldLabel: "Username",
                 isPassword: false,
               ),
               AnimatedTextField(
-                height: SizeConfig.screenHeight * 0.075,
-                width: SizeConfig.screenWidth * 0.75,
-                margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                // height: SizeConfig.screenHeight * 0.075,
+                // width: SizeConfig.screenWidth * 0.75,
+                height: SizeConfig.proportionalHeight * 7.5,
+                width: SizeConfig.proportionalWidth * 75,
+                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.02),
+                margin:
+                    EdgeInsets.only(bottom: SizeConfig.proportionalHeight * 2),
                 textNode: _passNode,
                 fieldController: password,
                 fieldLabel: "Password",
@@ -98,8 +117,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   GeneralButton(
                     buttonLabel: "Register",
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
+                    // height: SizeConfig.screenHeight * 0.055,
+                    // width: SizeConfig.screenWidth * 0.25,
+                    height: SizeConfig.proportionalHeight * 5.5,
+                    width: SizeConfig.proportionalWidth * 25,
                     onTap: () {
                       // TODO: set up with backend later
                       Navigator.push(
