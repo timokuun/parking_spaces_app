@@ -36,7 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isSearching = false;
   String userInput = "";
   // double fabHeight = 135;
-  double fabHeight = 150.sp;
+  // double fabHeight = 150.sp;
+  double fabHeight = 26.5.h;
   Location _location = Location();
   StreamSubscription<LocationData> locSubscription;
   bool firstTimeToUserLoc = true;
@@ -237,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       final panelHeightDifference = (70.h) - (25.h);
 
-                      fabHeight = position * panelHeightDifference + 150.sp;
+                      fabHeight = position * panelHeightDifference + 26.5.h;
                     });
                   },
                   panelBuilder: (controller) {
