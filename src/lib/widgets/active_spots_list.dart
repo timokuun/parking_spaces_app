@@ -33,26 +33,28 @@ class ActiveSpotsList extends ConsumerWidget {
     final activeSpots = watch(userActiveSpotsProvider);
     SizeConfig().init(context);
     // TODO: Maybe expanded to resolve overflow if it persists...
-    return Container(
-      // height: SizeConfig.screenHeight * 0.8,
-      height: 80.h,
-      child: RefreshIndicator(
-        onRefresh: () {
-          return context.read(userActiveSpotsProvider.notifier).loadList();
-        },
-        child: ListView.builder(
-          physics:
-              BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          padding: EdgeInsets.all(0),
-          itemBuilder: (buildContext, index) {
-            final currTime = "5";
-            // DateTime timeLeft = calcRentTime(spots[index].startTime);
-            // final left = DateFormat.Hm().format(timeLeft);
-            return SpotResult(
-              spot: activeSpots[index],
-            );
+    return Expanded(
+      child: Container(
+        // height: SizeConfig.screenHeight * 0.8,
+        // height: 80.h,
+        child: RefreshIndicator(
+          onRefresh: () {
+            return context.read(userActiveSpotsProvider.notifier).loadList();
           },
-          itemCount: activeSpots.length,
+          child: ListView.builder(
+            physics:
+                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            padding: EdgeInsets.all(0),
+            itemBuilder: (buildContext, index) {
+              final currTime = "5";
+              // DateTime timeLeft = calcRentTime(spots[index].startTime);
+              // final left = DateFormat.Hm().format(timeLeft);
+              return SpotResult(
+                spot: activeSpots[index],
+              );
+            },
+            itemCount: activeSpots.length,
+          ),
         ),
       ),
     );

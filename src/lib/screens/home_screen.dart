@@ -1,3 +1,4 @@
+import 'package:car_park_login/models/parking_spot_v2.dart';
 import 'package:car_park_login/widgets/spot_result.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isSearching = false;
   String userInput = "";
   // double fabHeight = 135;
-  double fabHeight = 95.sp;
+  double fabHeight = 150.sp;
   Location _location = Location();
   StreamSubscription<LocationData> locSubscription;
   bool firstTimeToUserLoc = true;
@@ -172,7 +173,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Consumer(
               builder: (context, watch, child) {
                 final markerSet = watch(mapMarkerSetProvider);
-                final results = watch(parkingSpotResultsProvider);
+
+                // TODO: uncomment, currently hard-coding results to test sizing
+                // final results = watch(parkingSpotResultsProvider);
+                final results = [spot1V2, spot1V2, spot1V2, spot1V2];
                 final userLocation = watch(userLocationProvider.notifier);
 
                 return SlidingUpPanel(
@@ -182,7 +186,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: customBlack,
                   // minHeight: SizeConfig.screenHeight * 0.15, // 0.27
                   // maxHeight: SizeConfig.screenHeight * 0.7,
-                  minHeight: 15.h,
+                  // minHeight: 15.h,
+                  minHeight: 25.h,
                   maxHeight: 70.h,
                   // borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   borderRadius:
@@ -230,24 +235,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       //     (SizeConfig.screenHeight * 0.7) -
                       //         (SizeConfig.screenHeight * 0.15);
 
-                      final panelHeightDifference = (70.h) - (15.h);
+                      final panelHeightDifference = (70.h) - (25.h);
 
-                      fabHeight = position * panelHeightDifference + 95.sp;
+                      fabHeight = position * panelHeightDifference + 150.sp;
                     });
                   },
                   panelBuilder: (controller) {
-                    return Container(
-                      height: 150,
-                      child: Column(children: [
-                        Container(
-                          child: DraggableIndicator(),
-                          // padding: EdgeInsets.only(top: 20),
-                          padding: EdgeInsets.only(top: 2.5.h),
-                        ),
-                        Container(
+                    return Column(children: [
+                      Container(
+                        child: DraggableIndicator(),
+                        // padding: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(top: 2.5.h),
+                      ),
+                      // To prevent sizing issues, wrapped with Expanded instead of defining a height
+                      Expanded(
+                        child: Container(
                           // TODO: Correct to proportionalHeight once connected to server
                           // height: SizeConfig.screenHeight * 0.64,
-                          height: 64.h,
+                          // height: 64.h,
                           child: ListView.builder(
                             physics: BouncingScrollPhysics(),
                             controller: controller,
@@ -259,8 +264,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemCount: results.length,
                           ),
                         ),
-                      ]),
-                    );
+                      ),
+                    ]);
                   },
                 );
               },
