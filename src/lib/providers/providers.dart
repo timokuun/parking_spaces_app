@@ -24,27 +24,21 @@ final userLocationProvider = StateNotifierProvider((_) => UserLocation());
 
 // Future provider to get http response
 final httpResponseProvider = FutureProvider<dynamic>((ref) async {
-  final response = await httpGetAllSpots();
-
-  print(
-      "============================================response============================================");
-  print(response);
+  final allSpots = await httpGetAllSpots();
 
   // Adds all markers in the response
-  ref.read(mapMarkerSetProvider.notifier).addMarkerFromResponse(response);
+  ref.read(mapMarkerSetProvider.notifier).addMarkerFromResponse(allSpots);
 
   // Update list of results
   ref
       .read(parkingSpotResultsProvider.notifier)
-      .addResultsFromResponse(response);
+      .addResultsFromResponse(allSpots);
 });
 
 // Future provider to obtain a specific spot from ID (http call)
 final httpSpotFromIdProvider =
     FutureProvider.family<ParkingSpotV2, String>((ref, spotID) async {
-  final response = await httpGetSpotFromId(spotID);
-  final decodedSpot = jsonDecode(response.body);
-
+  final decodedSpot = await httpGetSpotFromId(spotID);
   final spot = ParkingSpotV2.fromJson(decodedSpot);
   return spot;
 });

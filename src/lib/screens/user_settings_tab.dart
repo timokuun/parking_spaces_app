@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../size_config.dart';
 import '../widgets/settings_tile.dart';
 
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
 
@@ -19,33 +21,19 @@ class UserSettingsTab extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                color: Colors.white,
-                // height: SizeConfig.proportionalHeight * 8,
-                // width: SizeConfig.proportionalWidth * 23,
-                height: 8.h,
-                width: 23.w,
-                child: Center(
-                  child: Text(
-                    "Light Mode",
-                    style: TextStyle(fontSize: 24, color: Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              Container(
-                color: customBlack,
-                // width: SizeConfig.proportionalWidth * 23,
-                // height: SizeConfig.proportionalHeight * 8,
-                height: 8.h,
-                width: 23.w,
-                child: Center(
-                  child: Text(
-                    "Dark Mode",
-                    style: TextStyle(fontSize: 24),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+              LiteRollingSwitch(
+                value: true,
+                textOn: 'Dark Mode',
+                textOff: 'Light Mode',
+                animationDuration: Duration(milliseconds: 350),
+                colorOn: customBlack,
+                colorOff: customCyan,
+                iconOn: Icons.brightness_2,
+                iconOff: Icons.brightness_5,
+                textSize: 9.sp,
+                onChanged: (bool state) {
+                  print('Current State of SWITCH IS: $state');
+                },
               ),
             ],
           ),
