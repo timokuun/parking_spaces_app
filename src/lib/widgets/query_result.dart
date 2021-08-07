@@ -27,7 +27,6 @@ class QueryResult extends StatelessWidget {
     return FutureBuilder(
       future: placesGetter.getPredictions(userInput),
       builder: (context, snapshot) {
-        print(snapshot.data);
         if (userInput.isEmpty) {
           return Container(
             // color: Colors.black,
@@ -62,12 +61,13 @@ class QueryResult extends StatelessWidget {
           );
         } else if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data.length > 0) {
-          // TODO: Reconfig with Sizer package... (API not working?)
           return Container(
-            color: Colors.black,
+            // color: Colors.black,
+            color: customBlack,
             alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 75),
-            height: SizeConfig.screenHeight,
+            // padding: EdgeInsets.only(top: 75),
+            padding: EdgeInsets.only(top: 10.h),
+            // height: SizeConfig.screenHeight,
             child: ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
@@ -75,7 +75,8 @@ class QueryResult extends StatelessWidget {
                   leading: Image.network(
                     snapshot.data[index]["icon"],
                     color: customCyan,
-                    height: SizeConfig.screenHeight * 0.04,
+                    // height: SizeConfig.screenHeight * 0.04,
+                    height: 4.h,
                   ),
                   title: Text(snapshot.data[index]["name"]),
                   subtitle: Text(snapshot.data[index]["formatted_address"]),
