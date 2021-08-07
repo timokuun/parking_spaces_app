@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 // TODO: Add actual function for onTap
 class AnimatedTextField extends StatelessWidget {
   final double height;
@@ -37,7 +40,8 @@ class AnimatedTextField extends StatelessWidget {
         obscureText: isPassword,
         controller: fieldController,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(20),
+          // contentPadding: EdgeInsets.all(20),
+          contentPadding: EdgeInsets.all(2.2.h),
           labelText: fieldLabel,
           labelStyle: TextStyle(
             color: (_textNode.hasFocus || fieldController.text.isNotEmpty)
@@ -45,20 +49,24 @@ class AnimatedTextField extends StatelessWidget {
                 : Colors.grey,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            // borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(2.2.h),
             borderSide: BorderSide(
               color: fieldController.text.isEmpty
                   ? Colors.grey
                   : Theme.of(context).primaryColor,
-              width: 2.0,
+              // width: 2.0,
+              width: 2.sp,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).primaryColor,
-              width: 4.0,
+              // width: 4.0,
+              width: 3.5.sp,
             ),
-            borderRadius: BorderRadius.circular(20),
+            // borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(2.2.h),
           ),
         ),
       ),

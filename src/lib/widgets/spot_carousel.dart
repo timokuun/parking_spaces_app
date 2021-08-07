@@ -4,6 +4,9 @@ import 'package:carousel_slider/carousel_options.dart';
 
 import '../models/parking_spot.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 class SpotCarousel extends StatefulWidget {
   final double height;
   final List<String> images;
@@ -28,7 +31,8 @@ class _SpotCarouselState extends State<SpotCarousel> {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          padding: EdgeInsets.only(top: 10),
+          // padding: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: 1.5.h),
           child: CarouselSlider(
             options: CarouselOptions(
               height: widget.height,
@@ -65,9 +69,12 @@ class _SpotCarouselState extends State<SpotCarousel> {
           children: widget.images.map((url) {
             int index = widget.images.indexOf(url);
             return Container(
-              width: 6.0,
-              height: 6.0,
-              margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
+              // width: 6.0,
+              // height: 6.0,
+              width: 5.sp,
+              height: 5.sp,
+              // margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
+              margin: EdgeInsets.symmetric(vertical: 0.75.h, horizontal: 0.5.h),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _current == index

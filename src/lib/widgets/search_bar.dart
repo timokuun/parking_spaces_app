@@ -42,7 +42,8 @@ class _SearchBarState extends State<SearchBar> {
     bool isFocused = widget._searchNode.hasFocus;
     return Card(
       margin: widget.margin,
-      elevation: 30.0,
+      // elevation: 30.0,
+      elevation: 20.sp,
       color: customCyan,
       shape: RoundedRectangleBorder(
         // borderRadius: BorderRadius.circular(40),

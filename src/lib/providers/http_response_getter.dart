@@ -4,8 +4,10 @@ import 'dart:convert';
 // Function to pass back local spots from DB
 // TODO: pass in long/lat from user to DB for query
 Future<dynamic> httpGetAllSpots() async {
-  // final Uri url = Uri.parse("http://10.0.2.2:3000/");
-  final Uri url = Uri.parse("http://www.api.aniimo.co/demo-server");
+  final Uri url = Uri.parse("http://10.0.2.2:3000/");
+
+  // TODO: Use local-server for development
+  // final Uri url = Uri.parse("http://www.api.aniimo.co/demo-server");
   var response = await http.get(url);
 
   // List of spots from our server
@@ -16,8 +18,10 @@ Future<dynamic> httpGetAllSpots() async {
 
 // Function to obtain specific spot using its ID from our DB
 Future<dynamic> httpGetSpotFromId(String id) async {
-  // final Uri url = Uri.parse("http://10.0.2.2:3000/$id");
-  final Uri url = Uri.parse("http://www.api.aniimo.co/demo-server/$id");
+  final Uri url = Uri.parse("http://10.0.2.2:3000/$id");
+
+  // TODO: Use local-server for development
+  // final Uri url = Uri.parse("http://www.api.aniimo.co/demo-server/$id");
   var response = await http.get(url,
       headers: {"Content-Type": "application/json", "Charset": "utf-8"});
 
