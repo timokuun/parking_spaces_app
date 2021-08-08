@@ -184,13 +184,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   parallaxEnabled: true,
                   parallaxOffset: 0.075,
                   controller: _pController,
-                  color: customBlack,
-                  // minHeight: SizeConfig.screenHeight * 0.15, // 0.27
-                  // maxHeight: SizeConfig.screenHeight * 0.7,
-                  // minHeight: 15.h,
+                  color: Theme.of(context).backgroundColor,
                   minHeight: 25.h,
                   maxHeight: 70.h,
-                  // borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(15.sp)),
                   body: Stack(
@@ -232,10 +228,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   onPanelSlide: (position) {
                     setState(() {
-                      // final panelHeightDifference =
-                      //     (SizeConfig.screenHeight * 0.7) -
-                      //         (SizeConfig.screenHeight * 0.15);
-
                       final panelHeightDifference = (70.h) - (25.h);
 
                       fabHeight = position * panelHeightDifference + 26.5.h;
@@ -245,15 +237,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Column(children: [
                       Container(
                         child: DraggableIndicator(),
-                        // padding: EdgeInsets.only(top: 20),
                         padding: EdgeInsets.only(top: 2.5.h),
                       ),
                       // To prevent sizing issues, wrapped with Expanded instead of defining a height
                       Expanded(
                         child: Container(
-                          // TODO: Correct to proportionalHeight once connected to server
-                          // height: SizeConfig.screenHeight * 0.64,
-                          // height: 64.h,
                           child: ListView.builder(
                             physics: BouncingScrollPhysics(),
                             controller: controller,
@@ -281,13 +269,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     userSearchLatLng: userSearchLatLng,
                   ),
                   Positioned(
-                    // top: SizeConfig.screenHeight * 0.012,
                     top: 1.2.h,
                     child: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
-                        color: Colors.white,
-                        // size: 40,
+                        color: Theme.of(context).accentColor,
                         size: 28.sp,
                       ),
                       onPressed: () {
@@ -302,7 +288,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             if (_userLocData != null && !isSearching)
               Positioned(
-                // right: 20,
                 right: 5.w,
                 bottom: fabHeight,
                 child: FloatingActionButton(
@@ -327,12 +312,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SearchBar(
                 searchNode: _searchNode,
                 searchController: _searchController,
-                // height: SizeConfig.screenHeight * 0.055,
-                // width: SizeConfig.screenWidth * 0.75,
                 height: 5.5.h,
                 width: 75.w,
                 margin: EdgeInsets.only(
-                  // top: 15,
                   top: 1.75.h,
                 ),
                 onTap: () {

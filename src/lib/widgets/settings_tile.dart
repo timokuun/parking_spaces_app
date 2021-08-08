@@ -12,15 +12,13 @@ class SettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      // contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 20),
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5.w),
-      title: Text(
-        title,
-        // style: TextStyle(fontSize: 18),
-        style: TextStyle(fontSize: 12.5.sp),
-      ),
+      title: Text(title,
+          // style: TextStyle(fontSize: 12.5.sp),
+          style: Theme.of(context).textTheme.headline3),
       subtitle: Text(
         subtitle,
+        style: Theme.of(context).textTheme.subtitle1,
       ),
       trailing: Icon(
         Icons.chevron_right,

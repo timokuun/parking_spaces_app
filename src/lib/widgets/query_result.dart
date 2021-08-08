@@ -29,31 +29,24 @@ class QueryResult extends StatelessWidget {
       builder: (context, snapshot) {
         if (userInput.isEmpty) {
           return Container(
-            // color: Colors.black,
-            color: customBlack,
+            color: Theme.of(context).backgroundColor,
             alignment: Alignment.center,
-            // height: SizeConfig.screenHeight,
             child: Text(
               "Search to your heart's desire <3",
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
                 fontSize: 12.sp,
               ),
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
-            // height: SizeConfig.screenHeight,
-            // width: SizeConfig.screenWidth,
-            color: customBlack,
+            color: Theme.of(context).backgroundColor,
             alignment: Alignment.center,
             child: Container(
-              // height: SizeConfig.screenHeight * 0.15,
-              // width: SizeConfig.screenHeight * 0.15,
               height: 15.h,
               width: 15.h,
               child: CircularProgressIndicator(
-                // strokeWidth: 5,
                 strokeWidth: 4.sp,
                 color: customCyan,
               ),
@@ -62,12 +55,9 @@ class QueryResult extends StatelessWidget {
         } else if (snapshot.connectionState == ConnectionState.done &&
             snapshot.data.length > 0) {
           return Container(
-            // color: Colors.black,
-            color: customBlack,
+            color: Theme.of(context).backgroundColor,
             alignment: Alignment.center,
-            // padding: EdgeInsets.only(top: 75),
             padding: EdgeInsets.only(top: 10.h),
-            // height: SizeConfig.screenHeight,
             child: ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
@@ -75,10 +65,14 @@ class QueryResult extends StatelessWidget {
                   leading: Image.network(
                     snapshot.data[index]["icon"],
                     color: customCyan,
-                    // height: SizeConfig.screenHeight * 0.04,
                     height: 4.h,
                   ),
-                  title: Text(snapshot.data[index]["name"]),
+                  title: Text(
+                    snapshot.data[index]["name"],
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
                   subtitle: Text(snapshot.data[index]["formatted_address"]),
                   onTap: () {
                     LatLng selected = LatLng(
@@ -92,14 +86,12 @@ class QueryResult extends StatelessWidget {
           );
         } else {
           return Container(
-            // color: Colors.black,
-            color: customBlack,
+            color: Theme.of(context).backgroundColor,
             alignment: Alignment.center,
-            height: SizeConfig.screenHeight,
             child: Text(
               "No Results Found  :/",
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
                 fontSize: 12.sp,
               ),
             ),

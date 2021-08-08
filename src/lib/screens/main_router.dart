@@ -7,6 +7,9 @@ import './user_screen.dart';
 import './active_spots_screen.dart';
 import '../models/parking_spot.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 class MainRouter extends StatefulWidget {
   static const String id = '/main';
 
@@ -38,22 +41,25 @@ class _MainRouterState extends State<MainRouter> {
         icon: Icon(Icons.home),
         title: ("Home"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
+        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
+        // iconSize: 25,
+        iconSize: 20.sp,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.directions_car_outlined),
         title: ("Active Spots"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
+        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
+        // iconSize: 25,
+        iconSize: 20.sp,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person),
         title: ("Profile"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
+        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
+        // iconSize: 25,
+        iconSize: 20.sp,
       ),
     ];
   }
@@ -65,7 +71,7 @@ class _MainRouterState extends State<MainRouter> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      backgroundColor: customBlack,
+      backgroundColor: Theme.of(context).backgroundColor,
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,

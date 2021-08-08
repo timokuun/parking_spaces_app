@@ -1,5 +1,7 @@
+import 'package:car_park_login/providers/providers.dart';
 import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../size_config.dart';
 import '../widgets/settings_tile.dart';
@@ -14,29 +16,27 @@ class UserSettingsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return ListView(
+      padding: EdgeInsets.only(top: 2.h),
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              LiteRollingSwitch(
-                value: true,
-                textOn: 'Dark Mode',
-                textOff: 'Light Mode',
-                animationDuration: Duration(milliseconds: 350),
-                colorOn: customBlack,
-                colorOff: customCyan,
-                iconOn: Icons.brightness_2,
-                iconOff: Icons.brightness_5,
-                textSize: 9.sp,
-                onChanged: (bool state) {
-                  print('Current State of SWITCH IS: $state');
-                },
-              ),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            LiteRollingSwitch(
+              value: context.read(userInfoProvider).settings.darkMode,
+              textOn: 'Dark Mode',
+              textOff: 'Light Mode',
+              animationDuration: Duration(milliseconds: 350),
+              colorOn: customBlack,
+              colorOff: customCyan,
+              iconOn: Icons.brightness_2,
+              iconOff: Icons.brightness_5,
+              textSize: 9.sp,
+              onChanged: (bool mode) {
+                context.read(userInfoProvider).toggleDarkMode(mode);
+              },
+            ),
+          ],
         ),
         SettingsTile(
           title: "Edit Account",

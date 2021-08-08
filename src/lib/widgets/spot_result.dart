@@ -19,10 +19,9 @@ class SpotResult extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Material(
-      color: customBlack,
+      color: Theme.of(context).backgroundColor,
       child: InkWell(
         splashColor: customCyan,
-        // radius: 500,
         radius: 500.sp,
         onTap: () {
           // Pass spot id to SpotInfoScreen for DB call
@@ -35,10 +34,8 @@ class SpotResult extends StatelessWidget {
           );
         },
         child: Container(
-          // height: SizeConfig.screenHeight * 0.17,
           height: 17.h,
           margin: EdgeInsets.symmetric(
-            // vertical: 20,
             vertical: 2.5.h,
           ),
           child: Stack(
@@ -46,30 +43,22 @@ class SpotResult extends StatelessWidget {
             children: [
               // Spot information
               Positioned(
-                // left: 10,
                 left: 2.5.w,
                 child: Container(
-                    // height: SizeConfig.screenHeight * 0.17,
-                    // width: SizeConfig.screenWidth * 0.85,
                     height: 17.h,
                     width: 85.w,
                     decoration: BoxDecoration(
-                      // borderRadius: BorderRadius.circular(20),
                       borderRadius: BorderRadius.circular(15.sp),
                       border: Border.all(
                         color: customCyan,
-                        // width: 2,
                         width: 1.5.sp,
                       ),
                       color: Colors.transparent,
                     ),
                     margin: EdgeInsets.only(
-                      // left: 35,
                       left: 8.w,
                     ),
                     padding: EdgeInsets.only(
-                      // left: 85,
-                      // right: 10,
                       left: 20.w,
                       right: 5.w,
                     ),
@@ -85,22 +74,19 @@ class SpotResult extends StatelessWidget {
                             Text(
                               "${spot.name}",
                               style: TextStyle(
-                                // fontSize: 20,
                                 fontSize: 14.sp,
-                                color: Colors.white,
+                                color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w400,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(
-                              // height: 3,
                               height: 2.5.sp,
                             ),
                             Text(
                               "${spot.address}}",
                               style: TextStyle(
-                                color: Colors.grey[400],
-                                // color: Colors.grey,
+                                color: Colors.grey[600],
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -108,7 +94,14 @@ class SpotResult extends StatelessWidget {
                         ),
                         spot.bought
                             ? Row(
-                                children: [Text("Current Rental Time: 1:30")],
+                                children: [
+                                  Text(
+                                    "Current Rental Time: 1:30",
+                                    style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  )
+                                ],
                               )
                             : Row(
                                 mainAxisAlignment:

@@ -8,6 +8,7 @@ import './user_active_spots.dart';
 import './parking_spots_resultsV2.dart';
 import './location_provider.dart';
 import './http_response_getter.dart';
+import './user_info.dart';
 
 // State notifier for list of MapMarkers
 final mapMarkerSetProvider = StateNotifierProvider((_) => MapMarkersSet());
@@ -15,6 +16,9 @@ final mapMarkerSetProvider = StateNotifierProvider((_) => MapMarkersSet());
 // State notifier for list of parking spot results
 final parkingSpotResultsProvider =
     StateNotifierProvider((_) => ParkingSpotResults());
+
+// Change notifier for User data (auth, settings, etc...)
+final userInfoProvider = ChangeNotifierProvider((_) => UserInfo());
 
 // State notifier for list of parking spot results
 final userActiveSpotsProvider = StateNotifierProvider((_) => UserActiveSpots());
