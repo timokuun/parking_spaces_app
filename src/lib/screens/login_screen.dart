@@ -1,4 +1,6 @@
+import 'package:car_park_login/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../size_config.dart';
 import 'main_router.dart';
@@ -53,19 +55,14 @@ class _LoginPageState extends State<LoginPage> {
               /* Logo Image */
               PlaceholderImage(
                 margin: EdgeInsets.only(
-                  // top: SizeConfig.screenHeight * 0.15,
-                  // bottom: SizeConfig.screenHeight * 0.12,
                   top: 15.h,
                   bottom: 12.h,
                 ),
               ),
               /* Login Form */
               AnimatedTextField(
-                // height: SizeConfig.screenHeight * 0.075,
-                // width: SizeConfig.screenWidth * 0.75,
                 height: 7.h,
                 width: 75.w,
-                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
                 margin: EdgeInsets.only(bottom: 3.h),
                 textNode: _userNode,
                 fieldController: username,
@@ -73,11 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                 isPassword: false,
               ),
               AnimatedTextField(
-                // height: SizeConfig.screenHeight * 0.075,
-                // width: SizeConfig.screenWidth * 0.75,
                 height: 7.h,
                 width: 75.w,
-                // margin: EdgeInsets.only(bottom: SizeConfig.screenHeight * 0.03),
                 margin: EdgeInsets.only(bottom: 3.h),
                 textNode: _passNode,
                 fieldController: password,
@@ -90,12 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   GeneralButton(
                     buttonLabel: "Register",
-                    // height: SizeConfig.screenHeight * 0.055,
-                    // width: SizeConfig.screenWidth * 0.25,
                     height: 5.h,
                     width: 22.w,
-                    // margin: EdgeInsets.symmetric(
-                    //     horizontal: SizeConfig.screenWidth * 0.04),
                     margin: EdgeInsets.symmetric(horizontal: 3.h),
                     onTap: () {
                       Navigator.push(
@@ -107,15 +97,14 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   GeneralButton(
-                    // height: SizeConfig.screenHeight * 0.055,
-                    // width: SizeConfig.screenWidth * 0.25,
                     height: 5.h,
                     width: 22.w,
-                    // margin: EdgeInsets.symmetric(
-                    //     horizontal: SizeConfig.screenWidth * 0.04),
                     margin: EdgeInsets.symmetric(horizontal: 3.h),
                     buttonLabel: "Login",
                     onTap: () {
+                      // Set fake user token for now
+                      // TODO: Set up backend auth
+                      context.read(userInfoProvider).userSignIn("test");
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

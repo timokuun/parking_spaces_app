@@ -26,9 +26,6 @@ void main() {
 class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, watch) {
-    // Watch userInfo and call init
-    // var user = watch(userInfoProvider);
-
     // Call init to init or obtain user info
     var initUser = context.read(userInfoProvider);
     initUser.init();
@@ -46,6 +43,8 @@ class MyApp extends ConsumerWidget {
               themeMode:
                   user.settings.darkMode ? ThemeMode.dark : ThemeMode.light,
               // themeMode: ThemeMode.dark,
+
+              // TODO: Set up backend user auth
               home: user.auth.sessionToken.isEmpty ? LoginPage() : MainRouter(),
               // home: LoginPage(),
             );

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:car_park_login/models/parking_spot_v2.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

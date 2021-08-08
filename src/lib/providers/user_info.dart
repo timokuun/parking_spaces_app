@@ -47,6 +47,8 @@ class UserInfo extends ChangeNotifier {
     prefs.setString(userToken, token);
     auth.sessionToken = token;
     notifyListeners();
+    print("----------------- User Token -------------------");
+    print(auth.sessionToken);
   }
 
   // Logout the user
