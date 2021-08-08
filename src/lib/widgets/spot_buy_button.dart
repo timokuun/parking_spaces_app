@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 // TODO: Add onTap function
 class SpotBuyButton extends StatelessWidget {
   final Color buttonColor;
@@ -18,14 +21,16 @@ class SpotBuyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      // margin: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 2.h),
       height: height,
       width: width,
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
+            // borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(50.sp),
           ),
           primary: buttonColor,
         ),
@@ -39,7 +44,8 @@ class SpotBuyButton extends StatelessWidget {
                   "RENT FROM",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 11,
+                    // fontSize: 11,
+                    fontSize: 8.sp,
                   ),
                 ),
                 Text(
@@ -47,7 +53,8 @@ class SpotBuyButton extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w800,
-                    fontSize: 30,
+                    // fontSize: 30,
+                    fontSize: 20.sp,
                   ),
                 ),
               ],
@@ -57,7 +64,8 @@ class SpotBuyButton extends StatelessWidget {
               child: Icon(
                 Icons.shopping_cart,
                 color: Colors.white,
-                size: 32,
+                // size: 32,
+                size: 22.sp,
               ),
             ),
           ],

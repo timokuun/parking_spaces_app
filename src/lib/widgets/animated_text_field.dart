@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 // TODO: Add actual function for onTap
 // TODO: Removed container height because it warped error message
 
@@ -46,7 +49,8 @@ class AnimatedTextField extends StatelessWidget {
         style: TextStyle(color: Colors.white),
         onTap: () => textNode.requestFocus(),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(20),
+          // contentPadding: EdgeInsets.all(20),
+          contentPadding: EdgeInsets.all(2.2.h),
           labelText: fieldLabel,
           labelStyle: TextStyle(
             color: (textNode.hasFocus || fieldController.text.isNotEmpty)
@@ -54,20 +58,24 @@ class AnimatedTextField extends StatelessWidget {
                 : Colors.grey,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            // borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(2.2.h),
             borderSide: BorderSide(
               color: fieldController.text.isEmpty
                   ? Colors.grey
                   : Theme.of(context).primaryColor,
-              width: 2.0,
+              // width: 2.0,
+              width: 2.sp,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).primaryColor,
-              width: 4.0,
+              // width: 4.0,
+              width: 3.5.sp,
             ),
-            borderRadius: BorderRadius.circular(20),
+            // borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(2.2.h),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),

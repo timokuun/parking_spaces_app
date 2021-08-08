@@ -6,7 +6,8 @@ import '../widgets/placeholder_logo.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/general_button.dart';
 
-// TODO: Adjust the validator functions for textfields
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String id = '/register';
@@ -64,91 +65,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Hero(
-                tag: "logo",
-                child: PlaceholderImage(
-                  margin: EdgeInsets.only(
-                    top: SizeConfig.screenHeight * 0.15,
-                    bottom: SizeConfig.screenHeight * 0.06,
-                  ),
+              PlaceholderImage(
+                margin: EdgeInsets.only(
+                  top: 15.h,
+                  bottom: 9.h,
                 ),
               ),
-              Form(
-                autovalidateMode: AutovalidateMode.disabled,
-                key: _form,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      AnimatedTextField(
-                        width: SizeConfig.screenWidth * 0.75,
-                        margin: EdgeInsets.only(
-                            bottom: SizeConfig.screenHeight * 0.02),
-                        textNode: _phoneNode,
-                        fieldController: _phoneCtrl,
-                        fieldLabel: "Phone #",
-                        textInputAction: TextInputAction.next,
-                        textInputType: TextInputType.number,
-                        validator: (input) {
-                          if (input.isEmpty || input.length < 7)
-                            return "Please enter a valid phone number.";
-                          return null;
-                        },
-                      ),
-                      AnimatedTextField(
-                        width: SizeConfig.screenWidth * 0.75,
-                        margin: EdgeInsets.only(
-                            bottom: SizeConfig.screenHeight * 0.02),
-                        textNode: _emailNode,
-                        fieldController: _emailCtrl,
-                        fieldLabel: "Email",
-                        textInputAction: TextInputAction.next,
-                        textInputType: TextInputType.emailAddress,
-                        validator: (input) {
-                          if (input.isEmpty || !input.contains("@"))
-                            return "Please enter a valid email.";
-                          return null;
-                        },
-                      ),
-                      AnimatedTextField(
-                        width: SizeConfig.screenWidth * 0.75,
-                        margin: EdgeInsets.only(
-                            bottom: SizeConfig.screenHeight * 0.02),
-                        textNode: _userNode,
-                        fieldController: _usernameCtrl,
-                        fieldLabel: "Username",
-                        textInputAction: TextInputAction.next,
-                        validator: (input) {
-                          if (input.isEmpty) return "Please enter a username.";
-                          return null;
-                        },
-                      ),
-                      AnimatedTextField(
-                        width: SizeConfig.screenWidth * 0.75,
-                        margin: EdgeInsets.only(
-                            bottom: SizeConfig.screenHeight * 0.02),
-                        textNode: _passNode,
-                        fieldController: _passwordCtrl,
-                        fieldLabel: "Password",
-                        isPassword: true,
-                        textInputAction: TextInputAction.done,
-                        validator: (input) {
-                          if (input.isEmpty)
-                            return "Please enter a valid password";
-                          return null;
-                        },
-                        onSubmit: (input) => _register(),
-                      ),
-                    ],
-                  ),
-                ),
+              AnimatedTextField(
+                width: 75.w,
+                margin: EdgeInsets.only(bottom: 2.h),
+                textNode: _phoneNode,
+                fieldController: _phoneCtrl,
+                fieldLabel: "Phone #",
+                isPassword: false,
+              ),
+              AnimatedTextField(
+                width: 75.w,
+                margin: EdgeInsets.only(bottom: 2.h),
+                textNode: _emailNode,
+                fieldController: _emailCtrl,
+                fieldLabel: "Email",
+                isPassword: false,
+              ),
+              AnimatedTextField(
+                width: 75.w,
+                margin: EdgeInsets.only(bottom: 2.h),
+                textNode: _userNode,
+                fieldController: _usernameCtrl,
+                fieldLabel: "Username",
+                isPassword: false,
+              ),
+              AnimatedTextField(
+                // height: 7.h,
+                width: 75.w,
+                margin: EdgeInsets.only(bottom: 2.h),
+                textNode: _passNode,
+                fieldController: _passwordCtrl,
+                fieldLabel: "Password",
+                isPassword: false,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GeneralButton(
                     buttonLabel: "Register",
-                    height: SizeConfig.screenHeight * 0.055,
-                    width: SizeConfig.screenWidth * 0.25,
+                    height: 5.h,
+                    width: 22.w,
                     onTap: () {
                       // TODO: Connect with backend later
                       Navigator.push(

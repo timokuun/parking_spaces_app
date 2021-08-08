@@ -4,13 +4,15 @@ import 'dart:convert';
 class PlacesAutocompleter {
   PlacesAutocompleter();
 
+  // TODO: Uncomment correct api key
+
   Future<List<dynamic>> getPredictions(String input) async {
-    List<String> results = [];
-    String apiKey = "AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ";
+    // String apiKey = "AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLQ";
+    String fakeKey = "AIzaSyBM4Tkf7XAKsNfV3B--WRVxJsO4meVCiLZ";
 
     // TODO: Default location now is UCSD, need to obtain user coords
     var url = Uri.parse(
-        "https://maps.googleapis.com/maps/api/place/textsearch/json?query=${input}&location=32.8800649,-117.2362022&radius=100&key=${apiKey}");
+        "https://maps.googleapis.com/maps/api/place/textsearch/json?query=${input}&location=32.8800649,-117.2362022&radius=100&key=${fakeKey}");
 
     var response = await http.get(url);
     var jsonData = json.decode(response.body);

@@ -24,15 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-
   carousel_slider: ^3.0.0
 
   flutter_riverpod: ^0.14.0+3
-
-  geocoder: ^0.2.1
-
-  geocoding: ^1.0.5
 
   google_maps_flutter: ^2.0.3
 
@@ -42,7 +36,17 @@ dependencies:
 
   persistent_bottom_nav_bar: any
 
+  shared_preferences: ^2.0.6
+
+  sizer: ^2.0.13
+
   sliding_up_panel: ^2.0.0+1
+
+  location: ^4.2.0
+
+  vector_math: any
+
+  lite_rolling_switch: ^0.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,6 @@
+import 'package:car_park_login/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../size_config.dart';
 import './main_router.dart';
@@ -6,6 +8,9 @@ import './register_screen.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/placeholder_logo.dart';
 import '../widgets/general_button.dart';
+
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = '/login';
@@ -57,52 +62,64 @@ class _LoginPageState extends State<LoginPage> {
               tag: "logo",
               child: PlaceholderImage(
                 margin: EdgeInsets.only(
-                  top: SizeConfig.screenHeight * 0.15,
-                  bottom: SizeConfig.screenHeight * 0.12,
+                  top: 15.h,
+                  bottom: 12.h,
                 ),
               ),
             ),
-            /* Login Form */
-            Form(
-              key: _form,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    AnimatedTextField(
-                      width: SizeConfig.screenWidth * 0.75,
-                      margin: EdgeInsets.only(
-                          bottom: SizeConfig.screenHeight * 0.03),
-                      textNode: _userNode,
-                      fieldController: _usernameCtrl,
-                      fieldLabel: "Username/Phone #",
-                      textInputAction: TextInputAction.next,
-                      validator: (input) {
-                        if (input == null || input.isEmpty) {
-                          return "Please enter a username or password";
-                        }
-                        return null;
-                      },
-                      onSaved: (input) => _username = input,
-                    ),
-                    AnimatedTextField(
-                      width: SizeConfig.screenWidth * 0.75,
-                      margin: EdgeInsets.only(
-                          bottom: SizeConfig.screenHeight * 0.03),
-                      textNode: _passNode,
-                      fieldController: _passwordCtrl,
-                      fieldLabel: "Password",
-                      isPassword: true,
-                      validator: (input) {
-                        if (input == null || input.isEmpty) {
-                          return "Please enter your password";
-                        }
-                        return null;
-                      },
-                      onSaved: (input) => _password = input,
-                      onSubmit: (input) => _signIn(),
-                    ),
-                  ],
-                ),
+              /* Login Form */
+              AnimatedTextField(
+                width: 75.w,
+                margin: EdgeInsets.only(bottom: 3.h),
+                textNode: _userNode,
+                fieldController: _usernameCtrl,
+                fieldLabel: "Username/Phone #",
+                isPassword: false,
+              ),
+              AnimatedTextField(
+                width: 75.w,
+                margin: EdgeInsets.only(bottom: 3.h),
+                textNode: _passNode,
+                fieldController: _passwordCtrl,
+                fieldLabel: "Password",
+                isPassword: true,
+              ),
+              /* Submit/Register Buttons */
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GeneralButton(
+                    buttonLabel: "Register",
+                    height: 5.h,
+                    width: 22.w,
+                    margin: EdgeInsets.symmetric(horizontal: 3.h),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  GeneralButton(
+                    height: 5.h,
+                    width: 22.w,
+                    margin: EdgeInsets.symmetric(horizontal: 3.h),
+                    buttonLabel: "Login",
+                    onTap: () {
+                      // Set fake user token for now
+                      // TODO: Set up backend auth
+                      context.read(userInfoProvider).userSignIn("test");
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainRouter(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
 

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../size_config.dart';
 
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
+
 class GeneralButton extends StatelessWidget {
   final String buttonLabel;
   final double height;
@@ -27,10 +30,10 @@ class GeneralButton extends StatelessWidget {
       margin: margin,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(
-              SizeConfig.screenWidth * 0.3, SizeConfig.screenHeight * 0.06),
+          // minimumSize: Size(
+          //     SizeConfig.screenWidth * 0.3, SizeConfig.screenHeight * 0.06),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(7.sp),
           ),
           primary: Theme.of(context).primaryColor,
           onPrimary: Theme.of(context).backgroundColor,
@@ -40,6 +43,7 @@ class GeneralButton extends StatelessWidget {
           buttonLabel,
           style: TextStyle(
             color: Colors.white,
+            fontSize: 10.sp,
           ),
         ),
       ),

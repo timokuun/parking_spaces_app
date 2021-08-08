@@ -1,13 +1,14 @@
-import 'package:car_park_login/widgets/query_result.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../theme.dart';
-import 'home_screen.dart';
-import 'settings.dart';
-import 'active_spots_screen.dart';
-import 'spot_info_screen.dart';
+import './home_screen.dart';
+import './user_screen.dart';
+import './active_spots_screen.dart';
 import '../models/parking_spot.dart';
+
+// Allows us to use percentage of device height/width
+import 'package:sizer/sizer.dart';
 
 class MainRouter extends StatefulWidget {
   static const String id = '/main';
@@ -30,7 +31,7 @@ class _MainRouterState extends State<MainRouter> {
       //   spot: spots[0],
       //   bought: false,
       // ),
-      SettingsScreen(),
+      UserScreen(),
     ];
   }
 
@@ -38,31 +39,27 @@ class _MainRouterState extends State<MainRouter> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
-        title: ("ActiveSpots"),
+        title: ("Home"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
+        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
+        // iconSize: 25,
+        iconSize: 20.sp,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.directions_car_outlined),
         title: ("Active Spots"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
+        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
+        // iconSize: 25,
+        iconSize: 20.sp,
       ),
-      // PersistentBottomNavBarItem(
-      //   icon: Icon(Icons.info),
-      //   title: ("Spot Info"),
-      //   activeColorPrimary: customCyan,
-      //   inactiveColorPrimary: Colors.white,
-      //   iconSize: 25,
-      // ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
+        icon: Icon(Icons.person),
         title: ("Profile"),
         activeColorPrimary: customCyan,
-        inactiveColorPrimary: Colors.white,
-        iconSize: 25,
+        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
+        // iconSize: 25,
+        iconSize: 20.sp,
       ),
     ];
   }
@@ -74,7 +71,7 @@ class _MainRouterState extends State<MainRouter> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      backgroundColor: customBlack,
+      backgroundColor: Theme.of(context).backgroundColor,
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,
