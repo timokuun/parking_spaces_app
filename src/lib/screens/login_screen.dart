@@ -67,72 +67,32 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-              /* Login Form */
-              AnimatedTextField(
-                width: 75.w,
-                margin: EdgeInsets.only(bottom: 3.h),
-                textNode: _userNode,
-                fieldController: _usernameCtrl,
-                fieldLabel: "Username/Phone #",
-                isPassword: false,
-              ),
-              AnimatedTextField(
-                width: 75.w,
-                margin: EdgeInsets.only(bottom: 3.h),
-                textNode: _passNode,
-                fieldController: _passwordCtrl,
-                fieldLabel: "Password",
-                isPassword: true,
-              ),
-              /* Submit/Register Buttons */
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GeneralButton(
-                    buttonLabel: "Register",
-                    height: 5.h,
-                    width: 22.w,
-                    margin: EdgeInsets.symmetric(horizontal: 3.h),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RegisterScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  GeneralButton(
-                    height: 5.h,
-                    width: 22.w,
-                    margin: EdgeInsets.symmetric(horizontal: 3.h),
-                    buttonLabel: "Login",
-                    onTap: () {
-                      // Set fake user token for now
-                      // TODO: Set up backend auth
-                      context.read(userInfoProvider).userSignIn("test");
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MainRouter(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+            /* Login Form */
+            AnimatedTextField(
+              width: 75.w,
+              margin: EdgeInsets.only(bottom: 3.h),
+              textNode: _userNode,
+              fieldController: _usernameCtrl,
+              fieldLabel: "Username/Phone #",
+              isPassword: false,
             ),
-
+            AnimatedTextField(
+              width: 75.w,
+              margin: EdgeInsets.only(bottom: 3.h),
+              textNode: _passNode,
+              fieldController: _passwordCtrl,
+              fieldLabel: "Password",
+              isPassword: true,
+            ),
             /* Submit/Register Buttons */
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GeneralButton(
                   buttonLabel: "Register",
-                  height: SizeConfig.screenHeight * 0.055,
-                  width: SizeConfig.screenWidth * 0.25,
-                  margin: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth * 0.04),
+                  height: 5.h,
+                  width: 22.w,
+                  margin: EdgeInsets.symmetric(horizontal: 3.h),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -142,14 +102,15 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                 ),
-                // TODO: Connect with _signIn()
                 GeneralButton(
-                  height: SizeConfig.screenHeight * 0.055,
-                  width: SizeConfig.screenWidth * 0.25,
-                  margin: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth * 0.04),
+                  height: 5.h,
+                  width: 22.w,
+                  margin: EdgeInsets.symmetric(horizontal: 3.h),
                   buttonLabel: "Login",
                   onTap: () {
+                    // Set fake user token for now
+                    // TODO: Set up backend auth
+                    // context.read(userInfoProvider).userSignIn("test");
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

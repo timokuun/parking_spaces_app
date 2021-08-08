@@ -1,4 +1,3 @@
-import 'package:car_park_login/providers/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';

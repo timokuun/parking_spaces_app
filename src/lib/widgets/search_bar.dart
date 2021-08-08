@@ -42,11 +42,9 @@ class _SearchBarState extends State<SearchBar> {
     bool isFocused = widget._searchNode.hasFocus;
     return Card(
       margin: widget.margin,
-      // elevation: 30.0,
       elevation: 20.sp,
       color: customCyan,
       shape: RoundedRectangleBorder(
-        // borderRadius: BorderRadius.circular(40),
         borderRadius: BorderRadius.circular(40.sp),
       ),
       child: Container(
@@ -54,7 +52,6 @@ class _SearchBarState extends State<SearchBar> {
         height: widget.height,
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
-          // borderRadius: BorderRadius.circular(40),
           borderRadius: BorderRadius.circular(40.sp),
         ),
         child: Stack(
@@ -69,6 +66,7 @@ class _SearchBarState extends State<SearchBar> {
                 hintText: "Where are you going?",
                 // Hide HintText when typing
                 hintStyle: TextStyle(
+                  fontSize: 10.sp,
                   color:
                       isFocused ? Theme.of(context).primaryColor : Colors.white,
                 ),
@@ -88,7 +86,6 @@ class _SearchBarState extends State<SearchBar> {
               alignment: Alignment.centerLeft,
               child: Container(
                 margin: EdgeInsets.only(
-                  // left: 15,
                   left: 3.5.w,
                 ),
                 child: Icon(
