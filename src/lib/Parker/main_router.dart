@@ -5,7 +5,9 @@ import '../theme.dart';
 import 'screens/home_screen.dart';
 import 'screens/user_screen.dart';
 import 'screens/active_spots_screen.dart';
-import '../models/parking_spot.dart';
+
+// import '../models/parking_spot.dart';
+import '../../models/parking_spot_v2.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
@@ -25,7 +27,8 @@ class _MainRouterState extends State<MainRouter> {
     return [
       HomeScreen(),
       ActiveSpotsScreen(
-        userSpots: spots,
+        // userSpots: spots,
+        userSpots: spotsV2,
       ),
       // SpotInfoScreen(
       //   spot: spots[0],

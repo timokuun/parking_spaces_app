@@ -1,6 +1,8 @@
+import 'package:car_park_login/providers/parking_spots_resultsV2.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/parking_spot.dart';
+// import '../../models/parking_spot.dart';
+import '../../models/parking_spot_v2.dart';
 import '../widgets/active_spots_list.dart';
 import '../widgets/active_spots_number_indicator.dart';
 
@@ -11,7 +13,8 @@ import 'package:sizer/sizer.dart';
 
 class ActiveSpotsScreen extends StatefulWidget {
   static const String id = '/activeSpots';
-  final List<ParkingSpot> userSpots;
+  // final List<ParkingSpot> userSpots;
+  final List<ParkingSpotV2> userSpots;
 
   ActiveSpotsScreen({Key key, this.userSpots}) : super(key: key);
 
@@ -25,8 +28,6 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
-        // height: SizeConfig.screenHeight * 0.93,
-        // width: SizeConfig.screenWidth,
         height: 93.h,
         width: 100.w,
         child: Column(
@@ -34,8 +35,6 @@ class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
           children: [
             ActiveSpotsNumberIndicator(
               margin: EdgeInsets.only(
-                // top: SizeConfig.screenHeight * 0.075,
-                // bottom: SizeConfig.screenHeight * 0.01,
                 top: 7.5.h,
                 bottom: 1.h,
               ),

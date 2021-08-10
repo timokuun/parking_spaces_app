@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import './spot_result.dart';
-import '../../models/parking_spot.dart';
+// import '../../models/parking_spot.dart';
+import '../../models/parking_spot_v2.dart';
 import '../widgets/active_spots_list_element.dart';
 
 // Allows us to use percentage of device height/width
@@ -12,7 +13,8 @@ import 'package:sizer/sizer.dart';
 
 // TODO: Correct the time formating
 class ActiveSpotsList extends ConsumerWidget {
-  final List<ParkingSpot> userSpots;
+  // final List<ParkingSpot> userSpots;
+  final List<ParkingSpotV2> userSpots;
 
   ActiveSpotsList({
     @required this.userSpots,
@@ -32,8 +34,6 @@ class ActiveSpotsList extends ConsumerWidget {
     // TODO: Maybe expanded to resolve overflow if it persists...
     return Expanded(
       child: Container(
-        // height: SizeConfig.screenHeight * 0.8,
-        // height: 80.h,
         child: RefreshIndicator(
           onRefresh: () {
             return context.read(userActiveSpotsProvider.notifier).loadList();

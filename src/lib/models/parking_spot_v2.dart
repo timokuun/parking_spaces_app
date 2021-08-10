@@ -56,3 +56,6 @@ const spot1V2 = ParkingSpotV2(
   numRatings: 28,
   bought: true,
 );
+
+// Dummy ParkingSpotV2 list using for testing
+List<ParkingSpotV2> spotsV2 = [spot1V2, spot1V2, spot1V2, spot1V2];
