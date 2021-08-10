@@ -1,10 +1,8 @@
-import 'package:car_park_login/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../size_config.dart';
-import '../theme.dart';
-import '../services/places_autocompleter.dart';
+import '../../theme.dart';
+import '../../services/http_places_autocompleter.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
@@ -23,7 +21,6 @@ class QueryResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return FutureBuilder(
       future: placesGetter.getPredictions(userInput),
       builder: (context, snapshot) {

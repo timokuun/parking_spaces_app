@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:carousel_slider/carousel_options.dart';
 
-import '../models/parking_spot.dart';
+import '../../models/parking_spot.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';

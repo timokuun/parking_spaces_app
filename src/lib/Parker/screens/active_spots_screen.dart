@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../size_config.dart';
 
-import '../models/parking_spot.dart';
+import '../../models/parking_spot.dart';
 import '../widgets/active_spots_list.dart';
 import '../widgets/active_spots_number_indicator.dart';
 
@@ -23,7 +22,6 @@ class ActiveSpotsScreen extends StatefulWidget {
 class _ActiveSpotsScreenState extends State<ActiveSpotsScreen> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(

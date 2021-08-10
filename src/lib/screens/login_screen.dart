@@ -2,8 +2,9 @@ import 'package:car_park_login/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../size_config.dart';
-import './main_router.dart';
+/* Routers */
+import '../Parker/main_router.dart';
+
 import './register_screen.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/placeholder_logo.dart';
@@ -50,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(

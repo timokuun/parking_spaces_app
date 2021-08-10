@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
 
@@ -17,7 +15,6 @@ class SpotOwnerBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
       // height: SizeConfig.screenHeight * 0.2,
       // width: SizeConfig.screenWidth,

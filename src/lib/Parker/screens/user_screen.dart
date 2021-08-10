@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import '../../theme.dart';
 import './user_settings_tab.dart';
 import './user_favorites_tab.dart';
 

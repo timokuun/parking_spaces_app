@@ -1,9 +1,9 @@
-import 'package:car_park_login/models/parking_garage.dart';
-import 'package:car_park_login/screens/garage_spots_screen.dart';
-import 'package:flutter/material.dart';
+// import 'package:car_park_login/models/parking_garage.dart';
+// import 'package:car_park_login/screens/garage_spots_screen.dart';
+// import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-import '../theme.dart';
+// import '../size_config.dart';
+// import '../theme.dart';
 
 // class GarageTitle extends StatelessWidget {
 //   final ParkingGarage garage;

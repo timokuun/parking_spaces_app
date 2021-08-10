@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import '../../theme.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';

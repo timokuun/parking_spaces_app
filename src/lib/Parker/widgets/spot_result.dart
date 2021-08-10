@@ -1,8 +1,7 @@
 import 'package:car_park_login/models/parking_spot_v2.dart';
-import 'package:car_park_login/screens/spot_info_screen.dart';
 import 'package:flutter/material.dart';
-import '../size_config.dart';
-import '../theme.dart';
+import '../screens/spot_info_screen.dart';
+import '../../theme.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
@@ -17,7 +16,6 @@ class SpotResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Material(
       color: Theme.of(context).backgroundColor,
       child: InkWell(

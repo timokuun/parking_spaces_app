@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-import './main_router.dart';
+/* Routers */
+import '../Parker/main_router.dart';
+
 import '../widgets/placeholder_logo.dart';
 import '../widgets/animated_text_field.dart';
 import '../widgets/general_button.dart';
@@ -57,7 +58,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(

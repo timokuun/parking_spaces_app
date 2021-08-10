@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-import '../theme.dart';
-import '../models/parking_spot.dart';
-import '../screens/spot_info_screen.dart';
+// import '../../theme.dart';
+// import '../../models/parking_spot.dart';
+// import '../screens/spot_info_screen.dart';
 
 // class ActiveSpotsListElement extends StatelessWidget {
 //   final ParkingSpot spot;

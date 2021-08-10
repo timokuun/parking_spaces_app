@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-import '../models/parking_spot_v2.dart';
+import '../../models/parking_spot_v2.dart';
 // import '../models/parking_spot.dart';
 
 // Allows us to use percentage of device height/width
@@ -18,7 +17,6 @@ class SpotInfoBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
       // width: SizeConfig.screenWidth * 0.8,
       width: 80.w,

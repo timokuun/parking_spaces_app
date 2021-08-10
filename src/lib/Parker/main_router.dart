@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../theme.dart';
-import './home_screen.dart';
-import './user_screen.dart';
-import './active_spots_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/user_screen.dart';
+import 'screens/active_spots_screen.dart';
 import '../models/parking_spot.dart';
 
 // Allows us to use percentage of device height/width

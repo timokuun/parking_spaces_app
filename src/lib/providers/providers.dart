@@ -5,7 +5,7 @@ import './map_markers_list.dart';
 import './user_active_spots.dart';
 import './parking_spots_resultsV2.dart';
 import './location_provider.dart';
-import './http_response_getter.dart';
+import '../services/http_response_getter.dart';
 import './user_info.dart';
 
 // State notifier for list of MapMarkers

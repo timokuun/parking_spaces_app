@@ -3,8 +3,7 @@ import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../size_config.dart';
-import '../widgets/settings_tile.dart';
+import '../../widgets/settings_tile.dart';
 
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
@@ -14,7 +13,6 @@ import 'package:sizer/sizer.dart';
 class UserSettingsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return ListView(
       padding: EdgeInsets.only(top: 2.h),
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),

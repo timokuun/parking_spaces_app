@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-import '../theme.dart';
-import '../screens/spot_info_screen.dart';
-import '../models/parking_spot.dart';
+// import '../size_config.dart';
+// import '../theme.dart';
+// import '../screens/spot_info_screen.dart';
+// import '../models/parking_spot.dart';
 
 // class GarageScreenElement extends StatelessWidget {
 //   final ParkingSpot spot;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/providers.dart';
+import '../../providers/providers.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';

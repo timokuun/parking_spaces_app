@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-import '../theme.dart';
-import './garage_pictures.dart';
-import './garage_title.dart';
-import '../models/parking_garage.dart';
+// import '../../theme.dart';
+// import './garage_pictures.dart';
+// import './garage_title.dart';
+// import '../models/parking_garage.dart';
 
 // class GarageResult extends StatelessWidget {
 //   final double miles;

@@ -1,5 +1,4 @@
 import 'package:car_park_login/models/parking_spot_v2.dart';
-import 'package:car_park_login/widgets/spot_result.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -8,14 +7,15 @@ import 'package:flutter/rendering.dart';
 import 'package:location/location.dart';
 import 'dart:async';
 
-import '../size_config.dart';
-import '../theme.dart';
+import '../../theme.dart';
 
-import '../providers/providers.dart';
+import '../../providers/providers.dart';
+
 import '../widgets/search_bar.dart';
 import '../widgets/spot_result.dart';
-import '../widgets/draggable_indicator.dart';
 import '../widgets/query_result.dart';
+
+import '../../widgets/draggable_indicator.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
@@ -162,7 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     // check user location permission
     // context.read(userLocationProvider.notifier).initLocation();
 

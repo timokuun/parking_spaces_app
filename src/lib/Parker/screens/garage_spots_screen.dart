@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
 
-import '../size_config.dart';
-import '../theme.dart';
-import '../models/parking_garage.dart';
-import '../widgets/garage_screen_element.dart';
+// import '../theme.dart';
+// import '../models/parking_garage.dart';
+// import '../widgets/garage_screen_element.dart';
 
 // class GarageSpotsScreen extends StatefulWidget {
 //   final ParkingGarage garage;

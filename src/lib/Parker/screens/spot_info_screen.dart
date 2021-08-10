@@ -1,21 +1,17 @@
 import 'package:car_park_login/models/parking_spot_v2.dart';
-import 'package:car_park_login/providers/http_response_getter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:riverpod/riverpod.dart';
 import 'dart:async';
 
-import '../size_config.dart';
-// import '../models/parking_spot.dart';
-import '../models/Color.dart';
+import '../../models/parking_spot_v2.dart';
+import '../../providers/providers.dart';
+
 import '../widgets/spot_amenity_label.dart';
 import '../widgets/spot_carousel.dart';
 import '../widgets/spot_info_box.dart';
 import '../widgets/spot_owner_box.dart';
 import '../widgets/spot_buy_button.dart';
-import '../models/parking_spot_v2.dart';
-import '../providers/providers.dart';
 
 // Allows us to use percentage of device height/width
 import 'package:sizer/sizer.dart';
@@ -44,7 +40,6 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
@@ -102,7 +97,7 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                             SpotAmenityLabel(
                               name: "Lights",
                               backgroundColor: Colors.white,
-                              fontColor: OurColor.ourCyan,
+                              fontColor: Theme.of(context).primaryColor,
                             ),
                             Container(
                               // height: SizeConfig.screenHeight * 0.6,
@@ -145,7 +140,7 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                         // width: SizeConfig.screenWidth * 0.8,
                         height: 6.5.h,
                         width: 80.w,
-                        buttonColor: OurColor.ourCyan,
+                        buttonColor: Theme.of(context).primaryColor,
                         cost: widget.spot.price,
                       ),
                     ),
