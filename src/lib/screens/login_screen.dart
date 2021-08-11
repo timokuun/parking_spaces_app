@@ -1,3 +1,4 @@
+import 'package:car_park_login/Spotter/spotter_router.dart';
 import 'package:car_park_login/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -110,11 +111,14 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () {
                     // Set fake user token for now
                     // TODO: Set up backend auth
+                    // TODO: Check current UserMode in UserInfo provider
+                    //        to send user to correct router...
                     // context.read(userInfoProvider).userSignIn("test");
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => MainRouter(),
+                        // builder: (context) => SpotterRouter(),
                       ),
                     );
                   },

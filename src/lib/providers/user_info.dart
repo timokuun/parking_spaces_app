@@ -6,6 +6,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Persistent data entry keys
 const darkMode = "darkMode";
 const userToken = "userToken";
+// Key for Parker/Spotter view
+const appView = "appView";
+
+// Strings to identify Parker / Spotter modes
+const parkerMode = "parker";
+const spotterMode = "spotter";
 
 class UserInfo extends ChangeNotifier {
   UserAuth auth = UserAuth();
@@ -20,18 +26,22 @@ class UserInfo extends ChangeNotifier {
 
     // No entry found, this is user's first app launch
     if (!currMode) {
-      // Set notifier and persistent data for theme (darkMode is default)
+      // Set notifier and persistent data for theme, user auth and user mode
       await prefs.setBool(darkMode, true);
       settings.darkMode = true;
 
-      // Set notifier and persistent data for user auth
       await prefs.setString(userToken, "");
       auth.sessionToken = "";
+
+      // Note: Default userMode is Parker
+      await prefs.setString(appView, parkerMode);
+      settings.userMode = parkerMode;
       notifyListeners();
     } else {
       // Extract data from user's device
       auth.sessionToken = prefs.getString(userToken);
       settings.darkMode = prefs.getBool(darkMode);
+      settings.userMode = prefs.getString(appView);
       notifyListeners();
     }
   }
@@ -49,6 +59,16 @@ class UserInfo extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(userToken, "");
     auth.sessionToken = "";
+    notifyListeners();
+  }
+
+  // Toggle user modes
+  void toggleUserMode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String currMode = prefs.getString(appView);
+    String newMode = currMode == parkerMode ? spotterMode : parkerMode;
+    prefs.setString(appView, newMode);
+    settings.userMode = newMode;
     notifyListeners();
   }
 
@@ -70,5 +90,8 @@ class UserAuth {
 class UserSettings {
   bool darkMode;
 
-  UserSettings([this.darkMode = true]);
+  // Added to toggle between Parker/Spotter views
+  String userMode;
+
+  UserSettings([this.darkMode = true, this.userMode = parkerMode]);
 }
