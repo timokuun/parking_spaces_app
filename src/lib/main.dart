@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /* Routers */
 import './Parker/main_router.dart';
-// import 'Spotter/spotter_router.dart';
+import 'Spotter/spotter_router.dart';
 
 import 'theme.dart';
 import './providers/providers.dart';
@@ -47,9 +47,11 @@ class MyApp extends ConsumerWidget {
               // themeMode: ThemeMode.dark,
 
               // TODO: Set up backend user auth
+              // TODO: Create logic to check also for current user view (parker/spotter)
               home: user.auth.sessionToken.isEmpty ? LoginPage() : MainRouter(),
-              // : SpotterRouter(),
-              // home: LoginPage(),
+              // home: user.auth.sessionToken.isEmpty
+              //     ? LoginPage()
+              //     : SpotterRouter(),
             );
           },
         );

@@ -57,5 +57,19 @@ const spot1V2 = ParkingSpotV2(
   bought: true,
 );
 
+const spot2V2 = ParkingSpotV2(
+  id: "1",
+  coords: LatLng(32.8801, 117.234),
+  name: "UCSD",
+  address: "9500 Gilman Drive, La Jolla, CA",
+  price: 7.0,
+  height: 150,
+  imageUrl:
+      "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
+  avgRating: 4.1,
+  numRatings: 28,
+  bought: false,
+);
+
 // Dummy ParkingSpotV2 list using for testing
-List<ParkingSpotV2> spotsV2 = [spot1V2, spot1V2, spot1V2, spot1V2];
+List<ParkingSpotV2> spotsV2 = [spot2V2, spot1V2, spot1V2, spot2V2];

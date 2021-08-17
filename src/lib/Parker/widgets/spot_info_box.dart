@@ -49,7 +49,7 @@ class SpotInfoBox extends StatelessWidget {
               //     // fontSize: 30,
               //     fontSize: 21.sp,
               //     fontWeight: FontWeight.w800),
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
           SizedBox(

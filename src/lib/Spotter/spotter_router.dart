@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../theme.dart';
-import './screens/screen1.dart';
+import 'screens/spot_listings_screen.dart';
 import './screens/screen2.dart';
 import './screens/screen3.dart';
 
@@ -25,31 +25,23 @@ class _SpotterRouterState extends State<SpotterRouter> {
 
   List<Widget> _buildScreens() {
     return [
-      Screen1(),
+      SpotListingsScreen(),
       Screen2(),
-      Screen3(),
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.timer_10),
-        title: ("First"),
+        icon: Icon(Icons.assignment_outlined),
+        title: ("SpotListings"),
         activeColorPrimary: customCyan,
         inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
         iconSize: 20.sp,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.two_k),
+        icon: Icon(Icons.person),
         title: ("Second"),
-        activeColorPrimary: customCyan,
-        inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
-        iconSize: 20.sp,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.thirty_fps),
-        title: ("Third"),
         activeColorPrimary: customCyan,
         inactiveColorPrimary: Theme.of(context).accentColor.withOpacity(0.5),
         iconSize: 20.sp,

@@ -70,7 +70,7 @@ class _UserScreenState extends State<UserScreen>
                 //     // color: Colors.white,
                 //     color: Colors.black,
                 //     fontWeight: FontWeight.w800),
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headline2,
               ),
 
               // Toggler between app modes
@@ -141,7 +141,7 @@ class _UserScreenState extends State<UserScreen>
                   controller: _tabController,
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicatorPadding:
-                      EdgeInsets.symmetric(vertical: 5.sp, horizontal: 12.sp),
+                      EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.5.w),
                 ),
               ),
 
@@ -155,10 +155,12 @@ class _UserScreenState extends State<UserScreen>
                       width: double.infinity,
                       color: Theme.of(context).backgroundColor,
                       child: Center(
-                          child: Text(
-                        "TBD",
-                        style: TextStyle(color: Theme.of(context).accentColor),
-                      )),
+                        child: Text(
+                          "TBD",
+                          style:
+                              TextStyle(color: Theme.of(context).accentColor),
+                        ),
+                      ),
                     ),
                     UserFavoritesTab(),
                     UserSettingsTab(),

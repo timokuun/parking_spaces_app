@@ -17,6 +17,8 @@ ThemeData lightThemeData(BuildContext context) {
     brightness: Brightness.light,
     textTheme: TextTheme(
       headline1: TextStyle(
+          color: Colors.black, fontSize: 28.sp, fontWeight: FontWeight.w800),
+      headline2: TextStyle(
           color: Colors.black, fontSize: 22.sp, fontWeight: FontWeight.w800),
       headline3: TextStyle(color: Colors.black, fontSize: 12.5.sp),
       subtitle1: TextStyle(color: Colors.black, fontSize: 9.sp),
@@ -33,6 +35,8 @@ ThemeData darkThemeData(BuildContext context) {
     brightness: Brightness.dark,
     textTheme: TextTheme(
       headline1: TextStyle(
+          color: Colors.white, fontSize: 28.sp, fontWeight: FontWeight.w800),
+      headline2: TextStyle(
           color: Colors.white, fontSize: 22.sp, fontWeight: FontWeight.w800),
       headline3: TextStyle(color: Colors.white, fontSize: 12.5.sp),
       subtitle1: TextStyle(color: Colors.white, fontSize: 9.sp),
