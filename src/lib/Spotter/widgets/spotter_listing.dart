@@ -38,128 +38,106 @@ class SpotterListing extends StatelessWidget {
             alignment: Alignment.centerLeft,
             children: [
               // Spot information
-              Positioned(
-                left: 2.5.w,
-                child: Container(
-                    height: 17.h,
-                    width: 85.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.sp),
-                      border: Border.all(
-                        color: customCyan,
-                        width: 1.5.sp,
-                      ),
-                      color: Colors.transparent,
-                    ),
-                    margin: EdgeInsets.only(
-                      left: 8.w,
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 20.w,
-                      right: 5.w,
-                    ),
-                    child: Column(
+              Container(
+                height: 17.h,
+                width: 85.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.sp),
+                  border: Border.all(color: customCyan, width: 1.5.sp),
+                  color: Colors.transparent,
+                ),
+                margin: EdgeInsets.only(left: 10.5.w),
+                padding: EdgeInsets.only(left: 20.w, right: 5.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // TODO: Spacing is weird for price and height?
+                    //        maybe left align with name/address?
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        // TODO: Spacing is weird for price and height?
-                        //        maybe left align with name/address?
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "OPEN",
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.w700,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "${spot.name}",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Theme.of(context).accentColor,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              height: 2.5.sp,
-                            ),
-                            if (spot.bought)
+                        Padding(
+                          padding: EdgeInsets.only(top: 2.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
                               Text(
-                                "Time Left: 2:07",
+                                spot.bought ? "RESERVED" : "OPEN",
                                 style: TextStyle(
-                                  color: Colors.grey[600],
+                                  fontSize: 12.sp,
+                                  color: spot.bought
+                                      ? Colors.yellow
+                                      : Colors.green,
+                                  fontWeight: FontWeight.w700,
+                                  decoration: TextDecoration.underline,
                                 ),
-                                overflow: TextOverflow.ellipsis,
                               ),
-                          ],
+                            ],
+                          ),
                         ),
-                        spot.bought
-                            ? Row(
+                        Text(
+                          "${spot.name}",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Theme.of(context).accentColor,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        if (spot.bought)
+                          Text(
+                            "Time Left: 2:07",
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 11.sp,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              // Row for Rating widget
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.cyan,
+                                    size: 16.sp,
+                                  ),
                                   Text(
-                                    "Current Rental Time: 1:30",
+                                    // TODO: Implement rating
+                                    spot.numRatings == 0
+                                        ? "No Ratings"
+                                        : "${spot.avgRating}(${spot.numRatings})",
                                     style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Colors.white,
+                                      fontSize: 13.sp,
                                     ),
-                                  )
-                                ],
-                              )
-                            : Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Price",
-                                        style: TextStyle(
-                                          color: Colors.grey[400],
-                                          fontSize: 9.sp,
-                                        ),
-                                      ),
-                                      Text(
-                                        "\$${spot.price}/hr",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 13.5.sp,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Height",
-                                        style: TextStyle(
-                                          color: Colors.grey[400],
-                                          fontSize: 9.sp,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${spot.height}",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 13.5.sp,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                 ],
+                              ),
+                              // TODO: Conditionalize this if spot is closed?
+                              Container(
+                                margin: EdgeInsets.only(left: 10.w),
+                                child: Text(
+                                  "\$${spot.price}/hr",
+                                  style: TextStyle(
+                                    fontSize: 13.sp,
+                                  ),
+                                ),
                               )
+                            ],
+                          ),
+                        )
                       ],
-                    )),
+                    ),
+                  ],
+                ),
               ),
               // TODO: Image (production) / Icon(development)
               Positioned(

@@ -46,7 +46,7 @@ class ParkingSpotV2 {
 const spot1V2 = ParkingSpotV2(
   id: "1",
   coords: LatLng(32.8801, 117.234),
-  name: "UCSD",
+  name: "Pangea @ UCSD",
   address: "9500 Gilman Drive, La Jolla, CA",
   price: 7.0,
   height: 150,
@@ -60,7 +60,7 @@ const spot1V2 = ParkingSpotV2(
 const spot2V2 = ParkingSpotV2(
   id: "1",
   coords: LatLng(32.8801, 117.234),
-  name: "UCSD",
+  name: "Hopkins @ UCSD",
   address: "9500 Gilman Drive, La Jolla, CA",
   price: 7.0,
   height: 150,

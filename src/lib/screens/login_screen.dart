@@ -112,6 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                     // Set fake user token for now
                     // TODO: Set up backend auth
                     // TODO: Check current UserMode in UserInfo provider
+                    // TODO: Change User mode here manually, for now
                     //        to send user to correct router...
                     // context.read(userInfoProvider).userSignIn("test");
                     Navigator.pushReplacement(

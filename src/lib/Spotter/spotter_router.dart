@@ -3,8 +3,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../theme.dart';
 import 'screens/spot_listings_screen.dart';
-import './screens/screen2.dart';
-import './screens/screen3.dart';
+import './screens/spotter_settings_screen.dart.dart';
 
 // import '../models/parking_spot.dart';
 import '../../models/parking_spot_v2.dart';
@@ -26,7 +25,7 @@ class _SpotterRouterState extends State<SpotterRouter> {
   List<Widget> _buildScreens() {
     return [
       SpotListingsScreen(),
-      Screen2(),
+      SpotterSettingsScreen(),
     ];
   }
 
