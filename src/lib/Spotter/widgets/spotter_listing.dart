@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../screens/spot_listing_info_screen.dart';
+
 import '../../theme.dart';
 
 import '../../models/parking_spot_v2.dart';
@@ -20,14 +22,14 @@ class SpotterListing extends StatelessWidget {
         splashColor: customCyan,
         radius: 500.sp,
         onTap: () {
-          // Pass spot id to SpotInfoScreen for DB call
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) => SpotInfoScreen(
-          //       spot: spot,
-          //     ),
-          //   ),
-          // );
+          // TODO: Pass spot id to SpotListingInfoScreen for DB call -> if taken, cannot edit
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => SpotListingInfoScreen(
+                spot: spot,
+              ),
+            ),
+          );
         },
         child: Container(
           height: 17.h,
