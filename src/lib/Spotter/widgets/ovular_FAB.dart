@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class OvularFAB extends StatelessWidget {
+  final Function onPressed;
   final double height;
   final double width;
   final IconData icon;
   final String label;
 
-  OvularFAB({this.height, this.width, this.icon, this.label});
+  OvularFAB({this.onPressed, this.height, this.width, this.icon, this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +36,7 @@ class OvularFAB extends StatelessWidget {
             )
           ],
         ),
-        onPressed: () {
-          // TODO: Change page to edit mode
-          print("Change current page to 'edit mode'");
-        },
+        onPressed: onPressed,
       ),
     );
   }

@@ -60,30 +60,21 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                             SpotCarousel(
                               // TODO: Implement List<String> for spot images
                               images: [spot.imageUrl, spot.imageUrl],
-                              // height: SizeConfig.screenHeight * 0.4,
                               height: 40.h,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    // vertical: 12,
-                                    vertical: 1.5.h,
-                                  ),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    icon: Icon(
-                                      Icons.chevron_left,
-                                      // size: 60,
-                                      size: 43.sp,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                )
-                              ],
+                            // Back button
+                            Positioned(
+                              top: 2.h,
+                              child: IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                icon: Icon(
+                                  Icons.chevron_left,
+                                  size: 43.sp,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ),
                             ),
                           ],
                         ),
