@@ -8,7 +8,7 @@ import '../../models/parking_spot_v2.dart';
 import '../../providers/providers.dart';
 
 import '../widgets/spot_amenity_label.dart';
-import '../widgets/spot_carousel.dart';
+import '../../widgets/spot_carousel.dart';
 import '../widgets/spot_info_box.dart';
 import '../widgets/spot_owner_box.dart';
 import '../widgets/spot_buy_button.dart';
@@ -59,7 +59,7 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                           children: [
                             SpotCarousel(
                               // TODO: Implement List<String> for spot images
-                              images: [spot.imageUrl, spot.imageUrl],
+                              images: spot.imageUrls,
                               height: 40.h,
                             ),
                             // Back button

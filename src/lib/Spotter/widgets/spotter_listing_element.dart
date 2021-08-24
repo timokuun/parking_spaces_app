@@ -9,10 +9,10 @@ import '../../models/parking_spot_v2.dart';
 
 // TODO: Need to re-design Spot info (add rating, price, availablilty tag)
 
-class SpotterListing extends StatelessWidget {
+class SpotterListingElement extends StatelessWidget {
   final ParkingSpotV2 spot;
 
-  SpotterListing({this.spot});
+  SpotterListingElement({this.spot});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class SpotterListing extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: spot.bought
-                                      ? Colors.yellow
+                                      ? reservedColor
                                       : Colors.green,
                                   fontWeight: FontWeight.w700,
                                   decoration: TextDecoration.underline,
@@ -147,7 +147,7 @@ class SpotterListing extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.sp),
                   child: Image.network(
-                    "${spot.imageUrl}",
+                    "${spot.imageUrls[0]}",
                     height: 13.h,
                     width: 26.w,
                     fit: BoxFit.cover,

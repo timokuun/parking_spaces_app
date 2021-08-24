@@ -5,8 +5,7 @@ import '../../models/parking_spot_v2.dart';
 
 import './edit_spot_screen.dart';
 
-// TODO: Move this to global?
-import '../../Parker/widgets/spot_carousel.dart';
+import '../../widgets/spot_carousel.dart';
 import '../widgets/ovular_FAB.dart';
 
 class SpotListingInfoScreen extends StatefulWidget {
@@ -23,19 +22,19 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Column(
           children: [
             Stack(
               children: [
                 SpotCarousel(
                   // TODO: Convert "imageURL" to list of strings for images
-                  images: [widget.spot.imageUrl],
+                  images: widget.spot.imageUrls,
                   height: 40.h,
                 ),
-
                 // Back button
                 Positioned(
-                  top: 2.h,
+                  top: 1.h,
                   child: IconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -140,7 +139,9 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
           label: "Edit Spot",
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => EditSpotScreen(),
+              builder: (context) => EditSpotScreen(
+                spot: widget.spot,
+              ),
             ));
           },
         ),

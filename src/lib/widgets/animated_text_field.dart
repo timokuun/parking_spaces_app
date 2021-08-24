@@ -14,25 +14,27 @@ class AnimatedTextField extends StatelessWidget {
   final TextEditingController fieldController;
   final String fieldLabel;
   final bool isPassword;
+
   final Function(String input) validator;
   final Function(String input) onSaved;
   final Function(String input) onSubmit;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
 
-  AnimatedTextField(
-      {Key key,
-      @required this.width,
-      @required this.margin,
-      @required this.textNode,
-      @required this.fieldController,
-      @required this.fieldLabel,
-      this.textInputAction = TextInputAction.done,
-      this.textInputType,
-      this.validator,
-      this.onSaved,
-      this.onSubmit,
-      this.isPassword = false});
+  AnimatedTextField({
+    Key key,
+    @required this.width,
+    @required this.margin,
+    @required this.textNode,
+    @required this.fieldController,
+    @required this.fieldLabel,
+    this.textInputAction = TextInputAction.done,
+    this.textInputType,
+    this.validator,
+    this.onSaved,
+    this.onSubmit,
+    this.isPassword = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,6 @@ class AnimatedTextField extends StatelessWidget {
         style: TextStyle(color: Colors.white),
         onTap: () => textNode.requestFocus(),
         decoration: InputDecoration(
-          // contentPadding: EdgeInsets.all(20),
           contentPadding: EdgeInsets.all(2.2.h),
           labelText: fieldLabel,
           labelStyle: TextStyle(
@@ -58,23 +59,19 @@ class AnimatedTextField extends StatelessWidget {
                 : Colors.grey,
           ),
           enabledBorder: OutlineInputBorder(
-            // borderRadius: BorderRadius.circular(20),
             borderRadius: BorderRadius.circular(2.2.h),
             borderSide: BorderSide(
               color: fieldController.text.isEmpty
                   ? Colors.grey
                   : Theme.of(context).primaryColor,
-              // width: 2.0,
               width: 2.sp,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).primaryColor,
-              // width: 4.0,
               width: 3.5.sp,
             ),
-            // borderRadius: BorderRadius.circular(20),
             borderRadius: BorderRadius.circular(2.2.h),
           ),
           errorBorder: OutlineInputBorder(

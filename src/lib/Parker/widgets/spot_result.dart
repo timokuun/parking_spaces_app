@@ -155,15 +155,11 @@ class SpotResult extends StatelessWidget {
               ),
               // TODO: Image (production) / Icon(development)
               Positioned(
-                // left: 10,
                 left: 2.5.w,
                 child: ClipRRect(
-                  // borderRadius: BorderRadius.circular(20),
                   borderRadius: BorderRadius.circular(15.sp),
                   child: Image.network(
-                    "${spot.imageUrl}",
-                    // height: 110,
-                    // width: 110,
+                    "${spot.imageUrls[0]}",
                     height: 13.h,
                     width: 26.w,
                     fit: BoxFit.cover,

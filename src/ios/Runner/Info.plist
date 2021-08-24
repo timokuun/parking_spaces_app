@@ -46,5 +46,11 @@
 	<string>This app requires access to your location to search for parking.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app requires access to your location to search for parking.</string>
+	<!-- For Camera usage -->
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to your camera to take a picture for your spot.</string>
+	<!-- For Gallery usage -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to your gallery to select a picture for your spot.</string>
 </dict>
 </plist>

@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 const Color customCyan = Color.fromRGBO(0, 203, 203, 1);
 const Color customBlack = Color.fromRGBO(20, 20, 20, 1);
 const Color customWhite = Color.fromRGBO(225, 225, 225, 1);
+const Color reservedColor = Color.fromRGBO(204, 204, 0, 1);
 
 // TODO: Set up light and dark themes to our likings later...
 

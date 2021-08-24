@@ -10,20 +10,20 @@ class ParkingSpotV2 {
   final String address;
   final double price;
   final dynamic height;
-  final String imageUrl;
+  final List<String> imageUrls;
   final double avgRating;
   final int numRatings;
   final bool bought;
 
 // Default constructor used to create dummy favorites tab
-  const ParkingSpotV2(
+  ParkingSpotV2(
       {this.id,
       this.coords,
       this.name,
       this.address,
       this.price,
       this.height,
-      this.imageUrl,
+      this.imageUrls,
       this.avgRating,
       this.numRatings,
       this.bought});
@@ -34,7 +34,7 @@ class ParkingSpotV2 {
         name = jsonData['name'],
         address = jsonData['address'],
         price = double.parse(jsonData['price'].toString()),
-        imageUrl = jsonData['imageUrl'],
+        imageUrls = jsonData['imageUrl'],
         avgRating = double.parse(jsonData["avgRating"].toString()),
         numRatings = jsonData["numRatings"],
         bought = jsonData["bought"],
@@ -43,29 +43,33 @@ class ParkingSpotV2 {
             : "No limit";
 }
 
-const spot1V2 = ParkingSpotV2(
+var spot1V2 = ParkingSpotV2(
   id: "1",
   coords: LatLng(32.8801, 117.234),
   name: "Pangea @ UCSD",
   address: "9500 Gilman Drive, La Jolla, CA",
   price: 7.0,
   height: 150,
-  imageUrl:
-      "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
+  imageUrls: [
+    "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
+    "https://www.safdierabines.com/wp-content/uploads/2019/05/1606_N234_webview.jpg",
+  ],
   avgRating: 4.1,
   numRatings: 28,
   bought: true,
 );
 
-const spot2V2 = ParkingSpotV2(
+var spot2V2 = ParkingSpotV2(
   id: "1",
   coords: LatLng(32.8801, 117.234),
   name: "Hopkins @ UCSD",
   address: "9500 Gilman Drive, La Jolla, CA",
   price: 7.0,
   height: 150,
-  imageUrl:
-      "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
+  imageUrls: [
+    "https://www.safdierabines.com/wp-content/uploads/2019/05/1606_N234_webview.jpg",
+    "https://ucsdnews.ucsd.edu/news_uploads/1280x800_210310-Rainbow7DSC_8071-UCSanDiego-ErikJepsen-1.jpg",
+  ],
   avgRating: 4.1,
   numRatings: 28,
   bought: false,

@@ -1,3 +1,4 @@
+import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 
 // Allows us to use percentage of device height/width
@@ -7,6 +8,7 @@ class GeneralButton extends StatelessWidget {
   final String buttonLabel;
   final double height;
   final double width;
+  final Color color;
   final EdgeInsetsGeometry margin;
   final Function onTap;
 
@@ -15,6 +17,7 @@ class GeneralButton extends StatelessWidget {
     @required this.buttonLabel,
     @required this.height,
     @required this.width,
+    this.color = customCyan,
     this.margin,
     @required this.onTap,
   }) : super(key: key);
@@ -30,7 +33,7 @@ class GeneralButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7.sp),
           ),
-          primary: Theme.of(context).primaryColor,
+          primary: color,
           onPrimary: Theme.of(context).backgroundColor,
         ),
         onPressed: onTap,

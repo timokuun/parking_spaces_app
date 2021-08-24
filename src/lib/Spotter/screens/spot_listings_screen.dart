@@ -1,3 +1,4 @@
+import 'package:car_park_login/Spotter/screens/edit_spot_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -7,7 +8,7 @@ import '../../theme.dart';
 
 import '../../models/parking_spot_v2.dart';
 
-import '../widgets/spotter_listing.dart';
+import '../widgets/spotter_listing_element.dart';
 
 class SpotListingsScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -71,7 +72,7 @@ class SpotListingsScreen extends StatelessWidget {
                 physics: BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
                 itemBuilder: (context, index) {
-                  return SpotterListing(
+                  return SpotterListingElement(
                     spot: spotsV2[index],
                   );
                 },
@@ -92,7 +93,8 @@ class SpotListingsScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => CreateSpot(),
+                // builder: (context) => CreateSpot(),
+                builder: (context) => EditSpotScreen(),
               ),
             );
           },
