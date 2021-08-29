@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/providers.dart';
 
 import '../../screens/edit_account_screen.dart';
+import './manage_cars_screen.dart';
 
 import '../../widgets/settings_tile.dart';
 import '../../theme.dart';
@@ -43,7 +44,7 @@ class UserSettingsTab extends StatelessWidget {
           title: "Edit Account",
           subtitle: "Change username, password, etc...",
           onTap: () {
-            // Navigate to edit account page
+            // Navigate to edit account screen
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => EditAccountScreen(),
@@ -57,7 +58,14 @@ class UserSettingsTab extends StatelessWidget {
         ),
         SettingsTile(
           title: "Manage Cars",
-          onTap: () {},
+          onTap: () {
+            // Navigate to manage cars screen
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ManageCarsScreen(),
+              ),
+            );
+          },
         ),
         SettingsTile(
           title: "Change Notification Settings",
