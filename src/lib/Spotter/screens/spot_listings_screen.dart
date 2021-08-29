@@ -60,7 +60,10 @@ class SpotListingsScreen extends StatelessWidget {
                     onPressed: () {
                       _scaffoldKey.currentState.openEndDrawer();
                     },
-                    icon: Icon(Icons.sort_outlined),
+                    icon: Icon(
+                      Icons.sort_outlined,
+                      color: Theme.of(context).accentColor,
+                    ),
                   ),
                 )
               ],

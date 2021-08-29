@@ -168,7 +168,9 @@ class _SpotCarouselState extends State<SpotCarousel> {
             right: 4.w,
             top: 4.h,
             child: Material(
-              type: MaterialType.transparency,
+              borderRadius: BorderRadius.circular(20.sp),
+              color: Theme.of(context).backgroundColor.withOpacity(0.6),
+              clipBehavior: Clip.hardEdge,
               child: IconButton(
                 padding: EdgeInsets.zero,
                 highlightColor: Theme.of(context).primaryColor,
@@ -176,11 +178,11 @@ class _SpotCarouselState extends State<SpotCarousel> {
                 onPressed: () {
                   print("delete pic");
                   _deletePic();
-                  // print("deleted: ${widget.images.length}");
                 },
                 icon: Icon(
                   Icons.clear,
                   size: 30.sp,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
             ),
@@ -192,8 +194,9 @@ class _SpotCarouselState extends State<SpotCarousel> {
             right: 4.w,
             bottom: 2.h,
             child: Material(
-              type: MaterialType.transparency,
               borderRadius: BorderRadius.circular(20.sp),
+              color: Theme.of(context).backgroundColor.withOpacity(0.6),
+              clipBehavior: Clip.hardEdge,
               child: IconButton(
                 padding: EdgeInsets.zero,
                 highlightColor: Theme.of(context).primaryColor,
@@ -202,6 +205,7 @@ class _SpotCarouselState extends State<SpotCarousel> {
                 icon: Icon(
                   Icons.add,
                   size: 30.sp,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
             ),

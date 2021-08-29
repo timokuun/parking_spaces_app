@@ -48,14 +48,14 @@ class AnimatedTextField extends StatelessWidget {
         textInputAction: textInputAction,
         keyboardType: textInputType,
         autocorrect: false,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Theme.of(context).accentColor),
         onTap: () => textNode.requestFocus(),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(2.2.h),
           labelText: fieldLabel,
           labelStyle: TextStyle(
             color: (textNode.hasFocus || fieldController.text.isNotEmpty)
-                ? Colors.white
+                ? Theme.of(context).accentColor
                 : Colors.grey,
           ),
           enabledBorder: OutlineInputBorder(
@@ -79,7 +79,7 @@ class AnimatedTextField extends StatelessWidget {
             borderSide: BorderSide(
               color: fieldController.text.isEmpty
                   ? Theme.of(context).errorColor
-                  : customCyan,
+                  : Theme.of(context).primaryColor,
               width: 2.0,
             ),
           ),
@@ -88,7 +88,7 @@ class AnimatedTextField extends StatelessWidget {
             borderSide: BorderSide(
               color: fieldController.text.isEmpty
                   ? Theme.of(context).errorColor
-                  : customCyan,
+                  : Theme.of(context).primaryColor,
               width: 4.0,
             ),
           ),

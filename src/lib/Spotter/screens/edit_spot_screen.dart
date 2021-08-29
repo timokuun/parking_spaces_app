@@ -40,12 +40,17 @@ class _EditSpotScreenState extends State<EditSpotScreen> {
   List<XFile> fileImages = [];
 
   // Function to obtain new image from camera or gallery
-  Future<File> getImage() async {
+  Future<void> _getImage() async {
     selectedOption = PhotoOptions.none;
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Adding a photo"),
+        title: Text(
+          "Adding a photo",
+          style: TextStyle(
+            color: Theme.of(context).accentColor,
+          ),
+        ),
         content: Text("Take a picture from your camera or gallery?"),
         actions: [
           TextButton(
@@ -53,13 +58,19 @@ class _EditSpotScreenState extends State<EditSpotScreen> {
                 selectedOption = PhotoOptions.camera;
                 Navigator.of(context).pop();
               },
-              child: Text("Camera")),
+              child: Text(
+                "Camera",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              )),
           TextButton(
               onPressed: () {
                 selectedOption = PhotoOptions.gallery;
                 Navigator.of(context).pop();
               },
-              child: Text("Gallery")),
+              child: Text(
+                "Gallery",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              )),
         ],
       ),
     );
@@ -127,7 +138,7 @@ class _EditSpotScreenState extends State<EditSpotScreen> {
               creatingSpot
                   ? CreateSpotImageDisplay(
                       images: fileImages,
-                      getImage: getImage,
+                      getImage: _getImage,
                     )
                   : Stack(
                       alignment: Alignment.topLeft,
@@ -140,7 +151,7 @@ class _EditSpotScreenState extends State<EditSpotScreen> {
                           fileImages: fileImages,
                           useFiles: creatingSpot,
                           editMode: true,
-                          getImage: getImage,
+                          getImage: _getImage,
                         ),
                         // Back button
                         Positioned(
@@ -173,7 +184,7 @@ class _EditSpotScreenState extends State<EditSpotScreen> {
                 margin: EdgeInsets.only(top: 2.h),
                 buttonLabel: isOpen ? "Open" : "Reserved",
                 height: 4.h,
-                width: 22.w,
+                width: 24.w,
                 color: isOpen ? Colors.green : reservedColor,
                 onTap: () {
                   setState(() {

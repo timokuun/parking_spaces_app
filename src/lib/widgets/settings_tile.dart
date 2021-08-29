@@ -6,25 +6,25 @@ import 'package:sizer/sizer.dart';
 class SettingsTile extends StatelessWidget {
   final String title;
   final String subtitle;
+  final Function onTap;
 
-  SettingsTile({this.title, this.subtitle = ""});
+  SettingsTile(
+      {@required this.title, this.subtitle = "", @required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5.w),
-      title: Text(title,
-          // style: TextStyle(fontSize: 12.5.sp),
-          style: Theme.of(context).textTheme.headline3),
+      title: Text(title, style: Theme.of(context).textTheme.headline3),
       subtitle: Text(
         subtitle,
         style: Theme.of(context).textTheme.subtitle1,
       ),
       trailing: Icon(
         Icons.chevron_right,
-        // size: 35,
         size: 25.sp,
       ),
+      onTap: onTap,
     );
   }
 }

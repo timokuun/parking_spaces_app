@@ -117,7 +117,7 @@ class SpotterListingElement extends StatelessWidget {
                                         ? "No Ratings"
                                         : "${spot.avgRating}(${spot.numRatings})",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Theme.of(context).accentColor,
                                       fontSize: 13.sp,
                                     ),
                                   ),
@@ -130,6 +130,7 @@ class SpotterListingElement extends StatelessWidget {
                                   "\$${spot.price}/hr",
                                   style: TextStyle(
                                     fontSize: 13.sp,
+                                    color: Theme.of(context).accentColor,
                                   ),
                                 ),
                               )

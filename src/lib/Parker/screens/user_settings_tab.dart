@@ -1,9 +1,12 @@
-import 'package:car_park_login/providers/providers.dart';
-import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../providers/providers.dart';
+
+import '../../screens/edit_account_screen.dart';
+
 import '../../widgets/settings_tile.dart';
+import '../../theme.dart';
 
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
@@ -25,8 +28,8 @@ class UserSettingsTab extends StatelessWidget {
               textOn: 'Dark Mode',
               textOff: 'Light Mode',
               animationDuration: Duration(milliseconds: 350),
-              colorOn: customBlack,
-              colorOff: customCyan,
+              colorOn: Theme.of(context).backgroundColor,
+              colorOff: Theme.of(context).primaryColor,
               iconOn: Icons.brightness_2,
               iconOff: Icons.brightness_5,
               textSize: 9.sp,
@@ -39,24 +42,38 @@ class UserSettingsTab extends StatelessWidget {
         SettingsTile(
           title: "Edit Account",
           subtitle: "Change username, password, etc...",
+          onTap: () {
+            // Navigate to edit account page
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => EditAccountScreen(),
+              ),
+            );
+          },
         ),
         SettingsTile(
           title: "Manage Payment Methods",
+          onTap: () {},
         ),
         SettingsTile(
           title: "Manage Cars",
+          onTap: () {},
         ),
         SettingsTile(
           title: "Change Notification Settings",
+          onTap: () {},
         ),
         SettingsTile(
           title: "View Past Rentals",
+          onTap: () {},
         ),
         SettingsTile(
           title: "Provide Feedback",
+          onTap: () {},
         ),
         SettingsTile(
           title: "Report In-App Bugs",
+          onTap: () {},
         ),
       ],
     );

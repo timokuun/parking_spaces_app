@@ -1,3 +1,4 @@
+import 'package:car_park_login/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -31,6 +32,7 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
                   // TODO: Convert "imageURL" to list of strings for images
                   images: widget.spot.imageUrls,
                   height: 40.h,
+                  getImage: () {},
                 ),
                 // Back button
                 Positioned(
@@ -69,13 +71,15 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
                     "Status:",
                     style: TextStyle(
                       fontSize: 9.sp,
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
                   Text(
                     widget.spot.bought ? "RESERVED" : "OPEN",
                     style: TextStyle(
                       fontSize: 16.sp,
-                      color: widget.spot.bought ? Colors.yellow : Colors.green,
+                      fontWeight: FontWeight.w600,
+                      color: widget.spot.bought ? reservedColor : Colors.green,
                     ),
                   ),
                 ],
@@ -100,7 +104,7 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
                           ? "No Ratings"
                           : "${widget.spot.avgRating}(${widget.spot.numRatings})",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).accentColor,
                         fontSize: 16.sp,
                       ),
                     ),
@@ -114,6 +118,7 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
                         "Max Height:",
                         style: TextStyle(
                           fontSize: 9.sp,
+                          color: Theme.of(context).accentColor,
                         ),
                       ),
                       Text(
@@ -121,6 +126,7 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
+                          color: Theme.of(context).accentColor,
                         ),
                       ),
                     ],

@@ -48,7 +48,7 @@ class _CreateSpotImageDisplayState extends State<CreateSpotImageDisplay> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).primaryColor,
-                      fixedSize: Size(35.w, 5.h),
+                      fixedSize: Size(37.w, 5.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24.sp),
                       ),

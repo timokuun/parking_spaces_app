@@ -61,6 +61,7 @@ class _SpotInfoScreenState extends State<SpotInfoScreen> {
                               // TODO: Implement List<String> for spot images
                               images: spot.imageUrls,
                               height: 40.h,
+                              getImage: () {},
                             ),
                             // Back button
                             Positioned(

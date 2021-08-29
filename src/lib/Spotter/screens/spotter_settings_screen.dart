@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../providers/providers.dart';
-import '../../theme.dart';
-import '../../widgets/settings_tile.dart';
 
-import 'package:sizer/sizer.dart';
+import '../../screens/edit_account_screen.dart';
+
+import '../../widgets/settings_tile.dart';
+import '../../theme.dart';
 
 // Handles which app mode the user is in
 enum AppModes { parker, spacer }
@@ -97,8 +99,8 @@ class _SpotterSettingsScreenState extends State<SpotterSettingsScreen> {
                           textOn: 'Dark Mode',
                           textOff: 'Light Mode',
                           animationDuration: Duration(milliseconds: 350),
-                          colorOn: customBlack,
-                          colorOff: customCyan,
+                          colorOn: Theme.of(context).backgroundColor,
+                          colorOff: Theme.of(context).primaryColor,
                           iconOn: Icons.brightness_2,
                           iconOff: Icons.brightness_5,
                           textSize: 9.sp,
@@ -111,18 +113,30 @@ class _SpotterSettingsScreenState extends State<SpotterSettingsScreen> {
                     SettingsTile(
                       title: "Edit Account",
                       subtitle: "Change username, password, etc...",
+                      onTap: () {
+                        // Navigate to edit account page
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => EditAccountScreen(),
+                          ),
+                        );
+                      },
                     ),
                     SettingsTile(
                       title: "Manage Payment Methods",
+                      onTap: () {},
                     ),
                     SettingsTile(
                       title: "Change Notification Settings",
+                      onTap: () {},
                     ),
                     SettingsTile(
                       title: "Provide Feedback",
+                      onTap: () {},
                     ),
                     SettingsTile(
                       title: "Report In-App Bugs",
+                      onTap: () {},
                     ),
                   ],
                 ),
