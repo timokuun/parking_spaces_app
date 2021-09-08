@@ -1,17 +1,34 @@
-import 'package:car_park_login/Spotter/screens/edit_spot_screen.dart';
+import 'package:car_park_login/widgets/general_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../providers/providers.dart';
+import '../../models/parking_spot_v2.dart';
+
 import '../screens/create_spot.dart';
+import './edit_spot_screen.dart';
 
 import '../../theme.dart';
 
-import '../../models/parking_spot_v2.dart';
-
 import '../widgets/spotter_listing_element.dart';
 
-class SpotListingsScreen extends StatelessWidget {
+class SpotListingsScreen extends StatefulWidget {
+  @override
+  _SpotListingsScreenState createState() => _SpotListingsScreenState();
+}
+
+class _SpotListingsScreenState extends State<SpotListingsScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Initially refresh the list of owned spots
+    context.read(userInfoProvider).getOwnedSpots();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -65,21 +82,56 @@ class SpotListingsScreen extends StatelessWidget {
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                )
+                ),
               ],
             ),
 
             // List of Spotter's spots
             Expanded(
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                itemBuilder: (context, index) {
-                  return SpotterListingElement(
-                    spot: spotsV2[index],
-                  );
+              child: RefreshIndicator(
+                onRefresh: () {
+                  return context
+                      .read(userInfoProvider.notifier)
+                      .getOwnedSpots();
                 },
-                itemCount: spotsV2.length,
+
+                // Owned Spots looks to UserInfoProvider ownedSpots[]
+                child: Consumer(
+                  builder: (context, watch, child) {
+                    final ownedSpots = watch(userInfoProvider).ownedSpots;
+
+                    return ownedSpots.length > 0
+                        ? ListView.builder(
+                            physics: BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
+                            itemBuilder: (context, index) {
+                              return SpotterListingElement(
+                                spot: ownedSpots[index],
+                              );
+                            },
+                            itemCount: ownedSpots.length,
+                          )
+
+                        // No owned spots, with refresh button
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "You do not own any spots yet...",
+                                style: Theme.of(context).textTheme.headline3,
+                              ),
+                              GeneralButton(
+                                  margin: EdgeInsets.symmetric(vertical: 2.h),
+                                  buttonLabel: "Refresh",
+                                  height: 5.h,
+                                  width: 20.w,
+                                  onTap: () => context
+                                      .read(userInfoProvider.notifier)
+                                      .getOwnedSpots())
+                            ],
+                          );
+                  },
+                ),
               ),
             ),
           ],
@@ -96,7 +148,6 @@ class SpotListingsScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                // builder: (context) => CreateSpot(),
                 builder: (context) => EditSpotScreen(),
               ),
             );

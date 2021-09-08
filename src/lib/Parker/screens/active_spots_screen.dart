@@ -1,4 +1,4 @@
-import 'package:car_park_login/providers/parking_spots_resultsV2.dart';
+import '../../providers/parking_spots_resultsV2.dart';
 import 'package:flutter/material.dart';
 
 // import '../../models/parking_spot.dart';

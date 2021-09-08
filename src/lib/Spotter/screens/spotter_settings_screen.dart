@@ -94,8 +94,7 @@ class _SpotterSettingsScreenState extends State<SpotterSettingsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         LiteRollingSwitch(
-                          value:
-                              context.read(userInfoProvider).settings.darkMode,
+                          value: context.read(userInfoProvider).darkMode,
                           textOn: 'Dark Mode',
                           textOff: 'Light Mode',
                           animationDuration: Duration(milliseconds: 350),

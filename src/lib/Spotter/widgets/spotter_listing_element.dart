@@ -148,7 +148,7 @@ class SpotterListingElement extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.sp),
                   child: Image.network(
-                    "${spot.imageUrls[0]}",
+                    spot.imageUrls.isEmpty ? "" : "${spot.imageUrls[0]}",
                     height: 13.h,
                     width: 26.w,
                     fit: BoxFit.cover,

@@ -42,13 +42,12 @@ class MyApp extends ConsumerWidget {
               title: 'Aniimo Parking',
               theme: lightThemeData(context),
               darkTheme: darkThemeData(context),
-              themeMode:
-                  user.settings.darkMode ? ThemeMode.dark : ThemeMode.light,
+              themeMode: user.darkMode ? ThemeMode.dark : ThemeMode.light,
               // themeMode: ThemeMode.dark,
 
               // TODO: Set up backend user auth
               // TODO: Create logic to check also for current user view (parker/spotter)
-              home: user.auth.sessionToken.isEmpty ? LoginPage() : MainRouter(),
+              home: user.accessToken.isEmpty ? LoginPage() : MainRouter(),
               // home: user.auth.sessionToken.isEmpty
               //     ? LoginPage()
               //     : SpotterRouter(),

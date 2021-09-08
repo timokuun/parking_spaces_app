@@ -54,6 +54,7 @@ class _SpotListingInfoScreenState extends State<SpotListingInfoScreen> {
               margin: EdgeInsets.symmetric(vertical: 1.h),
               child: Text(
                 widget.spot.name,
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline2,
               ),
             ),

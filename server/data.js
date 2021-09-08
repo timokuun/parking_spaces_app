@@ -50,7 +50,8 @@ const obj4 = {
   name: "Soda & Swine",
   address: "9200 Gilman Drive, La Jolla, CA",
   description: "This is Soda & Swine",
-  imageUrl: "https://cdn.vox-cdn.com/thumbor/TNj4RZuk8xI9f5RRk8pjZWRU9hI=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19207521/DSCF4204.jpg",
+  imageUrl:
+    "https://cdn.vox-cdn.com/thumbor/TNj4RZuk8xI9f5RRk8pjZWRU9hI=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19207521/DSCF4204.jpg",
   price: 4.0,
   height: 140,
   avgRating: 5.0,
@@ -80,5 +81,9 @@ const user1 = {
 
 const arrayObj = { data: [obj1, obj2, obj3, obj4, obj5] };
 
+// TODO: Testing if ownedSpots is empty
+const arrayObj2 = { data: [] };
+
 module.exports.user1 = user1;
 module.exports.arrayObj = arrayObj;
+module.exports.arrayObj2 = arrayObj2;

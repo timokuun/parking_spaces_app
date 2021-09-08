@@ -5,6 +5,7 @@ const app = express();
 
 const user1 = require("./data.js").user1;
 const arrayObj = require("./data.js").arrayObj;
+const arrayObj2 = require("./data.js").arrayObj2;
 
 const port = 3000;
 
@@ -19,6 +20,12 @@ app.get("/active-spots", (req, res) => {
     return res.status(200).json(user1.active_spots);
   }, 2000);
   // return res.status(200).json(user1.active_spots);
+});
+
+app.get("/owned-spots", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authentication");
+  return res.status(200).json(arrayObj);
 });
 
 app.get("/:id", (req, res) => {
